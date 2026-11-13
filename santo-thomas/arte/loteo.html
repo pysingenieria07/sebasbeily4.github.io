@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loteo · arte generativo de Constructora Santo Thomás</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Anthropic Brand Colors */
+        :root {
+            --anthropic-dark: #141413;
+            --anthropic-light: #faf9f5;
+            --anthropic-mid-gray: #b0aea5;
+            --anthropic-light-gray: #e8e6dc;
+            --anthropic-orange: #d97757;
+            --anthropic-blue: #6a9bcc;
+            --anthropic-green: #788c5d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--anthropic-light) 0%, #f5f3ee 100%);
+            min-height: 100vh;
+            color: var(--anthropic-dark);
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 320px;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(20, 20, 19, 0.1);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .sidebar h1 {
+            font-family: 'Lora', serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--anthropic-dark);
+            margin-bottom: 8px;
+        }
+
+        .sidebar .subtitle {
+            color: var(--anthropic-mid-gray);
+            font-size: 14px;
+            margin-bottom: 32px;
+            line-height: 1.4;
+        }
+
+        /* Control Sections */
+        .control-section {
+            margin-bottom: 32px;
+        }
+
+        .control-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--anthropic-dark);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-section h3::before {
+            content: '•';
+            color: var(--anthropic-orange);
+            font-weight: bold;
+        }
+
+        /* Seed Controls */
+        .seed-input {
+            width: 100%;
+            background: var(--anthropic-light);
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin-bottom: 12px;
+            border: 1px solid var(--anthropic-light-gray);
+            text-align: center;
+        }
+
+        .seed-input:focus {
+            outline: none;
+            border-color: var(--anthropic-orange);
+            box-shadow: 0 0 0 2px rgba(217, 119, 87, 0.1);
+            background: white;
+        }
+
+        .seed-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .regen-button {
+            margin-bottom: 0;
+        }
+
+        /* Parameter Controls */
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--anthropic-dark);
+            margin-bottom: 8px;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .slider-container input[type="range"] {
+            flex: 1;
+            height: 4px;
+            background: var(--anthropic-light-gray);
+            border-radius: 2px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--anthropic-orange);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            background: #c86641;
+        }
+
+        .slider-container input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: var(--anthropic-orange);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .value-display {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: var(--anthropic-mid-gray);
+            min-width: 60px;
+            text-align: right;
+        }
+
+        /* Color Pickers */
+        .color-group {
+            margin-bottom: 16px;
+        }
+
+        .color-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--anthropic-mid-gray);
+            margin-bottom: 4px;
+        }
+
+        .color-picker-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .color-picker-container input[type="color"] {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: none;
+            padding: 0;
+        }
+
+        .color-value {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: var(--anthropic-mid-gray);
+        }
+
+        /* Buttons */
+        .button {
+            background: var(--anthropic-orange);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .button:hover {
+            background: #c86641;
+            transform: translateY(-1px);
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        .button.secondary {
+            background: var(--anthropic-blue);
+        }
+
+        .button.secondary:hover {
+            background: #5a8bb8;
+        }
+
+        .button.tertiary {
+            background: var(--anthropic-green);
+        }
+
+        .button.tertiary:hover {
+            background: #6b7b52;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .button-row .button {
+            flex: 1;
+        }
+
+        /* Canvas Area */
+        .canvas-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        #canvas-container {
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(20, 20, 19, 0.1);
+            background: white;
+        }
+
+        #canvas-container canvas {
+            display: block;
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--anthropic-mid-gray);
+        }
+
+        /* Responsive - Stack on mobile */
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .canvas-area {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Control Sidebar -->
+        <div class="sidebar">
+            <!-- Headers (CUSTOMIZE THIS FOR YOUR ART) -->
+            <h1>Loteo</h1>
+            <div class="subtitle">Un predio que se parte en vías, manzanas y lotes. Cada semilla es una urbanización distinta. <a href="../index.html" style="color:inherit">Volver al sitio</a></div>
+
+            <!-- Seed Section (ALWAYS KEEP THIS) -->
+            <div class="control-section">
+                <h3>Semilla</h3>
+                <input type="number" id="seed-input" class="seed-input" value="2014" onchange="updateSeed()">
+                <div class="seed-controls">
+                    <button class="button secondary" onclick="previousSeed()">← Anterior</button>
+                    <button class="button secondary" onclick="nextSeed()">Siguiente →</button>
+                </div>
+                <button class="button tertiary regen-button" onclick="randomSeedAndUpdate()">↻ Al azar</button>
+            </div>
+
+            <!-- Parameters Section (CUSTOMIZE THIS FOR YOUR ART) -->
+            <div class="control-section">
+                <h3>Parámetros</h3>
+                <div class="control-group">
+                    <label>Tamaño de manzana</label>
+                    <div class="slider-container">
+                        <input type="range" id="manzana" min="6000" max="40000" step="1000" value="15000" oninput="updateParam('manzana', this.value)">
+                        <span class="value-display" id="manzana-value">15000</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label>Frente de lote</label>
+                    <div class="slider-container">
+                        <input type="range" id="frente" min="14" max="60" step="1" value="24" oninput="updateParam('frente', this.value)">
+                        <span class="value-display" id="frente-value">24</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label>Ancho de vía principal</label>
+                    <div class="slider-container">
+                        <input type="range" id="via" min="10" max="60" step="1" value="24" oninput="updateParam('via', this.value)">
+                        <span class="value-display" id="via-value">24</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label>Zonas verdes</label>
+                    <div class="slider-container">
+                        <input type="range" id="verdes" min="0" max="0.4" step="0.01" value="0.1" oninput="updateParam('verdes', this.value)">
+                        <span class="value-display" id="verdes-value">0.1</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label>Lotes construidos</label>
+                    <div class="slider-container">
+                        <input type="range" id="construido" min="0" max="1" step="0.05" value="0.3" oninput="updateParam('construido', this.value)">
+                        <span class="value-display" id="construido-value">0.3</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label>Irregularidad del predio</label>
+                    <div class="slider-container">
+                        <input type="range" id="irregular" min="0" max="0.4" step="0.01" value="0.22" oninput="updateParam('irregular', this.value)">
+                        <span class="value-display" id="irregular-value">0.22</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label>Velocidad de obra</label>
+                    <div class="slider-container">
+                        <input type="range" id="velocidad" min="0.2" max="3" step="0.1" value="1" oninput="updateParam('velocidad', this.value)">
+                        <span class="value-display" id="velocidad-value">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colors Section (OPTIONAL - CUSTOMIZE OR REMOVE) -->
+            <div class="control-section">
+                <h3>Colores</h3>
+                <div class="color-group">
+                    <label>Predio</label>
+                    <div class="color-picker-container">
+                        <input type="color" id="color1" value="#1f3b2b" onchange="updateColor('color1', this.value)">
+                        <span class="color-value" id="color1-value">#1f3b2b</span>
+                    </div>
+                </div>
+                <div class="color-group">
+                    <label>Vía</label>
+                    <div class="color-picker-container">
+                        <input type="color" id="color2" value="#d9c9a0" onchange="updateColor('color2', this.value)">
+                        <span class="color-value" id="color2-value">#d9c9a0</span>
+                    </div>
+                </div>
+                <div class="color-group">
+                    <label>Acento</label>
+                    <div class="color-picker-container">
+                        <input type="color" id="color3" value="#e0a63a" onchange="updateColor('color3', this.value)">
+                        <span class="color-value" id="color3-value">#e0a63a</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions Section (ALWAYS KEEP THIS) -->
+            <div class="control-section">
+                <h3>Acciones</h3>
+                <div class="button-row">
+                    <button class="button secondary" onclick="initializeSystem()">Regenerar</button>
+                    <button class="button" onclick="resetParameters()">Restablecer</button>
+                </div>
+                <button class="button tertiary" style="margin-top:8px" onclick="saveCanvas('loteo-' + params.seed, 'png')">Descargar PNG</button>
+            </div>
+        </div>
+
+        <!-- Main Canvas Area -->
+        <div class="canvas-area">
+            <div id="canvas-container">
+                <div class="loading">Trazando el predio…</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════════════
+        // LOTEO — núcleo del algoritmo (el mismo que usa la página de la constructora)
+        // ═══════════════════════════════════════════════════════════════════════
+/* Loteo — generador de planos de urbanización con semilla.
+   Un predio irregular se parte en manzanas con vías que se adelgazan en cada
+   nivel; cada manzana se parcela en lotes espalda con espalda. Sin dependencias:
+   lo usan la página (canvas 2D) y el visor de p5.js. */
+(function (root) {
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  var DEFAULTS = {
+    manzana: 15000,     // área a partir de la cual una pieza deja de partirse
+    frente: 24,         // frente del lote
+    via: 24,            // ancho de la vía principal
+    verdes: 0.1,        // proporción de manzanas que quedan como zona verde
+    construido: 0.3,    // proporción de lotes con casa
+    irregular: 0.22,    // cuánto se aparta el lindero del predio de un óvalo
+    giro: null          // ángulo del trazado en radianes (null = lo decide la semilla)
+  };
+
+  function generate(seed, W, H, opt, rng, ruido) {
+    var o = {}, k;
+    for (k in DEFAULTS) o[k] = DEFAULTS[k];
+    for (k in (opt || {})) if (opt[k] !== undefined && opt[k] !== null) o[k] = opt[k];
+    var R = rng || mulberry32(seed * 9973 + 17);
+    var rr = function (a, b) { return a + (b - a) * R(); };
+
+    var k = Math.sqrt(W * H) / 1100;                 // los parámetros están pensados para ~1200 px
+    o.manzana *= k * k; o.frente *= k; o.via *= k;
+    var angle = o.giro === null ? rr(-0.42, 0.42) : o.giro;
+    var side = Math.sqrt(W * W + H * H) * 1.04;      // el trazado cubre el lienzo aun girado
+    var roads = [], blocks = [];
+
+    (function split(x, y, w, h, depth, minDepth) {
+      var area = w * h, long = Math.max(w, h), short = Math.min(w, h);
+      var stop = area < o.manzana * rr(0.75, 1.3) || short < o.frente * 3.2 || depth > 7;
+      if (stop && long / short < 3.2) { blocks.push({ x: x, y: y, w: w, h: h, minDepth: minDepth }); return; }
+      var rw = Math.max(3 * k, o.via * Math.pow(0.66, depth));
+      var r = rr(0.38, 0.62), vertical = w >= h;      // corta siempre el lado largo
+      if (vertical) {
+        var cx = x + w * r;
+        roads.push({ x: cx - rw / 2, y: y, w: rw, h: h, depth: depth, vertical: true });
+        split(x, y, cx - rw / 2 - x, h, depth + 1, Math.min(minDepth, depth));
+        split(cx + rw / 2, y, x + w - cx - rw / 2, h, depth + 1, Math.min(minDepth, depth));
+      } else {
+        var cy = y + h * r;
+        roads.push({ x: x, y: cy - rw / 2, w: w, h: rw, depth: depth, vertical: false });
+        split(x, y, w, cy - rw / 2 - y, depth + 1, Math.min(minDepth, depth));
+        split(x, cy + rw / 2, w, y + h - cy - rw / 2, depth + 1, Math.min(minDepth, depth));
+      }
+    })(-side / 2, -side / 2, side, side, 0, 9);
+
+    // La obra avanza desde un frente: el orden de aparición es la distancia a ese punto.
+    var front = { x: rr(-0.3, 0.3) * side, y: rr(0.2, 0.45) * side };
+    var lots = [], gap = Math.max(1, 2.4 * k);
+    // La manzana de la torre: la más cercana al centro entre las grandes.
+    var towerIdx = -1, best = 1e9;
+    blocks.forEach(function (b, i) {
+      var d = Math.hypot(b.x + b.w / 2, b.y + b.h / 2);
+      if (d < best && b.w * b.h > o.manzana * 0.55) { best = d; towerIdx = i; }
+    });
+
+    blocks.forEach(function (b, i) {
+      var m = Math.max(1, 2.5 * k), x = b.x + m, y = b.y + m, w = b.w - 2 * m, h = b.h - 2 * m;
+      if (w < 6 * k || h < 6 * k) return;
+      var push = function (lx, ly, lw, lh, kind) {
+        lots.push({ x: lx, y: ly, w: lw, h: lh, kind: kind,
+          tint: ruido ? Math.min(0.999, Math.max(0, ruido(lx, ly) * 0.75 + R() * 0.25)) : R(),
+          casa: kind === 'residencial' && R() < o.construido,
+          order: Math.hypot(lx + lw / 2 - front.x, ly + lh / 2 - front.y) / side + rr(0, 0.06) });
+      };
+      if (i === towerIdx) { push(x, y, w, h, 'torre'); return; }
+      if (R() < o.verdes) { push(x, y, w, h, 'verde'); return; }
+      var sobrePrincipal = roads.some(function (rd) {       // comercio solo frente a la vía principal
+        var pad = o.via * 0.6;
+        return rd.depth <= 1 && rd.x < b.x + b.w + pad && rd.x + rd.w > b.x - pad &&
+          rd.y < b.y + b.h + pad && rd.y + rd.h > b.y - pad && (rd.depth === 0 || R() < 0.35);
+      });
+      var kind = sobrePrincipal && R() < 0.75 ? 'comercial' : 'residencial';
+      var horiz = w >= h, L = horiz ? w : h, S = horiz ? h : w;
+      var rows = S > o.frente * 1.9 ? 2 : 1, rowS = (S - gap * (rows - 1)) / rows;
+      for (var r2 = 0; r2 < rows; r2++) {
+        var n = Math.max(1, Math.round(L / (o.frente * (kind === 'comercial' ? 1.5 : 1) * rr(0.9, 1.15))));
+        var lw = (L - gap * (n - 1)) / n;
+        for (var j = 0; j < n; j++) {
+          var a = j * (lw + gap), s = r2 * (rowS + gap);
+          if (horiz) push(x + a, y + s, lw, rowS, kind); else push(x + s, y + a, rowS, lw, kind);
+        }
+      }
+    });
+
+    // Lindero del predio: un óvalo deformado, como los predios reales vistos desde el dron.
+    var parcel = [], nv = 9, ph = rr(0, 6.28);
+    for (var v = 0; v < nv; v++) {
+      var th = ph + (v / nv) * Math.PI * 2;
+      var rad = 1 + rr(-o.irregular, o.irregular);
+      parcel.push({ x: W / 2 + Math.cos(th) * W * 0.47 * rad, y: H / 2 + Math.sin(th) * H * 0.47 * rad });
+    }
+    var maxOrder = 0; lots.forEach(function (l) { if (l.order > maxOrder) maxOrder = l.order; });
+    lots.forEach(function (l) { l.order /= maxOrder; });
+    return { W: W, H: H, angle: angle, roads: roads, lots: lots, parcel: parcel, side: side };
+  }
+
+  var STYLE = {
+    suelo: '#16271c', predio: '#1f3b2b', lote: ['#2a4a36', '#2f523b', '#274633'],
+    verde: '#3f7a4d', via: '#d9c9a0', casa: '#f4f4f0', torre: '#f4f4f0', acento: '#e0a63a', atenuar: 0.28
+  };
+
+  // t: avance de la obra entre 0 y 1. destacado: tipo de lote a resaltar o null.
+  function draw(ctx, plan, t, style, destacado, fullBleed) {
+    var s = style || STYLE, W = plan.W, H = plan.H;
+    var ease = function (x) { x = Math.max(0, Math.min(1, x)); return 1 - Math.pow(1 - x, 3); };
+    ctx.save();
+    ctx.fillStyle = s.suelo; ctx.fillRect(0, 0, W, H);
+    if (!fullBleed) {
+      ctx.beginPath();
+      plan.parcel.forEach(function (p, i) { if (i) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
+      ctx.closePath(); ctx.clip();
+    }
+    ctx.fillStyle = s.predio; ctx.fillRect(0, 0, W, H);
+    ctx.translate(W / 2, H / 2); ctx.rotate(plan.angle);
+
+    // Lotes: aparecen en el orden en que avanza el frente de obra.
+    plan.lots.forEach(function (l) {
+      var a = ease((t - 0.3 - l.order * 0.55) / 0.15);
+      if (a <= 0) return;
+      var hi = destacado && (l.kind === destacado || (destacado === 'casa' && l.casa));
+      ctx.globalAlpha = a * (destacado && !hi ? s.atenuar + 0.25 : 1);
+      var inset = (1 - a) * Math.min(l.w, l.h) * 0.35;
+      if (l.kind === 'verde') ctx.fillStyle = s.verde;
+      else if (hi && destacado !== 'casa') ctx.fillStyle = s.acento;
+      else ctx.fillStyle = s.lote[Math.floor(l.tint * s.lote.length)];
+      ctx.fillRect(l.x + inset, l.y + inset, l.w - 2 * inset, l.h - 2 * inset);
+      if (l.kind === 'torre') {
+        var m = Math.min(l.w, l.h) * 0.22;
+        ctx.fillStyle = hi ? '#16271c' : s.torre;
+        ctx.fillRect(l.x + m, l.y + m, l.w - 2 * m, l.h - 2 * m);
+        ctx.fillStyle = hi ? s.acento : s.predio;
+        ctx.fillRect(l.x + m * 1.6, l.y + m * 1.6, l.w - 3.2 * m, l.h - 3.2 * m);
+      } else if (l.casa) {
+        var cw = Math.min(l.w, l.h) * 0.56;
+        ctx.fillStyle = hi ? s.acento : s.casa;
+        ctx.fillRect(l.x + (l.w - cw) / 2, l.y + (l.h - cw) / 2, cw, cw);
+      }
+    });
+    ctx.globalAlpha = 1;
+
+    // Vías: primero la principal, después las de cada nivel, creciendo a lo largo.
+    ctx.fillStyle = s.via;
+    plan.roads.forEach(function (r) {
+      var g = ease((t - r.depth * 0.055) / 0.22);
+      if (g <= 0) return;
+      if (r.vertical) ctx.fillRect(r.x, r.y, r.w, r.h * g); else ctx.fillRect(r.x, r.y, r.w * g, r.h);
+    });
+    ctx.restore();
+  }
+
+  root.Loteo = { generate: generate, draw: draw, STYLE: STYLE, DEFAULTS: DEFAULTS, rng: mulberry32 };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+        let params = {
+            seed: 2014,
+            manzana: 15000, frente: 24, via: 24, verdes: 0.1, construido: 0.3, irregular: 0.22, velocidad: 1,
+            colorPalette: ['#1f3b2b', '#d9c9a0', '#e0a63a']
+        };
+        let defaultParams = {...params, colorPalette: [...params.colorPalette]};
+        let plan = null, avance = 0;
+
+        function setup() {
+            let canvas = createCanvas(1200, 1200);
+            canvas.parent('canvas-container');
+            pixelDensity(1);
+            initializeSystem();
+            document.querySelector('.loading').style.display = 'none';
+        }
+
+        // Tonos derivados del color del predio: suelo más oscuro, lotes vecinos, verde más vivo.
+        function estilo() {
+            const base = color(params.colorPalette[0]);
+            const mix = (c, k) => lerpColor(base, color(c), k).toString('#rrggbb');
+            return {
+                suelo: mix('#000000', 0.38), predio: params.colorPalette[0],
+                lote: [mix('#ffffff', 0.07), mix('#ffffff', 0.13), mix('#000000', 0.08), mix('#ffffff', 0.03)],
+                verde: mix('#7fd08a', 0.42), via: params.colorPalette[1], casa: '#f4f4f0', torre: '#f4f4f0',
+                acento: params.colorPalette[2], atenuar: 0.28
+            };
+        }
+
+        function initializeSystem() {
+            randomSeed(params.seed);
+            noiseSeed(params.seed);
+            plan = Loteo.generate(params.seed, width, height, params,
+                () => random(), (x, y) => noise(x * 0.0035 + 50, y * 0.0035 + 50));
+            avance = 0;
+            loop();
+        }
+
+        function draw() {
+            avance = min(1, avance + 0.0045 * params.velocidad);
+            Loteo.draw(drawingContext, plan, avance, estilo(), null, false);
+            // Las casas construidas llevan el acento: es lo único que la obra añade al terreno.
+            if (avance >= 1) {
+                Loteo.draw(drawingContext, plan, 1, Object.assign(estilo(), { casa: params.colorPalette[2], atenuar: 0.75 }), null, false);
+                noLoop();
+            }
+        }
+
+        function updateParam(paramName, value) {
+            params[paramName] = parseFloat(value);
+            document.getElementById(paramName + '-value').textContent = value;
+            initializeSystem();
+        }
+
+        function updateColor(colorId, value) {
+            params.colorPalette[parseInt(colorId.replace('color', '')) - 1] = value;
+            document.getElementById(colorId + '-value').textContent = value;
+            avance = Math.min(avance, 0.999); loop();
+        }
+
+        // ═══════════════════════════════════════════════════════════════════════
+        // SEED CONTROL FUNCTIONS - ALWAYS KEEP THESE
+        // ═══════════════════════════════════════════════════════════════════════
+
+        function updateSeedDisplay() {
+            document.getElementById('seed-input').value = params.seed;
+        }
+
+        function updateSeed() {
+            let input = document.getElementById('seed-input');
+            let newSeed = parseInt(input.value);
+            if (newSeed && newSeed > 0) {
+                params.seed = newSeed;
+                initializeSystem();
+            } else {
+                // Reset to current seed if invalid
+                updateSeedDisplay();
+            }
+        }
+
+        function previousSeed() {
+            params.seed = Math.max(1, params.seed - 1);
+            updateSeedDisplay();
+            initializeSystem();
+        }
+
+        function nextSeed() {
+            params.seed = params.seed + 1;
+            updateSeedDisplay();
+            initializeSystem();
+        }
+
+        function randomSeedAndUpdate() {
+            params.seed = Math.floor(Math.random() * 999999) + 1;
+            updateSeedDisplay();
+            initializeSystem();
+        }
+
+        function resetParameters() {
+            params = {...defaultParams, colorPalette: [...defaultParams.colorPalette]};
+            ['manzana', 'frente', 'via', 'verdes', 'construido', 'irregular', 'velocidad'].forEach(id => {
+                document.getElementById(id).value = params[id];
+                document.getElementById(id + '-value').textContent = params[id];
+            });
+            params.colorPalette.forEach((c, i) => {
+                document.getElementById('color' + (i + 1)).value = c;
+                document.getElementById('color' + (i + 1) + '-value').textContent = c;
+            });
+            updateSeedDisplay();
+            initializeSystem();
+        }
+
+        // Initialize UI on load
+        window.addEventListener('load', function() {
+            updateSeedDisplay();
+        });
+    </script>
+</body>
+</html>
