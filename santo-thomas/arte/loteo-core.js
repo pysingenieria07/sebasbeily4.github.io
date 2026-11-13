@@ -106,8 +106,8 @@
   }
 
   var STYLE = {
-    suelo: '#16271c', predio: '#1f3b2b', lote: ['#2a4a36', '#2f523b', '#274633'],
-    verde: '#3f7a4d', via: '#d9c9a0', casa: '#f4f4f0', torre: '#f4f4f0', acento: '#e0a63a', atenuar: 0.28
+    suelo: '#0d0d0c', predio: '#171715', lote: ['#1f1f1c', '#252522', '#1b1b19'],
+    verde: '#2c3527', via: '#cfc6ae', casa: '#ece8df', torre: '#ece8df', acento: '#c9a45c', atenuar: 0.28
   };
 
   // t: avance de la obra entre 0 y 1. destacado: tipo de lote a resaltar o null.
@@ -137,7 +137,7 @@
       ctx.fillRect(l.x + inset, l.y + inset, l.w - 2 * inset, l.h - 2 * inset);
       if (l.kind === 'torre') {
         var m = Math.min(l.w, l.h) * 0.22;
-        ctx.fillStyle = hi ? '#16271c' : s.torre;
+        ctx.fillStyle = hi ? s.suelo : s.torre;
         ctx.fillRect(l.x + m, l.y + m, l.w - 2 * m, l.h - 2 * m);
         ctx.fillStyle = hi ? s.acento : s.predio;
         ctx.fillRect(l.x + m * 1.6, l.y + m * 1.6, l.w - 3.2 * m, l.h - 3.2 * m);

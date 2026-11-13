@@ -12,12 +12,12 @@
 <meta property="og:description" content="Lotes residenciales y comerciales, casas, locales y apartamentos en Pitalito, Huila. Desde 2014.">
 <meta property="og:image" content="https://www.constructurasantothomas.com/banners/foto-1200x630.png">
 <meta property="og:url" content="https://www.constructurasantothomas.com/">
-<meta name="theme-color" content="#111311">
+<meta name="theme-color" content="#0d0d0c">
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="apple-touch-icon" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/aerea-loteo.webp" imagesrcset="img/aerea-loteo-800.webp 800w, img/aerea-loteo.webp 1600w" imagesizes="100vw">
 <script type="application/ld+json">
 {
@@ -43,64 +43,67 @@
 </script>
 <style>
 :root{
-  --cal:#f4f4f0; --cal-2:#e8e8e1; --tinta:#111311; --campo:#1f3b2b; --campo-osc:#16271c;
-  --arena:#d9c9a0; --oro:#e0a63a; --oro-osc:#c98f24;
+  --cal:#ece8df; --cal-2:#dfdbd0; --tinta:#0d0d0c; --campo:#1f1f1c; --campo-osc:#151513;
+  --arena:#cfc6ae; --oro:#c9a45c; --oro-osc:#b08d48;
   --m:clamp(20px,2.2vw,32px);
-  --seccion:clamp(88px,12vw,180px);
-  --t-display:clamp(40px,8.6vw,132px);
-  --t-h2:clamp(31px,4.8vw,70px);
+  --seccion:clamp(96px,14vw,210px);
+  --t-display:clamp(46px,8.4vw,136px);
+  --t-h2:clamp(36px,5vw,76px);
   --t-decl:clamp(22px,2.3vw,34px);
   --t-texto:18px; --t-nota:15px;
   --salir:cubic-bezier(.2,.7,.2,1);
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--cal);color:var(--tinta);font-family:Archivo,system-ui,sans-serif;font-size:var(--t-texto);line-height:1.5;font-stretch:100%}
+body{margin:0;background:var(--tinta);color:var(--cal);font-family:Archivo,system-ui,sans-serif;font-size:var(--t-texto);line-height:1.6;font-weight:400}
 img{display:block;max-width:100%;height:auto}
+body{position:relative}
 a{color:inherit}
 h1,h2,p,figure,ul{margin:0}
 ul{padding:0;list-style:none}
-h1,h2{font-weight:750;font-stretch:84%;letter-spacing:-.035em;line-height:.96;text-wrap:balance}
+h1,h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:-.012em;line-height:1;text-wrap:balance}
 h1{font-size:var(--t-display)}
 h2{font-size:var(--t-h2)}
-.decl{font-size:var(--t-decl);line-height:1.22;font-weight:500;letter-spacing:-.015em;max-width:36ch}
+.decl{font-family:'Cormorant Garamond',Georgia,serif;font-size:calc(var(--t-decl)*1.12);line-height:1.2;font-weight:400;max-width:34ch}
 .nota{font-size:var(--t-nota);line-height:1.4}
 .wrap{padding-inline:var(--m)}
 .seccion{padding-block:var(--seccion)}
 :focus-visible{outline:3px solid var(--oro);outline-offset:3px}
 ::selection{background:var(--oro);color:var(--tinta)}
 .salto{position:absolute;left:-999px}
-.salto:focus{left:var(--m);top:8px;background:var(--tinta);color:var(--cal);padding:10px 14px;z-index:9}
+.salto:focus{left:var(--m);top:8px;background:var(--cal);color:var(--tinta);padding:10px 14px;z-index:9}
 
 /* Botón: plano, cuadrado, un solo color */
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;background:var(--oro);color:var(--tinta);font-weight:650;font-size:17px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;transition:background .18s,transform .12s}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 30px;background:var(--oro);color:var(--tinta);font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:0;cursor:pointer;font-family:inherit;transition:background .18s,transform .12s}
 .btn:hover{background:var(--oro-osc)}
 .btn:active{transform:translateY(2px)}
 .enlace{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;transition:text-decoration-color .18s}
 .enlace:hover{text-decoration-color:var(--oro)}
 
-/* Barra */
-.barra{display:flex;align-items:center;gap:var(--m);padding:14px var(--m);flex-wrap:wrap}
-.barra .marca{margin-right:auto;display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;font-stretch:84%;font-size:21px;letter-spacing:-.02em}
-.barra .marca img{width:40px;height:auto}
-.barra nav ul{display:flex;gap:clamp(16px,2.4vw,36px)}
-.barra nav a{text-decoration:none;font-size:17px;padding:8px 0;display:block}
-.barra nav a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
-.barra .btn{min-height:44px;padding:0 18px;font-size:16px}
+/* Barra: sobre la foto de portada, sin caja */
+.barra{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;gap:var(--m);padding:22px var(--m);flex-wrap:wrap}
+.barra .marca{margin-right:auto;display:flex;align-items:center;gap:14px;text-decoration:none;font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:21px;letter-spacing:.2em;text-transform:uppercase}
+.barra .marca img{width:38px;height:auto}
+.barra nav ul{display:flex;gap:clamp(18px,2.6vw,40px)}
+.barra nav a{text-decoration:none;font-size:13px;letter-spacing:.16em;text-transform:uppercase;padding:8px 0;display:block;transition:color .18s}
+.barra nav a:hover{color:var(--oro)}
+.barra .btn{min-height:44px;padding:0 20px;font-size:12px;background:transparent;color:var(--cal);box-shadow:inset 0 0 0 1px var(--oro)}
+.barra .btn:hover{background:var(--oro);color:var(--tinta)}
 
-/* Portada */
-.portada{padding-top:clamp(20px,4vw,56px)}
-.portada .cabeza{display:grid;grid-template-columns:1fr;gap:28px;align-items:end;padding-bottom:clamp(24px,3vw,44px)}
-.portada .apoyo{display:grid;gap:22px;justify-items:start;max-width:34ch}
-.portada .foto{overflow:hidden;height:min(62vh,760px);min-height:300px;background:var(--campo)}
+/* Portada: la foto ocupa toda la pantalla; el texto abajo a la izquierda */
+.portada{position:relative;min-height:100svh;display:grid;align-items:end}
+.portada .foto{position:absolute;inset:0;overflow:hidden;background:var(--campo-osc)}
 .portada .foto img{width:100%;height:100%;object-fit:cover;object-position:50% 58%}
-@media(min-width:900px){.portada .cabeza{grid-template-columns:minmax(0,1.9fr) minmax(0,1fr)}}
+.portada .foto::after{content:"";position:absolute;inset:0;background:rgba(13,13,12,.62)}
+.portada .cabeza{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:28px;align-items:end;padding-top:140px;padding-bottom:clamp(40px,7vh,88px)}
+.portada .apoyo{display:grid;gap:26px;justify-items:start;max-width:36ch}
+@media(min-width:900px){.portada .cabeza{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)}}
 
 /* Proyectos: cada uno con su propia composición */
 .titulo-sec{padding-bottom:clamp(32px,5vw,72px)}
 .proy{display:grid;gap:var(--m);grid-template-columns:repeat(12,minmax(0,1fr));align-items:start}
 .proy + .proy{margin-top:clamp(72px,9vw,140px)}
-.proy figure{overflow:hidden;background:var(--cal-2)}
+.proy figure{overflow:hidden;background:var(--campo)}
 .proy figure img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--salir)}
 .proy figure:hover img{transform:scale(1.03)}
 .proy .txt{display:grid;gap:18px;align-content:start}
@@ -124,7 +127,7 @@ h2{font-size:var(--t-h2)}
 }
 
 /* Torre: campo negro, la imagen vertical manda */
-.torre-sec{background:var(--tinta);color:var(--cal);margin-top:var(--seccion)}
+.torre-sec{background:var(--campo-osc);color:var(--cal)}
 .torre{display:grid;gap:var(--m);grid-template-columns:repeat(12,minmax(0,1fr));align-items:end}
 .torre > *{grid-column:1/-1}
 .torre figure{overflow:hidden}
@@ -138,7 +141,7 @@ h2{font-size:var(--t-h2)}
 }
 
 /* Obra: campo verde, tres fotos verticales del mismo corte */
-.obra-sec{background:var(--campo);color:var(--cal)}
+.obra-sec{background:var(--tinta);color:var(--cal)}
 .obra-cab{display:grid;gap:24px;padding-bottom:clamp(32px,5vw,64px)}
 @media(min-width:900px){.obra-cab{grid-template-columns:1.4fr 1fr;align-items:end}}
 .tira{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:var(--m)}
@@ -156,8 +159,8 @@ h2{font-size:var(--t-h2)}
 @media(min-width:900px){.busca{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
 .busca form{display:grid;gap:26px;justify-items:start}
 .opciones{display:grid;gap:6px;width:100%}
-.opciones label{display:flex;align-items:center;gap:16px;padding:16px 18px;background:var(--campo);cursor:pointer;font-size:clamp(20px,1.9vw,26px);font-weight:600;font-stretch:88%;transition:background .18s,color .18s,transform .12s}
-.opciones label:hover{background:#28503a}
+.opciones label{display:flex;align-items:center;gap:16px;padding:16px 18px;background:var(--campo);cursor:pointer;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(23px,2.1vw,30px);font-weight:500;transition:background .18s,color .18s,transform .12s}
+.opciones label:hover{background:#2a2a26}
 .opciones label:active{transform:translateY(1px)}
 .opciones input{appearance:none;width:18px;height:18px;margin:0;background:var(--campo-osc);flex:none}
 .opciones input:checked{background:var(--tinta)}
@@ -171,35 +174,36 @@ h2{font-size:var(--t-h2)}
 .empresa{display:grid;gap:clamp(28px,4vw,56px);grid-template-columns:repeat(12,minmax(0,1fr));align-items:start}
 .empresa > *{grid-column:1/-1}
 .empresa .txt{display:grid;gap:22px}
+.empresa-sec{background:var(--cal);color:var(--tinta)}
 .empresa figure{overflow:hidden;aspect-ratio:4/3;background:var(--cal-2)}
 .empresa figure img{width:100%;height:100%;object-fit:cover}
 @media(min-width:900px){.empresa .txt{grid-column:1/7}.empresa figure{grid-column:8/13}}
 
 /* Preguntas: bloques de tono, sin líneas */
-.preg-sec{background:var(--cal-2)}
+.preg-sec{background:var(--cal-2);color:var(--tinta)}
 .preg{display:grid;gap:clamp(28px,4vw,56px)}
 @media(min-width:900px){.preg{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:start}}
 .preg details{background:var(--cal);margin-bottom:6px}
-.preg summary{cursor:pointer;list-style:none;padding:20px 22px;font-weight:650;font-size:20px;display:flex;justify-content:space-between;gap:16px;transition:background .18s}
+.preg summary{cursor:pointer;list-style:none;padding:22px 24px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:25px;display:flex;justify-content:space-between;gap:16px;transition:background .18s}
 .preg summary::-webkit-details-marker{display:none}
 .preg summary::after{content:"+";font-weight:500;font-size:26px;line-height:1;transition:transform .25s var(--salir)}
 .preg details[open] summary::after{transform:rotate(45deg)}
-.preg summary:hover{background:#fbfbf8}
-.preg details p{padding:0 22px 22px;max-width:58ch}
+.preg summary:hover{background:#f5f2ea}
+.preg details p{padding:0 24px 24px;max-width:58ch}
 
 /* Cierre */
 .cierre{background:var(--tinta);color:var(--cal);padding-top:var(--seccion)}
 .cierre .datos{display:grid;gap:clamp(28px,4vw,56px);padding-bottom:clamp(56px,8vw,110px)}
 @media(min-width:900px){.cierre .datos{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:end}}
-.cierre .tel{font-size:var(--t-h2);font-weight:750;font-stretch:84%;letter-spacing:-.035em;line-height:1;text-decoration:none;display:inline-block;margin-block:18px 26px;font-variant-numeric:tabular-nums;transition:color .18s}
+.cierre .tel{font-family:'Cormorant Garamond',Georgia,serif;font-size:var(--t-h2);font-weight:500;font-variant-numeric:lining-nums;line-height:1;text-decoration:none;display:inline-block;margin-block:18px 26px;font-variant-numeric:tabular-nums;transition:color .18s}
 .cierre .tel:hover{color:var(--oro)}
 .cierre address{font-style:normal;display:grid;gap:14px}
-.cierre .logo{width:100%;max-width:1100px;margin-inline:auto;padding:0 var(--m) clamp(40px,6vw,80px)}
-.cierre .pie{padding:18px var(--m);background:#1b1d1b;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.cierre .logo{width:100%;max-width:760px;margin-inline:auto;padding:0 var(--m) clamp(40px,6vw,80px)}
+.cierre .pie{padding:18px var(--m);background:var(--campo-osc);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 
 /* WhatsApp fijo en teléfono */
 .flota{position:fixed;right:14px;bottom:14px;z-index:5;display:none}
-@media(max-width:899px){.flota{display:inline-flex}.barra .btn{display:none}.barra nav{width:100%}.barra nav ul{justify-content:space-between}}
+@media(max-width:899px){.flota{display:inline-flex}.barra .btn{display:none}.barra nav{width:100%}.barra nav ul{justify-content:space-between}.barra nav a{font-size:12px;letter-spacing:.12em}.portada .cabeza{padding-top:170px}}
 
 /* Movimiento: solo si hay script; el contenido nunca queda oculto sin él */
 @media(prefers-reduced-motion:no-preference){
@@ -217,7 +221,7 @@ h2{font-size:var(--t-h2)}
 
 <header class="barra">
   <a class="marca" href="#inicio" aria-label="Constructora Santo Thomás, inicio">
-    <img src="img/isotipo-oscuro.png" width="280" height="264" alt="">
+    <img src="img/isotipo-claro.png" width="280" height="264" alt="">
     Santo Thomás
   </a>
   <nav aria-label="Principal">
@@ -353,7 +357,7 @@ h2{font-size:var(--t-h2)}
   </div>
 </section>
 
-<section class="seccion wrap" id="empresa">
+<section class="seccion wrap empresa-sec" id="empresa">
   <div class="empresa" data-grupo>
     <div class="txt">
       <h2 data-sube>Una constructora de Pitalito</h2>
