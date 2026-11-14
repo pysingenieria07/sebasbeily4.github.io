@@ -151,6 +151,39 @@ em{font-style:normal;color:var(--oro)}
 .mundo .sin{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
 .mundo.listo .sin{display:none}
 @media(max-width:899px){.mundo .pin{margin-left:0;transform:translate(-50%,26px);text-align:center;justify-items:center}.mundo .pin::before{display:none}}
+/* Mapa local: las calles de Pitalito dibujadas a línea; ocupa el marco del globo y lo reemplaza al acercarse */
+.mundo .mapa{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity 1.1s var(--salir);background:var(--negro);z-index:1;overflow:hidden;cursor:grab;touch-action:pan-y}
+.mundo.local .mapa{opacity:1;pointer-events:auto}
+.mundo.local canvas,.mundo.local .pin{opacity:0}
+.mapa:active{cursor:grabbing}
+.mapa svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.mapa path{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.mapa .agua{stroke:#3a4a4a;stroke-width:2}
+.mapa .menor{stroke:rgba(239,233,220,.36);stroke-width:1}
+.mapa .mayor{stroke:var(--oro);stroke-width:1.8}
+.mapa .mall{fill:rgba(200,164,90,.16);stroke:var(--oro);stroke-width:1}
+.marca-mapa{position:absolute;left:0;top:0;width:0;height:0;will-change:transform}
+.marca-mapa i{position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%}
+.marca-mapa.of i{background:var(--oro);box-shadow:0 0 0 7px rgba(200,164,90,.22)}
+.marca-mapa.co i{background:var(--marfil);box-shadow:0 0 0 7px rgba(239,233,220,.18)}
+.marca-mapa.pr i{background:var(--negro);box-shadow:inset 0 0 0 2px var(--bronce),0 0 0 7px rgba(140,116,70,.2)}
+.marca-mapa span{position:absolute;top:0;transform:translateY(-50%);background:var(--negro);padding:9px 13px;white-space:nowrap;font-family:var(--serif);font-size:19px;line-height:1.1}
+.marca-mapa.der span{left:22px}.marca-mapa.izq span{right:22px;text-align:right}
+.marca-mapa small{display:block;font-family:Archivo,sans-serif;font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);margin-top:5px}
+@media(max-width:899px){.marca-mapa span{left:0!important;right:auto!important;text-align:center!important;font-size:16px;padding:7px 10px}.marca-mapa.der span{transform:translate(-50%,-150%)}.marca-mapa.izq span{transform:translate(-50%,45%)}.mapa .credito{right:60px}}
+.mapa .escala{position:absolute;left:16px;bottom:14px;display:grid;gap:6px;font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gris)}
+.mapa .escala i{display:block;height:1px;background:var(--marfil)}
+.mapa .credito{position:absolute;right:66px;bottom:14px;font-size:10px;color:var(--gris)}
+.mapa .credito a{color:inherit}
+.mapa .zoom{position:absolute;right:14px;bottom:14px;display:grid;gap:1px}
+.mapa .zoom button{width:40px;height:40px;background:var(--carbon-2);color:var(--marfil);border:0;font:300 20px/1 Archivo,sans-serif;cursor:pointer;transition:color .2s,background .2s}
+.mapa .zoom button:hover{color:var(--oro);background:#26221b}
+.vista{display:flex;gap:28px}
+.vista button{background:none;border:0;padding:10px 0 9px;min-height:44px;font:inherit;font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gris);cursor:pointer;background:linear-gradient(var(--oro),var(--oro)) left bottom/0 1px no-repeat;transition:color .25s,background-size .5s var(--salir)}
+.vista button:hover{color:var(--marfil)}
+.vista button[aria-pressed=true]{color:var(--marfil);background-size:100% 1px}
+.leyenda button{all:unset;cursor:pointer;display:block;font-family:var(--serif);font-size:clamp(24px,2.1vw,32px);line-height:1.05;transition:color .25s}
+.leyenda button:hover,.leyenda button:focus-visible{color:var(--oro)}
 .leyenda{display:grid;width:100%;border-top:1px solid var(--linea)}
 .leyenda li{display:grid;grid-template-columns:14px 1fr;gap:4px 16px;padding:18px 0;border-bottom:1px solid var(--linea);align-items:baseline}
 .leyenda i{width:10px;height:10px;border-radius:50%;align-self:center;grid-row:1}
@@ -304,7 +337,7 @@ em{font-style:normal;color:var(--oro)}
       <h2><span class="linea"><span>De Pitalito,</span></span><span class="linea" style="--i:1"><span><em>para Pitalito</em></span></span></h2>
       <p class="decl" data-sube style="--i:2;max-width:24ch">Trabajamos en el Huila desde 2014 y somos sociedad por acciones simplificada desde 2019.</p>
       <p data-sube style="--i:3;max-width:46ch">Atendemos en nuestra oficina del Centro Comercial Gran Plaza San Antonio. Allí te mostramos cada proyecto y coordinamos la visita al lote.</p>
-      <a class="accion" data-sube style="--i:4" href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Gran+Plaza+San+Antonio+Pitalito+Huila">Cómo llegar a la oficina</a>
+      <a class="accion" data-sube style="--i:4" href="#ubicacion">Ver la oficina en el mapa</a>
     </div>
     <figure class="foto" data-tapa data-par style="--i:2">
       <img src="img/oficina.webp" srcset="img/oficina-800.webp 800w, img/oficina.webp 1280w" sizes="(min-width:900px) 32vw, 100vw" width="1280" height="960" loading="lazy" alt="Recepción de la oficina de Santo Thomás.">
@@ -324,14 +357,18 @@ em{font-style:normal;color:var(--oro)}
       <h2><span class="linea"><span>Sur del</span></span><span class="linea" style="--i:1"><span><em>Huila</em></span></span></h2>
       <p data-sube style="--i:2;max-width:40ch">Pitalito queda en el Valle de Laboyos, al sur de Colombia. Aquí está nuestra oficina y aquí construimos.</p>
       <ul class="leyenda" data-sube style="--i:3">
-        <li><i class="of"></i><h3>Oficina</h3><p>Cra. 15 No. 19A-01 Sur, local 148. Centro Comercial Gran Plaza San Antonio, Pitalito.</p></li>
-        <li><i class="co"></i><h3>Construido</h3><p>Santo Thomás Urbanismo y casas, en Pitalito.</p></li>
+        <li><i class="of"></i><h3><button type="button" data-ir="oficina">Oficina</button></h3><p>Cra. 15 No. 19A-01 Sur, local 148. Centro Comercial Gran Plaza San Antonio, Pitalito.</p></li>
+        <li><i class="co"></i><h3><button type="button" data-ir="urbanismo">Construido</button></h3><p>Santo Thomás Urbanismo y casas, en Pitalito.</p></li>
         <li><i class="pr"></i><h3>Proyectado</h3><p>Torre Santo Thomás y edificios de apartamentos, en Pitalito.</p></li>
       </ul>
-      <a class="accion" data-sube style="--i:4" href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Gran+Plaza+San+Antonio+Pitalito+Huila">Abrir en el mapa</a>
+      <div class="vista" data-sube style="--i:4" role="group" aria-label="Vista del mapa">
+        <button type="button" data-vista="mundo" aria-pressed="true">Mundo</button>
+        <button type="button" data-vista="local" aria-pressed="false">Pitalito</button>
+      </div>
     </div>
     <div class="mundo" id="mundo" role="img" aria-label="Globo terráqueo que gira hasta Colombia y marca Pitalito, en el sur del Huila.">
       <canvas id="globo"></canvas>
+      <div class="mapa" id="mapa" aria-label="Mapa de Pitalito con la oficina y los proyectos"></div>
       <p class="pin"><b>Pitalito</b><span class="rot">1°51′ N · 76°03′ O</span></p>
       <p class="sin rot">Pitalito, Huila, Colombia<br>1°51′ N · 76°03′ O</p>
     </div>
@@ -622,6 +659,7 @@ em{font-style:normal;color:var(--oro)}
   });
 })();
 </script>
+<script src="ubicacion/pitalito.js"></script>
 <script type="module">
 // Globo: COBE (Shu Ding, MIT), la librería del componente «COBE Globe» de 21st.dev.
 // Gira desde el Atlántico hasta Colombia y se acerca a Pitalito; se puede arrastrar para girarlo.
@@ -642,7 +680,7 @@ const haciaPhi = Math.PI - (PITALITO[1] * Math.PI / 180 - Math.PI / 2), haciaThe
 const suave = t => 1 - Math.pow(1 - t, 4);
 
 if (caja && lienzo) {
-  let globo = null, t0 = null, giro = 0, inclina = 0, arrastre = null, visible = false, cuadro = 0;
+  let globo = null, t0 = null, giro = 0, inclina = 0, arrastre = null, visible = false, cuadro = 0, avisado = false, tocado = false;
   const estado = t => {
     const e = suave(t);
     return { phi: haciaPhi + (1 - e) * 2.6 + giro, theta: haciaTheta + (1 - e) * 0.25 + inclina, scale: 1 + e * 1.3 };
@@ -667,6 +705,7 @@ if (caja && lienzo) {
     const t = quieto ? 1 : Math.min(1, (ts - t0) / 4200);
     globo.update(estado(t));
     if (t > 0.86) caja.classList.add('llego');
+    if (t >= 1 && !avisado) { avisado = true; setTimeout(() => { if (!tocado) vista('local'); }, 1300); }
     if (t < 1 || arrastre) cuadro = requestAnimationFrame(paso);
   };
   const pedir = () => { if (!cuadro) cuadro = requestAnimationFrame(paso); };
@@ -676,7 +715,7 @@ if (caja && lienzo) {
     if (visible) pedir();
   }, { threshold: 0.25 }).observe(caja);
   // Arrastrar para girar; al soltar se queda donde lo dejaron.
-  caja.addEventListener('pointerdown', e => { arrastre = { x: e.clientX, y: e.clientY, g: giro, i: inclina }; caja.classList.remove('llego'); pedir(); });
+  caja.addEventListener('pointerdown', e => { if (caja.classList.contains('local')) return; tocado = true; arrastre = { x: e.clientX, y: e.clientY, g: giro, i: inclina }; caja.classList.remove('llego'); pedir(); });
   window.addEventListener('pointermove', e => {
     if (!arrastre) return;
     giro = arrastre.g + (e.clientX - arrastre.x) / 220;
@@ -684,6 +723,67 @@ if (caja && lienzo) {
     pedir();
   }, { passive: true });
   window.addEventListener('pointerup', () => { if (arrastre) { arrastre = null; if (Math.abs(giro) < 0.03 && Math.abs(inclina) < 0.03) caja.classList.add('llego'); } });
+  // Mapa local de Pitalito: calles de OpenStreetMap ya convertidas a trazos (ubicacion/pitalito.js),
+  // en metros desde la oficina. Se dibuja aquí mismo: ninguna petición a servicios externos.
+  // Solo se marcan los lugares cuya posición se conoce.
+  const LUGARES = {
+    oficina: { x: 0, y: 0, clase: 'of izq', nombre: 'Oficina', nota: 'Gran Plaza San Antonio', ancho: 520 },
+    urbanismo: { x: 273, y: -98, clase: 'co der', nombre: 'Santo Thomás Urbanismo', nota: 'Construido', ancho: 620 }
+  };
+  const M = window.PITALITO_MAPA, hoja = document.getElementById('mapa');
+  let ver = { x: 0, y: 0, w: 6200 }, anim = 0, svg = null, escala = null;
+  const todos = () => { const l = Object.values(LUGARES); return { x: (Math.min(...l.map(p => p.x)) + Math.max(...l.map(p => p.x))) / 2, y: (Math.min(...l.map(p => p.y)) + Math.max(...l.map(p => p.y))) / 2, w: 1500 }; };
+  const pintarMapa = () => {
+    if (!svg) return;
+    const lado = hoja.clientWidth, k = lado / ver.w;
+    svg.setAttribute('viewBox', (ver.x - ver.w / 2) + ' ' + (ver.y - ver.w / 2) + ' ' + ver.w + ' ' + ver.w);
+    Object.values(LUGARES).forEach(l => { l.el.style.transform = 'translate(' + ((l.x - ver.x) * k + lado / 2).toFixed(1) + 'px,' + ((l.y - ver.y) * k + lado / 2).toFixed(1) + 'px)'; });
+    const m = [2000, 1000, 500, 200, 100, 50].find(v => v * k < lado * 0.3) || 50;
+    escala.firstChild.style.width = (m * k).toFixed(0) + 'px'; escala.lastChild.textContent = m >= 1000 ? (m / 1000) + ' km' : m + ' m';
+  };
+  const volar = (a, dur) => {
+    cancelAnimationFrame(anim);
+    a = { x: a.x, y: a.y, w: Math.max(260, Math.min(M.radio * 2, a.w)) };
+    if (quieto || !dur) { ver = a; pintarMapa(); return; }
+    const de = ver, t0v = performance.now();
+    const f = now => {
+      const t = Math.min(1, (now - t0v) / dur), e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      ver = { x: de.x + (a.x - de.x) * e, y: de.y + (a.y - de.y) * e, w: Math.exp(Math.log(de.w) + (Math.log(a.w) - Math.log(de.w)) * e) };
+      pintarMapa(); if (t < 1) anim = requestAnimationFrame(f);
+    };
+    anim = requestAnimationFrame(f);
+  };
+  const abrirMapa = () => {
+    if (svg || !M) return;
+    hoja.innerHTML = '<svg aria-hidden="true"><path class="agua" d="' + M.agua + '"/><path class="menor" d="' + M.menor + '"/><path class="mayor" d="' + M.mayor + '"/>' + (M.mall ? '<path class="mall" d="' + M.mall + '"/>' : '') + '</svg>' +
+      '<div class="escala"><i></i><span></span></div><p class="credito">© <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap</a></p>' +
+      '<div class="zoom"><button type="button" aria-label="Acercar">+</button><button type="button" aria-label="Alejar">−</button></div>';
+    svg = hoja.querySelector('svg'); escala = hoja.querySelector('.escala');
+    Object.values(LUGARES).forEach(l => { l.el = document.createElement('div'); l.el.className = 'marca-mapa ' + l.clase; l.el.innerHTML = '<i></i><span>' + l.nombre + '<small>' + l.nota + '</small></span>'; hoja.appendChild(l.el); });
+    const [mas, menos] = hoja.querySelectorAll('.zoom button');
+    mas.addEventListener('click', () => volar({ x: ver.x, y: ver.y, w: ver.w / 1.7 }, 500));
+    menos.addEventListener('click', () => volar({ x: ver.x, y: ver.y, w: ver.w * 1.7 }, 500));
+    let ag = null;                                  // arrastrar para mover el mapa
+    hoja.addEventListener('pointerdown', e => { if (e.target.closest('.zoom,.credito')) return; cancelAnimationFrame(anim); ag = { x: e.clientX, y: e.clientY, vx: ver.x, vy: ver.y }; hoja.setPointerCapture(e.pointerId); });
+    hoja.addEventListener('pointermove', e => { if (!ag) return; const k = ver.w / hoja.clientWidth; ver = { x: ag.vx - (e.clientX - ag.x) * k, y: ag.vy - (e.clientY - ag.y) * k, w: ver.w }; pintarMapa(); });
+    ['pointerup', 'pointercancel'].forEach(n => hoja.addEventListener(n, () => { ag = null; }));
+    pintarMapa();
+  };
+  function vista(cual, lugar) {
+    document.querySelectorAll('.vista button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.vista === cual)));
+    if (cual === 'local') {
+      abrirMapa(); if (!svg) return;
+      const estaba = caja.classList.contains('local');
+      caja.classList.add('local');
+      if (lugar) volar({ x: LUGARES[lugar].x, y: LUGARES[lugar].y, w: LUGARES[lugar].ancho }, 1500);
+      else if (!estaba) { ver = { x: 0, y: 0, w: 6200 }; pintarMapa(); volar(todos(), 2800); }
+      else volar(todos(), 1200);
+    } else caja.classList.remove('local');
+  }
+  document.querySelectorAll('.vista button').forEach(b => b.addEventListener('click', () => { tocado = true; vista(b.dataset.vista); }));
+  document.querySelectorAll('.leyenda [data-ir]').forEach(b => b.addEventListener('click', () => { tocado = true; vista('local', b.dataset.ir); }));
+
+  window.addEventListener('resize', pintarMapa);
   let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { if (globo) { globo.destroy(); globo = null; t0 = null; if (visible) { crear(); pedir(); } } }, 250); });
 }
 </script>
