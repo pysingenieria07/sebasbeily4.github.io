@@ -101,20 +101,41 @@ h2{font-size:var(--t-h2)}
 @media(min-width:900px){.portada .cabeza{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:end}}
 @media(max-width:899px){.portada .trazo{width:130vw;right:-30vw;height:47%}.portada .acciones .accion:not(.abajo){display:none}}
 
-/* Índice de proyectos: tres nombres en grande, cada uno abre su capítulo */
-.indice{padding-block:clamp(72px,10vw,150px) clamp(40px,6vw,90px)}
-.indice ol{margin:0;padding:0;list-style:none}
-.indice a{display:grid;grid-template-columns:1fr;gap:4px 24px;padding-block:clamp(14px,2vw,26px);text-decoration:none;align-items:baseline;transition:color .25s,transform .5s var(--salir)}
-.indice .nombre{font-family:'Cormorant Garamond',Georgia,serif;font-size:var(--t-h2);line-height:1;letter-spacing:-.018em}
-.indice .que{color:var(--gris);transition:color .25s}
-.indice a:hover{color:var(--oro);transform:translateX(clamp(8px,1.4vw,22px))}
-.indice a:hover .que{color:var(--cal)}
-@media(min-width:900px){.indice a{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+/* Entrada: el isotipo dentro de una gota de vidrio. Solo existe si el script decide mostrarla. */
+.intro{display:none}
+.con-intro .intro{display:grid;place-items:center;position:fixed;inset:0;z-index:20;background:var(--tinta);transition:transform 1s var(--salir)}
+.intro .vidrio{position:absolute;inset:0}
+.intro .nombre{position:absolute;left:0;right:0;top:calc(50% + min(27vh,230px));text-align:center;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(20px,2.2vw,30px);letter-spacing:.34em;text-transform:uppercase;padding-left:.34em;opacity:0;transform:translateY(10px);transition:opacity .9s var(--salir),transform .9s var(--salir)}
+.intro.nombrada .nombre{opacity:1;transform:none}
+.intro.fuera{transform:translateY(-100%)}
+.con-intro .portada [data-sube]{opacity:0!important;transform:translateY(28px)!important}
+
+/* Proyectos en abanico: las fotos salen apiladas y se abren en arco al bajar.
+   Sin script o con movimiento reducido es una fila que se recorre de lado. */
+.abanico{position:relative;padding-block:clamp(72px,10vw,150px)}
+.abanico-txt{display:grid;gap:18px;justify-items:center;text-align:center;padding-inline:var(--m)}
+.abanico-txt p{max-width:44ch}
+.abanico-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 36px;padding:28px var(--m) 0}
+.cartas{display:flex;gap:16px;overflow-x:auto;padding:36px var(--m) 0;scrollbar-width:none}
+.carta{position:relative;flex:none;width:min(70vw,420px);aspect-ratio:11/9;overflow:hidden;background:var(--sup);display:block;text-decoration:none}
+.carta img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--salir)}
+.carta span{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;font-size:var(--t-nota);background:linear-gradient(rgba(13,13,12,0),rgba(13,13,12,.82));opacity:0;transition:opacity .3s}
+.carta:hover img,.carta:focus-visible img{transform:scale(1.06)}
+.carta:hover span,.carta:focus-visible span{opacity:1}
+.abanico.vivo{height:340vh;padding:0}
+.abanico.vivo .escena{position:sticky;top:0;height:100svh;overflow:hidden;perspective:1200px}
+.abanico.vivo .abanico-txt{position:absolute;left:0;right:0;top:13vh;z-index:1;will-change:transform,opacity}
+.abanico.vivo .abanico-nav{position:absolute;left:0;right:0;bottom:6vh;z-index:12;padding-top:0;will-change:opacity}
+.abanico.vivo .cartas{position:absolute;inset:0;display:block;overflow:visible;padding:0;transform-style:preserve-3d;will-change:transform}
+.abanico.vivo .carta{position:absolute;left:50%;top:58%;width:22vw;height:32vh;aspect-ratio:auto;margin:-16vh 0 0 -11vw;transform-origin:center center -50px;will-change:transform}
+@media(max-width:767px){.abanico.vivo .carta{width:46vw;height:26vh;margin:-13vh 0 0 -23vw;top:51%}.abanico.vivo .abanico-txt{top:10vh}.abanico.vivo .abanico-nav{bottom:76px;gap:0 22px}.abanico.vivo .abanico-nav .accion{min-height:36px;padding:6px 0 5px;font-size:14px}}
 
 /* Capítulo: foto a sangre, luego el nombre y el texto en dos columnas */
 .cap{padding-bottom:var(--seccion)}
 .cap .sangre{overflow:hidden;height:clamp(300px,74vh,860px);background:var(--sup)}
 .cap .sangre img,.par img,.torre figure img,.empresa figure img{width:100%;height:100%;object-fit:cover}
+/* Profundidad: la foto se desplaza un poco más despacio que su marco */
+.js [data-par] img{transform:translate3d(0,var(--py,0px),0) scale(1.16);will-change:transform}
 .cap .cuerpo{display:grid;align-items:start;gap:clamp(24px,3vw,40px);padding-top:clamp(36px,5vw,72px)}
 .cap .txt{display:grid;gap:22px;align-content:start;justify-items:start}
 .cap .txt p{max-width:46ch}
@@ -218,8 +239,6 @@ h2{font-size:var(--t-h2)}
 @media(prefers-reduced-motion:no-preference){
   .js [data-sube]{opacity:0;transform:translateY(28px);transition:opacity .9s var(--salir),transform .9s var(--salir);transition-delay:calc(var(--i,0)*90ms)}
   .js .visto [data-sube],.js [data-sube].visto{opacity:1;transform:none}
-  .js [data-abre] img{transform:scale(1.08);transition:transform 2.4s var(--salir)}
-  .js [data-abre].visto img{transform:scale(1)}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
@@ -227,10 +246,15 @@ h2{font-size:var(--t-h2)}
 </head>
 <body>
 <a class="salto" href="#contenido">Ir al contenido</a>
+<script>
+// La entrada se muestra una vez por visita, y nunca si se pidió menos movimiento.
+try { if (!sessionStorage.getItem('st-intro') && !matchMedia('(prefers-reduced-motion: reduce)').matches && document.createElement('canvas').getContext('webgl2')) document.documentElement.classList.add('con-intro'); } catch (e) {}
+</script>
+<div class="intro" id="intro" aria-hidden="true"><div class="vidrio" id="vidrio"></div><div class="nombre">Santo Thomás</div></div>
 
 <header class="barra">
   <a class="marca" href="#inicio" aria-label="Constructora Santo Thomás, inicio">
-    <img src="img/isotipo-claro.png" width="280" height="264" alt="">
+    <img src="img/isotipo-solido.png" width="900" height="887" alt="">
     Santo Thomás
   </a>
   <nav aria-label="Principal">
@@ -260,16 +284,31 @@ h2{font-size:var(--t-h2)}
   </div>
 </section>
 
-<nav class="indice wrap" id="proyectos" aria-label="Proyectos" data-grupo>
-  <ol>
-    <li><a href="#urbanismo" data-sube><span class="nombre">Santo Thomás Urbanismo</span><span class="que">Lotes residenciales y comerciales</span></a></li>
-    <li><a href="#torre" data-sube style="--i:1"><span class="nombre">Torre Santo Thomás</span><span class="que">Apartamentos y locales</span></a></li>
-    <li><a href="#casas" data-sube style="--i:2"><span class="nombre">Casas y edificios</span><span class="que">Vivienda de uno a cuatro pisos</span></a></li>
-  </ol>
-</nav>
+<section class="abanico" id="proyectos" aria-labelledby="proy-t">
+  <div class="escena">
+    <div class="abanico-txt" id="abanico-txt">
+      <h2 id="proy-t">Tres proyectos en Pitalito</h2>
+      <p>Una urbanización, una torre y vivienda de uno a cuatro pisos. Elige por dónde empezar.</p>
+    </div>
+    <div class="cartas" id="cartas">
+      <a class="carta" href="#urbanismo"><img src="img/aerea-loteo-800.webp" alt="Vista aérea de la urbanización." loading="lazy" draggable="false"><span>Santo Thomás Urbanismo</span></a>
+      <a class="carta" href="#casas"><img src="img/casa-blanca-800.webp" alt="Casa de un piso de fachada blanca." loading="lazy" draggable="false"><span>Casas y edificios</span></a>
+      <a class="carta" href="#torre"><img src="img/render-torre-2-800.webp" alt="Render de las torres vistas desde el parque." loading="lazy" draggable="false"><span>Torre Santo Thomás</span></a>
+      <a class="carta" href="#torre"><img src="img/render-torre-800.webp" alt="Render de la Torre Santo Thomás." loading="lazy" draggable="false"><span>Torre Santo Thomás</span></a>
+      <a class="carta" href="#urbanismo"><img src="img/render-plaza-800.webp" alt="Render de la plazoleta del proyecto." loading="lazy" draggable="false"><span>Santo Thomás Urbanismo</span></a>
+      <a class="carta" href="#casas"><img src="img/render-edificio-800.webp" alt="Render de un edificio de cuatro pisos." loading="lazy" draggable="false"><span>Casas y edificios</span></a>
+      <a class="carta" href="#urbanismo"><img src="img/aerea-noche.webp" alt="La urbanización de noche." loading="lazy" draggable="false"><span>Santo Thomás Urbanismo</span></a>
+    </div>
+    <nav class="abanico-nav" id="abanico-nav" aria-label="Proyectos">
+      <a class="accion abajo" href="#urbanismo">Santo Thomás Urbanismo</a>
+      <a class="accion abajo" href="#torre">Torre Santo Thomás</a>
+      <a class="accion abajo" href="#casas">Casas y edificios</a>
+    </nav>
+  </div>
+</section>
 
 <article class="cap" id="urbanismo">
-  <figure class="sangre" data-abre>
+  <figure class="sangre" data-par>
     <img src="img/aerea-loteo-2.webp" srcset="img/aerea-loteo-2-800.webp 800w, img/aerea-loteo-2.webp 1600w" sizes="100vw" width="1600" height="1200" loading="lazy" alt="Fotografía cenital del loteo: vías en concreto que dividen el predio en manzanas rectangulares.">
   </figure>
   <div class="wrap">
@@ -283,10 +322,10 @@ h2{font-size:var(--t-h2)}
       </div>
     </div>
     <div class="par" data-grupo>
-      <figure class="a" data-sube>
+      <figure class="a" data-sube data-par>
         <img src="img/aerea-noche.webp" width="754" height="820" loading="lazy" alt="La urbanización de noche, con el alumbrado de las vías encendido y Pitalito al fondo.">
       </figure>
-      <figure class="b" data-sube style="--i:1">
+      <figure class="b" data-sube style="--i:1" data-par>
         <img src="img/render-plaza.webp" srcset="img/render-plaza-800.webp 800w, img/render-plaza.webp 1600w" sizes="(min-width:700px) 50vw, 84vw" width="1600" height="900" loading="lazy" alt="Render de la plazoleta y el parque del proyecto.">
       </figure>
     </div>
@@ -295,7 +334,7 @@ h2{font-size:var(--t-h2)}
 
 <section class="torre-sec seccion" id="torre" aria-labelledby="torre-t">
   <div class="wrap torre" data-grupo>
-    <figure class="vertical" data-sube>
+    <figure class="vertical" data-sube data-par>
       <img src="img/render-torre-vertical.webp" srcset="img/render-torre-vertical-800.webp 800w, img/render-torre-vertical.webp 946w" sizes="(min-width:900px) 42vw, 100vw" width="946" height="1600" loading="lazy" alt="Render de la Torre Santo Thomás vista desde la calle: apartamentos con balcón sobre una plataforma comercial.">
     </figure>
     <div class="txt">
@@ -430,13 +469,14 @@ h2{font-size:var(--t-h2)}
 <a class="flota" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s."><span>Escribir por WhatsApp</span></a>
 
 <script src="arte/loteo-core.js"></script>
+<script src="intro/glass-reveal.js"></script>
 <script>
 (function () {
   var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hayIO = 'IntersectionObserver' in window;
 
   // Entradas: cada grupo revela sus partes una vez, escalonadas.
-  var grupos = document.querySelectorAll('[data-grupo], [data-abre]');
+  var grupos = document.querySelectorAll('[data-grupo]');
   if (hayIO) {
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } });
@@ -444,8 +484,30 @@ h2{font-size:var(--t-h2)}
     grupos.forEach(function (g) { io.observe(g); });
   } else { grupos.forEach(function (g) { g.classList.add('visto'); }); }
 
+  // Entrada: el isotipo se revela dentro del vidrio; al terminar, la cortina sube y arranca la portada.
+  var raiz = document.documentElement, intro = document.getElementById('intro'), alTerminar = [];
+  var conIntro = raiz.classList.contains('con-intro');
+  function cerrarIntro() {
+    if (!conIntro) return; conIntro = false;
+    try { sessionStorage.setItem('st-intro', '1'); } catch (e) {}
+    intro.classList.add('fuera'); raiz.classList.remove('con-intro');
+    alTerminar.forEach(function (f) { f(); });
+    setTimeout(function () { intro.remove(); }, 1100);
+  }
+  if (conIntro) {
+    var gota = window.GlassReveal && GlassReveal.play(document.getElementById('vidrio'), {
+      logo: 'img/isotipo-solido.png', look: 'dark', hold: 0.7,
+      settings: { background: '#0d0d0c', plateColor: '#151513', logoColor: '#ece8df', tileSize: 360, present: 1.9, startZoom: 2.1 },
+      onStart: function () { setTimeout(function () { intro.classList.add('nombrada'); }, 1500); },
+      onEnd: cerrarIntro
+    });
+    if (!gota) cerrarIntro();
+    else ['wheel', 'touchmove', 'keydown', 'click'].forEach(function (n) { window.addEventListener(n, cerrarIntro, { once: true, passive: true }); });
+    setTimeout(cerrarIntro, 7000);   // por si algo se queda colgado
+  }
+
   // Un plano que se traza solo: mide el lienzo, genera con semilla y anima el avance.
-  function plano(cv, opciones, duracion, alVer) {
+  function plano(cv, opciones, duracion, alVer, espera) {
     var o = { plan: null, avance: 0, tipo: null }, t0 = null, corre = false;
     var estilo = function () { return Object.assign({}, Loteo.LINEA, { grosor: Math.min(2, window.devicePixelRatio || 1) }); };
     o.pintar = function () { if (o.plan) Loteo.draw(cv.getContext('2d'), o.plan, o.avance, estilo(), o.avance >= 1 ? o.tipo : null); };
@@ -465,15 +527,18 @@ h2{font-size:var(--t-h2)}
     medir();
     var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(medir, 160); });
     if (quieto || !hayIO) { o.avance = 1; o.pintar(); }
-    else new IntersectionObserver(function (es, ob) {
-      if (es[0].isIntersecting && !corre) { corre = true; requestAnimationFrame(cuadro); ob.disconnect(); }
-    }, { threshold: alVer }).observe(cv);
+    else {
+      var mirar = function () { new IntersectionObserver(function (es, ob) {
+        if (es[0].isIntersecting && !corre) { corre = true; requestAnimationFrame(cuadro); ob.disconnect(); }
+      }, { threshold: alVer }).observe(cv); };
+      if (espera && conIntro) alTerminar.push(mirar); else mirar();
+    }
     return o;
   }
 
   if (window.Loteo) {
     var portada = document.getElementById('trazo');
-    if (portada) plano(portada, { frente: 30, manzana: 19000, irregular: 0.16 }, 4200, 0.05);
+    if (portada) plano(portada, { frente: 30, manzana: 19000, irregular: 0.16 }, 4200, 0.05, true);
   }
 
   // Buscador: la opción elegida escribe el mensaje y resalta el plano.
@@ -496,6 +561,69 @@ h2{font-size:var(--t-h2)}
     e.preventDefault();
     window.open('https://wa.me/573176461480?text=' + encodeURIComponent(texto.value), '_blank', 'noopener');
   });
+
+  // Abanico de proyectos: de pila a arco con el avance del scroll, y una leve inclinación con el puntero.
+  var ab = document.getElementById('proyectos'), cartas = ab ? [].slice.call(ab.querySelectorAll('.carta')) : [];
+  if (ab && cartas.length && !quieto) {
+    ab.classList.add('vivo');
+    var escena = document.getElementById('cartas'), txt = document.getElementById('abanico-txt'), nav = document.getElementById('abanico-nav');
+    var centro = (cartas.length - 1) / 2, p = 0, meta = 0, tx = 0, ty = 0, mx = 0, my = 0, activo = false;
+    cartas.forEach(function (c, i) { c.style.zIndex = Math.round(10 - Math.abs(i - centro)); });
+    var mezcla = function (a, b, t) { return a + (b - a) * t; };
+    var pintarAbanico = function () {
+      var movil = window.innerWidth < 768;
+      var e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      cartas.forEach(function (c, i) {
+        var o = i - centro, a = Math.abs(o);
+        var x = movil ? mezcla(o * 1.5, o * 16, e) : mezcla(o * 2, o * 18, e);
+        var y = movil ? mezcla(o * -1.5, a * 5, e) : mezcla(o * -2, a * 3, e);
+        var rz = movil ? mezcla(o * 3, o * 2, e) : mezcla(o * 2.5, o * 1.5, e);
+        var ry = mezcla(0, o * (movil ? -15 : -12), e);
+        var sc = mezcla(0.75, 1 - a * (movil ? 0.04 : 0.05), e);
+        c.style.transform = 'translate3d(' + x + 'vw,' + y + 'vh,0) rotateZ(' + rz + 'deg) rotateY(' + ry + 'deg) scale(' + sc + ')';
+      });
+      var t = Math.max(0, Math.min(1, (p - 0.2) / 0.8)), op = Math.max(0, Math.min(1, (p - 0.4) / 0.5));
+      txt.style.transform = 'translate3d(0,' + mezcla(14, 0, t) + 'vh,0) scale(' + mezcla(0.88, 1, t) + ')';
+      txt.style.opacity = op; nav.style.opacity = op; nav.style.pointerEvents = op > 0.6 ? 'auto' : 'none';
+      escena.style.transform = 'rotateX(' + tx + 'deg) rotateY(' + ty + 'deg)';
+    };
+    var paso = function () {
+      var r = ab.getBoundingClientRect(), largo = r.height - window.innerHeight;
+      var bruto = largo > 0 ? Math.max(0, Math.min(1, -r.top / largo)) : 1;
+      meta = Math.max(0, Math.min(1, (bruto - 0.12) / 0.68));
+      p += (meta - p) * 0.09;
+      var abierto = p > 0.95;
+      tx += ((abierto ? my : 0) - tx) * 0.06; ty += ((abierto ? mx : 0) - ty) * 0.06;
+      pintarAbanico();
+      if (activo) requestAnimationFrame(paso);
+    };
+    window.addEventListener('pointermove', function (ev) {
+      my = (ev.clientY / window.innerHeight - 0.5) * -8; mx = (ev.clientX / window.innerWidth - 0.5) * 8;
+    }, { passive: true });
+    pintarAbanico();
+    if (hayIO) new IntersectionObserver(function (es) {
+      var ver = es[0].isIntersecting;
+      if (ver && !activo) { activo = true; requestAnimationFrame(paso); } else if (!ver) activo = false;
+    }, { rootMargin: '20% 0px' }).observe(ab);
+    else { activo = true; requestAnimationFrame(paso); }
+  }
+
+  // Profundidad en las fotos grandes: se mueven un poco menos que la página.
+  var pars = [].slice.call(document.querySelectorAll('[data-par]'));
+  if (pars.length && !quieto) {
+    var pend = false;
+    var mover = function () {
+      pend = false; var vh = window.innerHeight;
+      pars.forEach(function (f) {
+        var r = f.getBoundingClientRect();
+        if (r.bottom < -100 || r.top > vh + 100) return;
+        var d = (r.top + r.height / 2 - vh / 2) / vh;      // -1..1 alrededor del centro de la pantalla
+        f.style.setProperty('--py', (-d * r.height * 0.07).toFixed(1) + 'px');
+      });
+    };
+    window.addEventListener('scroll', function () { if (!pend) { pend = true; requestAnimationFrame(mover); } }, { passive: true });
+    mover();
+  }
 
   // Galería: arrastrar con el ratón, además del gesto táctil y las flechas.
   var g = document.getElementById('galeria');
