@@ -12,12 +12,12 @@
 <meta property="og:description" content="Lotes residenciales y comerciales, casas, locales y apartamentos en Pitalito, Huila. Desde 2014.">
 <meta property="og:image" content="https://www.constructurasantothomas.com/banners/foto-1200x630.png">
 <meta property="og:url" content="https://www.constructurasantothomas.com/">
-<meta name="theme-color" content="#0d0d0c">
+<meta name="theme-color" content="#0b0a08">
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="apple-touch-icon" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Archivo:wght@300..600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -42,205 +42,199 @@
 </script>
 <style>
 :root{
-  --cal:#ece8df; --cal-2:#dfdbd0; --tinta:#0d0d0c; --sup:#151513; --sup-2:#1f1f1c;
-  --oro:#c9a45c; --gris:#a8a397;
-  --m:clamp(20px,3vw,48px);
-  --seccion:clamp(100px,15vw,230px);
-  --t-display:clamp(52px,10.4vw,172px);
-  --t-h2:clamp(40px,6.4vw,104px);
-  --t-decl:clamp(25px,2.7vw,40px);
-  --t-texto:18px; --t-nota:15px;
-  --salir:cubic-bezier(.2,.7,.2,1);
+  --negro:#0b0a08; --carbon:#14120e; --carbon-2:#1c1914; --marfil:#efe9dc; --marfil-2:#e2dac8;
+  --oro:#c8a45a; --bronce:#8c7446; --gris:#9a9383; --linea:rgba(239,233,220,.16);
+  --m:clamp(20px,3.2vw,56px);
+  --seccion:clamp(110px,16vw,250px);
+  --serif:'Bodoni Moda','Didot','Bodoni 72',Georgia,serif;
+  --salir:cubic-bezier(.16,.84,.24,1);
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;position:relative;background:var(--tinta);color:var(--cal);font-family:Archivo,system-ui,sans-serif;font-size:var(--t-texto);line-height:1.6}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;position:relative;background:var(--negro);color:var(--marfil);font-family:Archivo,system-ui,sans-serif;font-weight:300;font-size:18px;line-height:1.65;overflow-x:hidden}
+/* Grano: una sola textura fija sobre toda la página, como papel fotográfico */
+body::after{content:"";position:fixed;inset:0;z-index:15;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
-h1,h2,p,figure,ul,dl,dd{margin:0}
-ul{padding:0;list-style:none}
-h1,h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;letter-spacing:-.018em;line-height:.94;text-wrap:balance}
-h1{font-size:var(--t-display)}
-h2{font-size:var(--t-h2)}
-.decl{font-family:'Cormorant Garamond',Georgia,serif;font-size:var(--t-decl);line-height:1.18;font-weight:400;max-width:26ch}
-.nota{font-size:var(--t-nota);line-height:1.45;color:var(--gris)}
+h1,h2,h3,p,figure,ul,ol,dl,dd{margin:0}
+ul,ol{padding:0;list-style:none}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.028em;line-height:.9}
+h2{font-size:clamp(44px,7.4vw,124px)}
+em{font-style:italic}
 .wrap{padding-inline:var(--m)}
 .seccion{padding-block:var(--seccion)}
-:focus-visible{outline:2px solid var(--oro);outline-offset:4px}
-::selection{background:var(--oro);color:var(--tinta)}
+/* Rótulo: la letra pequeña del sistema */
+.rot{font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gris);line-height:1.5}
+.rot b{font-weight:500;color:var(--oro)}
+.decl{font-family:var(--serif);font-size:clamp(26px,2.9vw,44px);line-height:1.14;letter-spacing:-.015em}
+.nota{font-size:15px;line-height:1.5;color:var(--gris)}
+.filete{height:1px;background:var(--linea);border:0;margin:0}
+:focus-visible{outline:1px solid var(--oro);outline-offset:5px}
+::selection{background:var(--oro);color:var(--negro)}
 .salto{position:absolute;left:-999px}
-.salto:focus{left:var(--m);top:8px;background:var(--cal);color:var(--tinta);padding:10px 14px;z-index:9}
+.salto:focus{left:var(--m);top:8px;background:var(--marfil);color:var(--negro);padding:10px 14px;z-index:30}
 
-/* Acción: una línea de texto con subrayado dorado y flecha. Sin cajas. */
-.accion{display:inline-flex;align-items:baseline;gap:.6em;padding:10px 0 9px;min-height:44px;font-size:16px;font-weight:500;letter-spacing:.02em;text-decoration:none;background:linear-gradient(var(--oro),var(--oro)) left bottom/100% 1px no-repeat;border:0;color:inherit;cursor:pointer;font-family:inherit;transition:background-size .45s var(--salir),color .2s}
-.accion::after{content:"\2192";display:inline-block;transition:transform .35s var(--salir)}
-.accion:hover{color:var(--oro);background-size:38% 1px}
-.accion:hover::after{transform:translateX(6px)}
-.accion:active::after{transform:translateX(10px)}
-.accion.abajo::after{content:"\2193"}
-.accion.abajo:hover::after{transform:translateY(5px)}
-.enlace{text-decoration:underline;text-decoration-color:var(--oro);text-decoration-thickness:1px;text-underline-offset:5px;transition:color .2s}
+.accion{display:inline-flex;align-items:center;gap:14px;min-height:44px;font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;color:inherit;background:none;border:0;padding:0;cursor:pointer;font-family:inherit}
+.accion::before{content:"";width:44px;height:1px;background:var(--oro);transition:width .5s var(--salir)}
+.accion:hover::before,.accion:focus-visible::before{width:84px}
+.accion:hover{color:var(--oro)}
+.accion:active::before{width:96px}
+.enlace{text-decoration:underline;text-decoration-color:var(--bronce);text-decoration-thickness:1px;text-underline-offset:5px;transition:color .25s}
 .enlace:hover{color:var(--oro)}
 
+/* Máscaras de entrada: las líneas suben desde un recorte, las fotos se destapan */
+.linea{display:block;overflow:hidden;padding:.12em .1em .24em;margin:-.12em -.1em -.24em}
+.linea > span{display:block}
+.foto{overflow:hidden;background:var(--carbon)}
+.foto img{width:100%;height:100%;object-fit:cover}
+@media(prefers-reduced-motion:no-preference){
+  .js .linea > span{transform:translateY(112%);transition:transform 1.25s var(--salir);transition-delay:calc(var(--i,0)*110ms)}
+  .js .visto .linea > span,.js .linea.visto > span{transform:none}
+  .js [data-sube]{opacity:0;transform:translateY(26px);transition:opacity 1.1s var(--salir),transform 1.1s var(--salir);transition-delay:calc(var(--i,0)*110ms)}
+  .js .visto [data-sube],.js [data-sube].visto{opacity:1;transform:none}
+  .js [data-tapa]{clip-path:inset(100% 0 0 0);transition:clip-path 1.5s var(--salir);transition-delay:calc(var(--i,0)*120ms)}
+  .js .visto [data-tapa],.js [data-tapa].visto{clip-path:inset(0)}
+  .js [data-tapa] img{transform:translate3d(0,var(--py,0px),0) scale(1.18)}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
 /* Barra */
-.barra{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;gap:var(--m);padding:26px var(--m);flex-wrap:wrap}
-.barra .marca{margin-right:auto;display:flex;align-items:center;gap:14px;text-decoration:none;font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:20px;letter-spacing:.22em;text-transform:uppercase}
-.barra .marca img{width:36px;height:auto}
-.barra nav ul{display:flex;gap:clamp(18px,2.8vw,44px)}
-.barra nav a{text-decoration:none;font-size:15px;letter-spacing:.02em;padding:10px 0;display:block;transition:color .2s}
+.barra{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;gap:var(--m);padding:28px var(--m)}
+.barra .marca{margin-right:auto;display:flex;align-items:center;gap:14px;text-decoration:none;font-family:var(--serif);font-size:17px;letter-spacing:.3em;text-transform:uppercase}
+.barra .marca img{width:30px;height:auto}
+.barra ul{display:flex;gap:clamp(18px,3vw,48px)}
+.barra nav a{text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:12px 0;display:block;transition:color .25s}
 .barra nav a:hover{color:var(--oro)}
+@media(max-width:899px){.barra{flex-wrap:wrap;gap:6px var(--m);padding-block:20px}.barra nav{width:100%}.barra ul{justify-content:space-between}.barra nav a{font-size:11px;letter-spacing:.16em}.barra .wa{display:none}}
 
-/* Portada: el nombre del lugar en grande y el plano que se traza al abrir */
-.portada{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden}
-.portada .trazo{position:absolute;top:84px;right:0;width:min(64vw,1300px);height:64%}
-.portada .trazo canvas{width:100%;height:100%;display:block}
-.portada .cabeza{position:relative;z-index:1;display:grid;gap:clamp(28px,4vw,56px);padding-top:150px;padding-bottom:clamp(36px,7vh,84px)}
-.portada h1{max-width:11ch}
-.portada .apoyo{display:grid;gap:22px;max-width:40ch}
-.portada .acciones{display:flex;flex-wrap:wrap;gap:8px 36px}
-@media(min-width:900px){.portada .cabeza{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:end}}
-@media(max-width:899px){.portada .trazo{width:130vw;right:-30vw;height:47%}.portada .acciones .accion:not(.abajo){display:none}}
-
-/* Entrada: el isotipo dentro de una gota de vidrio. Solo existe si el script decide mostrarla. */
+/* Entrada con el logo en vidrio */
 .intro{display:none}
-.con-intro .intro{display:grid;place-items:center;position:fixed;inset:0;z-index:20;background:var(--tinta);transition:transform 1s var(--salir)}
+.con-intro .intro{display:grid;place-items:center;position:fixed;inset:0;z-index:20;background:var(--negro);transition:transform 1.1s var(--salir)}
 .intro .vidrio{position:absolute;inset:0}
-.intro .nombre{position:absolute;left:0;right:0;top:calc(50% + min(27vh,230px));text-align:center;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(20px,2.2vw,30px);letter-spacing:.34em;text-transform:uppercase;padding-left:.34em;opacity:0;transform:translateY(10px);transition:opacity .9s var(--salir),transform .9s var(--salir)}
+.intro .nombre{position:absolute;left:0;right:0;top:calc(50% + min(27vh,230px));text-align:center;font-family:var(--serif);font-size:clamp(18px,1.9vw,26px);letter-spacing:.42em;text-transform:uppercase;padding-left:.42em;opacity:0;transform:translateY(10px);transition:opacity .9s var(--salir),transform .9s var(--salir)}
 .intro.nombrada .nombre{opacity:1;transform:none}
 .intro.fuera{transform:translateY(-100%)}
-.con-intro .portada [data-sube]{opacity:0!important;transform:translateY(28px)!important}
 
-/* Proyectos en abanico: las fotos salen apiladas y se abren en arco al bajar.
-   Sin script o con movimiento reducido es una fila que se recorre de lado. */
-.abanico{position:relative;padding-block:clamp(72px,10vw,150px)}
-.abanico-txt{display:grid;gap:18px;justify-items:center;text-align:center;padding-inline:var(--m)}
-.abanico-txt p{max-width:44ch}
-.abanico-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 36px;padding:28px var(--m) 0}
-.cartas{display:flex;gap:16px;overflow-x:auto;padding:36px var(--m) 0;scrollbar-width:none}
-.carta{position:relative;flex:none;width:min(70vw,420px);aspect-ratio:11/9;overflow:hidden;background:var(--sup);display:block;text-decoration:none}
-.carta img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--salir)}
-.carta span{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;font-size:var(--t-nota);background:linear-gradient(rgba(13,13,12,0),rgba(13,13,12,.82));opacity:0;transition:opacity .3s}
-.carta:hover img,.carta:focus-visible img{transform:scale(1.06)}
-.carta:hover span,.carta:focus-visible span{opacity:1}
-.abanico.vivo{height:340vh;padding:0}
-.abanico.vivo .escena{position:sticky;top:0;height:100svh;overflow:hidden;perspective:1200px}
-.abanico.vivo .abanico-txt{position:absolute;left:0;right:0;top:13vh;z-index:1;will-change:transform,opacity}
-.abanico.vivo .abanico-nav{position:absolute;left:0;right:0;bottom:6vh;z-index:12;padding-top:0;will-change:opacity}
-.abanico.vivo .cartas{position:absolute;inset:0;display:block;overflow:visible;padding:0;transform-style:preserve-3d;will-change:transform}
-.abanico.vivo .carta{position:absolute;left:50%;top:58%;width:22vw;height:32vh;aspect-ratio:auto;margin:-16vh 0 0 -11vw;transform-origin:center center -50px;will-change:transform}
-@media(max-width:767px){.abanico.vivo .carta{width:46vw;height:26vh;margin:-13vh 0 0 -23vw;top:51%}.abanico.vivo .abanico-txt{top:10vh}.abanico.vivo .abanico-nav{bottom:76px;gap:0 22px}.abanico.vivo .abanico-nav .accion{min-height:36px;padding:6px 0 5px;font-size:14px}}
-
-/* Capítulo: foto a sangre, luego el nombre y el texto en dos columnas */
-.cap{padding-bottom:var(--seccion)}
-.cap .sangre{overflow:hidden;height:clamp(300px,74vh,860px);background:var(--sup)}
-.cap .sangre img,.par img,.torre figure img,.empresa figure img{width:100%;height:100%;object-fit:cover}
-/* Profundidad: la foto se desplaza un poco más despacio que su marco */
-.js [data-par] img{transform:translate3d(0,var(--py,0px),0) scale(1.16);will-change:transform}
-.cap .cuerpo{display:grid;align-items:start;gap:clamp(24px,3vw,40px);padding-top:clamp(36px,5vw,72px)}
-.cap .txt{display:grid;gap:22px;align-content:start;justify-items:start}
-.cap .txt p{max-width:46ch}
-@media(min-width:900px){.cap .cuerpo{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
-.ficha{display:grid;grid-template-columns:auto 1fr;gap:6px 28px;font-size:var(--t-nota)}
-.ficha dt{color:var(--gris)}
-.par{display:grid;gap:var(--m);grid-template-columns:repeat(12,minmax(0,1fr));padding-top:clamp(48px,7vw,110px);align-items:start}
-.par figure{overflow:hidden;background:var(--sup)}
-.par .a{grid-column:1/6;aspect-ratio:4/5}
-.par .b{grid-column:7/13;aspect-ratio:16/10;margin-top:clamp(40px,9vw,150px)}
-.par figcaption{display:none}
-@media(max-width:699px){.par .a{grid-column:1/9}.par .b{grid-column:3/13;margin-top:0}}
-
-/* Torre: la imagen vertical se queda fija mientras pasa el texto */
-.torre-sec{background:var(--sup)}
-.torre{display:grid;gap:clamp(28px,4vw,64px)}
-.torre figure{overflow:hidden;background:var(--sup-2)}
-.torre .vertical{aspect-ratio:3/4}
-.torre .txt{display:grid;gap:26px;align-content:start;justify-items:start}
-.torre .txt p:not(.decl){max-width:44ch}
-.torre .ancha{aspect-ratio:16/9;width:100%;margin-top:clamp(20px,4vw,64px)}
-@media(min-width:900px){
-  .torre{grid-template-columns:minmax(0,5fr) minmax(0,6fr);align-items:start}
-  .torre .vertical{position:sticky;top:5vh;max-height:90vh}
-  .torre .txt{padding-top:clamp(20px,8vh,110px)}
+/* Portada: dos palabras enormes que pisan las fotos */
+.portada{position:relative;min-height:max(100svh,700px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:1fr auto;column-gap:var(--m);padding:120px var(--m) clamp(28px,5vh,56px)}
+.portada h1{grid-column:1/-1;grid-row:1;align-self:center;position:relative;z-index:2;font-size:clamp(84px,19.5vw,330px);line-height:.8;letter-spacing:-.045em;pointer-events:none}
+.portada h1 .l2{padding-left:21vw;font-style:italic}
+.portada .f1{grid-column:8/12;grid-row:1;align-self:center;height:min(66vh,720px);z-index:1}
+.portada .f2{position:absolute;left:calc(var(--m) + 31vw);bottom:clamp(28px,5vh,56px);width:17vw;aspect-ratio:4/3;z-index:3}
+.portada .pie{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m);align-items:end;position:relative;z-index:4}
+.portada .apoyo{grid-column:1/5;display:grid;gap:26px;justify-items:start;padding-top:34px}
+.portada .apoyo p{max-width:34ch}
+.portada .coord{grid-column:9/13;justify-self:end;text-align:right}
+@media(max-width:899px){
+  .portada{display:block;padding-top:132px;min-height:0}
+  .portada h1{font-size:25.5vw}.portada h1 .l2{padding-left:15vw}
+  .portada .f1{height:58vh;margin-top:-9vw;margin-left:18vw}
+  .portada .f2{display:none}
+  .portada .pie{display:block;margin-top:36px}.portada .coord{text-align:left;margin-top:32px}
 }
 
-/* Casas: una galería que se recorre de lado y se sale por el borde */
-.casas-cab{display:grid;gap:24px;padding-bottom:clamp(32px,5vw,64px)}
-.casas-cab .txt{display:grid;gap:20px;justify-items:start;max-width:46ch}
-@media(min-width:900px){.casas-cab{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:end}}
-.galeria{display:flex;gap:clamp(12px,1.6vw,24px);overflow-x:auto;scroll-snap-type:x proximity;padding-inline:var(--m);scrollbar-width:none;cursor:grab}
-.galeria::-webkit-scrollbar{display:none}
-.galeria figure{flex:none;height:clamp(300px,62vh,680px);scroll-snap-align:center;overflow:hidden;background:var(--sup)}
-.galeria img{height:100%;width:auto;max-width:none}
-.galeria.arrastra{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+/* Manifiesto: se enciende palabra por palabra al pasar */
+.manifiesto{padding-block:clamp(110px,18vw,280px);display:grid;gap:36px}
+.manifiesto p.texto{font-family:var(--serif);font-size:clamp(30px,4.5vw,76px);line-height:1.08;letter-spacing:-.022em;max-width:20ch;text-wrap:balance}
+.manifiesto .texto span{opacity:.16;transition:opacity .5s linear}
+.manifiesto .texto span.on{opacity:1}
+@media(min-width:900px){.manifiesto{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m)}.manifiesto .rot{grid-column:1/4;padding-top:.9em}.manifiesto p.texto{grid-column:4/13;max-width:19ch}}
+
+/* Proyectos: tres láminas que pasan de lado mientras se baja */
+.laminas{position:relative}
+.laminas .cab{display:flex;justify-content:space-between;align-items:end;gap:24px;padding-bottom:28px}
+.lamina{display:grid;gap:28px;padding-block:44px}
+.lamina .foto{aspect-ratio:4/3}
+.lamina .num{font-family:var(--serif);font-size:clamp(90px,15vw,250px);line-height:.74;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px var(--bronce)}
+.lamina .txt{display:grid;gap:24px;justify-items:start;align-content:end}
+.lamina h3{font-size:clamp(40px,5.2vw,88px)}
+.lamina .txt p:not(.decl){max-width:40ch}
+.ficha{display:grid;grid-template-columns:auto 1fr;gap:8px 28px;font-size:15px;padding-top:20px;border-top:1px solid var(--linea);width:100%;max-width:440px}
+.ficha dt{font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gris);padding-top:3px}
+.laminas .avance{display:none}
+@media(min-width:900px){
+  .laminas.vivo{height:420vh}
+  .laminas.vivo .pegado{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;padding-block:100px 36px}
+  .laminas.vivo .pista{display:flex;height:100%;will-change:transform}
+  .laminas.vivo .lamina{flex:none;width:100vw;height:100%;padding:0 var(--m);grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m);align-items:stretch}
+  .laminas.vivo .lamina .foto{grid-column:1/8;aspect-ratio:auto;height:100%;min-height:0}
+  .laminas.vivo .lamina .foto img{width:116%;max-width:none;transform:translate3d(var(--px,0px),0,0)}
+  .laminas.vivo .lamina .lado{grid-column:8/13;display:grid;grid-template-rows:auto 1fr;min-height:0}
+  .laminas.vivo .avance{display:flex;align-items:center;gap:20px;padding-inline:var(--m)}
+  .laminas .avance .via{flex:1;height:1px;background:var(--linea);position:relative}
+  .laminas .avance .via i{position:absolute;left:0;top:-1px;height:3px;width:100%;background:var(--oro);transform-origin:left;transform:scaleX(var(--p,0))}
+  .lamina{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m)}
+  .lamina .foto{grid-column:1/8}.lamina .lado{grid-column:8/13;display:grid}
+}
+
+/* Mosaico: tres columnas que avanzan a distinta velocidad */
+.mosaico{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,28px);align-items:start}
+.mosaico .col{display:grid;gap:clamp(12px,1.6vw,28px);will-change:transform}
+.mosaico figure{display:grid;gap:12px}
+@media(min-width:900px){.mosaico{grid-template-columns:repeat(3,minmax(0,1fr))}.mosaico .col:nth-child(2){margin-top:14vw}.mosaico .col:nth-child(3){margin-top:5vw}}
+@media(max-width:899px){.mosaico .col:nth-child(3){display:contents}}
+.r34{aspect-ratio:3/4}.r43{aspect-ratio:4/3}.r11{aspect-ratio:1}.r169{aspect-ratio:16/9}.r45{aspect-ratio:4/5}
 
 /* Obra */
-.obra-cab{display:grid;gap:24px;padding-bottom:clamp(32px,5vw,64px)}
-@media(min-width:900px){.obra-cab{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:end}}
-.tira{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:clamp(12px,1.6vw,24px)}
-.tira figure{display:grid;gap:14px}
-.tira .marco{overflow:hidden;aspect-ratio:3/4;background:var(--sup)}
-.tira img{width:100%;height:100%;object-fit:cover}
-.tira figure:nth-child(2){margin-top:clamp(0px,5vw,80px)}
-@media(max-width:899px){
-  .tira{grid-auto-columns:72vw;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(var(--m)*-1);padding-inline:var(--m);scrollbar-width:none}
-  .tira figure{scroll-snap-align:center}.tira figure:nth-child(2){margin-top:0}
-}
+.obra{background:var(--carbon)}
+.obra .cab{display:grid;gap:28px;padding-bottom:clamp(40px,6vw,90px)}
+@media(min-width:900px){.obra .cab{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m);align-items:end}.obra .cab h2{grid-column:1/8}.obra .cab p{grid-column:9/13}}
+.pasos{display:grid;gap:clamp(14px,2vw,32px)}
+.pasos li{display:grid;gap:16px}
+.pasos .n{font-family:var(--serif);font-size:15px;letter-spacing:.1em;color:var(--oro)}
+.pasos h3{font-size:clamp(26px,2.4vw,38px);letter-spacing:-.015em;line-height:1}
+@media(min-width:900px){.pasos{grid-template-columns:repeat(3,minmax(0,1fr))}.pasos li:nth-child(2){margin-top:9vw}.pasos li:nth-child(3){margin-top:3vw}}
 
 /* Buscador */
-.busca-sec{background:var(--sup)}
-.busca{display:grid;gap:clamp(32px,5vw,72px);align-items:center}
+.busca{display:grid;gap:clamp(36px,5vw,80px);align-items:center}
 @media(min-width:900px){.busca{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
-.busca form{display:grid;gap:30px;justify-items:start}
-.opciones{display:grid;width:100%}
-.opciones label{display:flex;align-items:baseline;gap:18px;padding:12px 0;cursor:pointer;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(30px,3.4vw,52px);line-height:1.05;color:#77736a;transition:color .25s,transform .45s var(--salir)}
-.opciones label:hover{color:var(--cal)}
-.opciones input{appearance:none;width:.26em;height:.26em;margin:0;background:transparent;flex:none;transform:translateY(-.22em);transition:background .25s}
-.opciones label:has(input:checked){color:var(--cal);transform:translateX(10px)}
-.opciones input:checked{background:var(--oro)}
-.opciones label:has(input:focus-visible){outline:2px solid var(--oro);outline-offset:4px}
+.busca form{display:grid;gap:34px;justify-items:start}
+.opciones{display:grid;width:100%;border-top:1px solid var(--linea)}
+.opciones label{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:18px 0;border-bottom:1px solid var(--linea);cursor:pointer;font-family:var(--serif);font-size:clamp(28px,3.1vw,48px);line-height:1;letter-spacing:-.02em;color:#6f695d;transition:color .3s,padding .5s var(--salir)}
+.opciones label::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--oro);opacity:0;transform:scale(.3);transition:opacity .3s,transform .5s var(--salir);flex:none;align-self:center}
+.opciones label:hover{color:var(--marfil)}
+.opciones input{position:absolute;opacity:0;pointer-events:none}
+.opciones label:has(input:checked){color:var(--marfil);padding-left:18px;font-style:italic}
+.opciones label:has(input:checked)::after{opacity:1;transform:none}
+.opciones label:has(input:focus-visible){outline:1px solid var(--oro);outline-offset:4px}
 .plano{position:relative;aspect-ratio:4/3}
 .plano canvas{position:absolute;inset:0;width:100%;height:100%}
-.plano-nota{margin-top:14px}
 
-/* Empresa y preguntas: el único tramo claro */
-.claro{background:var(--cal);color:var(--tinta)}
-.claro .nota{color:#5c584f}
-.empresa{display:grid;gap:clamp(28px,4vw,64px);align-items:start}
-.empresa .txt{display:grid;gap:24px;justify-items:start}
-.empresa .decl{max-width:34ch}
-.empresa figure{overflow:hidden;aspect-ratio:4/3;background:var(--cal-2)}
-@media(min-width:900px){.empresa{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+/* Empresa: el único tramo claro */
+.claro{background:var(--marfil);color:var(--negro)}
+.claro .rot,.claro .nota{color:#6b6455}.claro .rot b{color:#8a6a24}
+.claro .filete,.claro .ficha{border-color:rgba(11,10,8,.16);background:rgba(11,10,8,.16)}
+.empresa{display:grid;gap:clamp(32px,5vw,80px)}
+.empresa .txt{display:grid;gap:28px;justify-items:start;align-content:start}
+.empresa .foto{aspect-ratio:4/5;background:var(--marfil-2)}
+@media(min-width:900px){.empresa{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m)}.empresa .txt{grid-column:1/8}.empresa .foto{grid-column:9/13;margin-top:10vw}}
+.cifras{display:grid;gap:28px;padding-top:clamp(56px,8vw,120px)}
+.cifras div{display:grid;gap:10px;padding-top:22px;border-top:1px solid rgba(11,10,8,.2)}
+.cifras b{font-family:var(--serif);font-weight:400;font-variation-settings:'opsz' 30;font-size:clamp(64px,9vw,150px);line-height:.8;letter-spacing:-.05em;font-variant-numeric:lining-nums}
+@media(min-width:700px){.cifras{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--m)}}
 .preg{display:grid;gap:clamp(28px,4vw,64px);padding-top:var(--seccion)}
-@media(min-width:900px){.preg{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:start}}
-.preg details{padding-block:6px}
-.preg summary{cursor:pointer;list-style:none;padding:14px 0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(24px,2.2vw,32px);line-height:1.15;display:flex;justify-content:space-between;gap:20px;transition:color .2s}
+@media(min-width:900px){.preg{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m)}.preg h2{grid-column:1/6}.preg .lista{grid-column:7/13}}
+.preg details{border-bottom:1px solid rgba(11,10,8,.2)}
+.preg details:first-child{border-top:1px solid rgba(11,10,8,.2)}
+.preg summary{cursor:pointer;list-style:none;padding:22px 0;font-family:var(--serif);font-size:clamp(24px,2.1vw,32px);line-height:1.1;letter-spacing:-.015em;display:flex;justify-content:space-between;gap:20px;transition:color .25s}
 .preg summary::-webkit-details-marker{display:none}
-.preg summary::after{content:"+";font-family:Archivo,sans-serif;font-weight:400;font-size:24px;transition:transform .3s var(--salir)}
+.preg summary::after{content:"+";font-family:Archivo,sans-serif;font-weight:300;font-size:26px;transition:transform .4s var(--salir)}
 .preg details[open] summary::after{transform:rotate(45deg)}
-.preg summary:hover{color:#7d6230}
-.preg details p{padding:0 0 18px;max-width:54ch}
+.preg summary:hover{color:#8a6a24}
+.preg details p{padding:0 0 24px;max-width:52ch}
 
 /* Cierre */
-.cierre{padding-top:var(--seccion)}
-.cierre .datos{display:grid;gap:clamp(28px,4vw,64px);padding-bottom:clamp(64px,9vw,130px)}
-@media(min-width:900px){.cierre .datos{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:end}}
-.cierre .tel{font-family:'Cormorant Garamond',Georgia,serif;font-size:var(--t-h2);font-variant-numeric:lining-nums;line-height:1;text-decoration:none;display:inline-block;margin-block:14px 22px;transition:color .2s}
+.cierre{padding-top:var(--seccion);overflow:hidden}
+.cierre .datos{display:grid;gap:clamp(32px,5vw,80px);padding-bottom:clamp(64px,9vw,140px)}
+@media(min-width:900px){.cierre .datos{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m);align-items:end}.cierre .datos > div{grid-column:1/8}.cierre address{grid-column:9/13}}
+.cierre .tel{font-family:var(--serif);font-variation-settings:'opsz' 36;font-size:clamp(48px,8vw,132px);font-variant-numeric:lining-nums;letter-spacing:-.04em;line-height:.9;text-decoration:none;display:inline-block;margin-block:22px 30px;transition:color .25s}
 .cierre .tel:hover{color:var(--oro)}
-.cierre address{font-style:normal;display:grid;gap:14px;justify-items:start}
-.cierre .logo{width:min(100%,640px);margin-inline:auto;padding:0 var(--m) clamp(40px,6vw,80px)}
-.cierre .pie{padding:20px var(--m);background:var(--sup);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.cierre address{font-style:normal;display:grid;gap:16px;justify-items:start}
+.cierre .firma{font-family:var(--serif);font-size:15.6vw;line-height:.78;letter-spacing:-.045em;white-space:nowrap;text-align:center;color:transparent;-webkit-text-stroke:1px var(--bronce);padding-bottom:.06em;user-select:none}
+.cierre .pie{padding:22px var(--m);border-top:1px solid var(--linea);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 
-/* WhatsApp en teléfono: una barra baja, no un bloque flotante */
-.flota{position:fixed;left:0;right:0;bottom:0;z-index:5;display:none;justify-content:center;padding:14px var(--m) calc(14px + env(safe-area-inset-bottom));background:var(--tinta);font-size:15px;text-decoration:none;letter-spacing:.02em}
-.flota span{background:linear-gradient(var(--oro),var(--oro)) left bottom/100% 1px no-repeat;padding-bottom:4px}
-@media(max-width:899px){.flota{display:flex}body{padding-bottom:58px}.barra .wa{display:none}.barra nav{width:100%}.barra nav ul{justify-content:space-between}}
-
-/* Movimiento */
-@media(prefers-reduced-motion:no-preference){
-  .js [data-sube]{opacity:0;transform:translateY(28px);transition:opacity .9s var(--salir),transform .9s var(--salir);transition-delay:calc(var(--i,0)*90ms)}
-  .js .visto [data-sube],.js [data-sube].visto{opacity:1;transform:none}
-}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+.flota{position:fixed;left:0;right:0;bottom:0;z-index:14;display:none;justify-content:center;padding:14px var(--m) calc(14px + env(safe-area-inset-bottom));background:var(--negro);border-top:1px solid var(--linea);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+@media(max-width:899px){.flota{display:flex}body{padding-bottom:52px}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -270,145 +264,131 @@ try { if (!sessionStorage.getItem('st-intro') && !matchMedia('(prefers-reduced-m
 
 <main id="contenido">
 
-<section class="portada" id="inicio">
-  <div class="trazo" aria-hidden="true"><canvas id="trazo"></canvas></div>
-  <div class="wrap cabeza" data-grupo>
-    <h1 data-sube>Lotes y casas en Pitalito</h1>
-    <div class="apoyo">
-      <p data-sube style="--i:1">Constructora Santo Thomás urbaniza y construye en el sur del Huila desde 2014: lotes residenciales y comerciales, casas, locales y apartamentos.</p>
-      <p class="acciones" data-sube style="--i:2">
-        <a class="accion abajo" href="#proyectos">Ver los proyectos</a>
-        <a class="accion" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s.">Escribir por WhatsApp</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="abanico" id="proyectos" aria-labelledby="proy-t">
-  <div class="escena">
-    <div class="abanico-txt" id="abanico-txt">
-      <h2 id="proy-t">Tres proyectos en Pitalito</h2>
-      <p>Una urbanización, una torre y vivienda de uno a cuatro pisos. Elige por dónde empezar.</p>
-    </div>
-    <div class="cartas" id="cartas">
-      <a class="carta" href="#urbanismo"><img src="img/aerea-loteo-800.webp" alt="Vista aérea de la urbanización." loading="lazy" draggable="false"><span>Santo Thomás Urbanismo</span></a>
-      <a class="carta" href="#casas"><img src="img/casa-blanca-800.webp" alt="Casa de un piso de fachada blanca." loading="lazy" draggable="false"><span>Casas y edificios</span></a>
-      <a class="carta" href="#torre"><img src="img/render-torre-2-800.webp" alt="Render de las torres vistas desde el parque." loading="lazy" draggable="false"><span>Torre Santo Thomás</span></a>
-      <a class="carta" href="#torre"><img src="img/render-torre-800.webp" alt="Render de la Torre Santo Thomás." loading="lazy" draggable="false"><span>Torre Santo Thomás</span></a>
-      <a class="carta" href="#urbanismo"><img src="img/render-plaza-800.webp" alt="Render de la plazoleta del proyecto." loading="lazy" draggable="false"><span>Santo Thomás Urbanismo</span></a>
-      <a class="carta" href="#casas"><img src="img/render-edificio-800.webp" alt="Render de un edificio de cuatro pisos." loading="lazy" draggable="false"><span>Casas y edificios</span></a>
-      <a class="carta" href="#urbanismo"><img src="img/aerea-noche.webp" alt="La urbanización de noche." loading="lazy" draggable="false"><span>Santo Thomás Urbanismo</span></a>
-    </div>
-    <nav class="abanico-nav" id="abanico-nav" aria-label="Proyectos">
-      <a class="accion abajo" href="#urbanismo">Santo Thomás Urbanismo</a>
-      <a class="accion abajo" href="#torre">Torre Santo Thomás</a>
-      <a class="accion abajo" href="#casas">Casas y edificios</a>
-    </nav>
-  </div>
-</section>
-
-<article class="cap" id="urbanismo">
-  <figure class="sangre" data-par>
-    <img src="img/aerea-loteo-2.webp" srcset="img/aerea-loteo-2-800.webp 800w, img/aerea-loteo-2.webp 1600w" sizes="100vw" width="1600" height="1200" loading="lazy" alt="Fotografía cenital del loteo: vías en concreto que dividen el predio en manzanas rectangulares.">
+<section class="portada" id="inicio" data-grupo>
+  <h1 aria-label="Tierra firme"><span class="linea"><span>Tierra</span></span><span class="linea l2" style="--i:1"><span>firme</span></span></h1>
+  <figure class="foto f1" data-tapa data-par style="--i:2">
+    <img src="img/render-torre-vertical.webp" srcset="img/render-torre-vertical-800.webp 800w, img/render-torre-vertical.webp 946w" sizes="(min-width:900px) 32vw, 82vw" width="946" height="1600" fetchpriority="high" alt="Render de la Torre Santo Thomás vista desde la calle.">
   </figure>
+  <figure class="foto f2" data-tapa style="--i:4">
+    <img src="img/aerea-loteo-800.webp" width="800" height="600" alt="Vista aérea de la urbanización: vías trazadas y manzanas loteadas.">
+  </figure>
+  <div class="pie">
+    <div class="apoyo">
+      <p data-sube style="--i:4">Lotes, casas y apartamentos en Pitalito. Constructora Santo Thomás urbaniza y construye en el sur del Huila desde 2014.</p>
+      <a class="accion" data-sube style="--i:5" href="#proyectos">Ver los proyectos</a>
+    </div>
+    <p class="rot coord" data-sube style="--i:5">Pitalito, Huila<br><b>Valle de Laboyos</b></p>
+  </div>
+</section>
+
+<section class="manifiesto wrap">
+  <p class="rot">La constructora</p>
+  <p class="texto" id="manifiesto">Antes de la casa está la tierra. Abrimos la vía, tendemos las redes y entregamos el lote listo para construir.</p>
+</section>
+
+<section class="laminas" id="proyectos" aria-labelledby="proy-t">
+  <div class="pegado">
+    <div class="cab wrap">
+      <h2 id="proy-t" data-grupo><span class="linea"><span>Proyectos</span></span></h2>
+      <p class="rot"><b id="lam-n">01</b> / 03</p>
+    </div>
+    <div class="pista" id="pista">
+
+      <article class="lamina wrap" id="urbanismo">
+        <figure class="foto"><img src="img/aerea-loteo-2.webp" srcset="img/aerea-loteo-2-800.webp 800w, img/aerea-loteo-2.webp 1600w" sizes="(min-width:900px) 64vw, 100vw" width="1600" height="1200" loading="lazy" alt="Fotografía cenital del loteo: vías en concreto que dividen el predio en manzanas."></figure>
+        <div class="lado">
+          <p class="num" aria-hidden="true">01</p>
+          <div class="txt">
+            <h3>Santo Thomás <em>Urbanismo</em></h3>
+            <p>Lotes residenciales y comerciales en Pitalito, con vías, conexión a servicios públicos y zonas verdes.</p>
+            <dl class="ficha"><dt>Tipo</dt><dd>Lotes residenciales y comerciales</dd><dt>Lugar</dt><dd>Pitalito, Huila</dd></dl>
+            <a class="accion" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20conocer%20los%20lotes%20disponibles%20en%20Santo%20Thom%C3%A1s%20Urbanismo.">Pedir áreas y precios</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="lamina wrap" id="torre">
+        <figure class="foto"><img src="img/render-torre.webp" srcset="img/render-torre-800.webp 800w, img/render-torre.webp 1600w" sizes="(min-width:900px) 64vw, 100vw" width="1599" height="899" loading="lazy" alt="Render de la Torre Santo Thomás con su plataforma comercial."></figure>
+        <div class="lado">
+          <p class="num" aria-hidden="true">02</p>
+          <div class="txt">
+            <h3>Torre <em>Santo Thomás</em></h3>
+            <p>Apartamentos sobre una plataforma de locales comerciales. Las imágenes son renders: muestran el diseño, no la obra terminada.</p>
+            <dl class="ficha"><dt>Tipo</dt><dd>Apartamentos y locales</dd><dt>Lugar</dt><dd>Pitalito, Huila</dd></dl>
+            <a class="accion" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20Torre%20Santo%20Thom%C3%A1s.">Pedir planos de la torre</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="lamina wrap" id="casas">
+        <figure class="foto"><img src="img/casa-blanca.webp" srcset="img/casa-blanca-800.webp 800w, img/casa-blanca.webp 1600w" sizes="(min-width:900px) 64vw, 100vw" width="1600" height="1200" loading="lazy" alt="Casa de un piso de fachada blanca, con antejardín y acceso vehicular."></figure>
+        <div class="lado">
+          <p class="num" aria-hidden="true">03</p>
+          <div class="txt">
+            <h3>Casas <em>y edificios</em></h3>
+            <p>Casas de uno y dos pisos en Pitalito, y edificios de apartamentos con locales en el primer piso.</p>
+            <dl class="ficha"><dt>Tipo</dt><dd>Vivienda de uno a cuatro pisos</dd><dt>Lugar</dt><dd>Pitalito, Huila</dd></dl>
+            <a class="accion" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20casas%20de%20Constructora%20Santo%20Thom%C3%A1s.">Preguntar por casas</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    <div class="avance" aria-hidden="true"><span class="rot">Sigue bajando</span><span class="via"><i id="lam-via"></i></span></div>
+  </div>
+</section>
+
+<section class="seccion wrap" aria-label="Galería" style="overflow:hidden;padding-bottom:calc(var(--seccion) + 7vw)">
+  <div class="mosaico" id="mosaico">
+    <div class="col" data-vel="0">
+      <figure data-grupo><div class="foto r34" data-tapa><img src="img/render-torre-vertical.webp" width="946" height="1600" loading="lazy" alt="La torre vista desde la calle, en render."></div><figcaption class="rot">Torre · render</figcaption></figure>
+      <figure data-grupo><div class="foto r43" data-tapa><img src="img/casa-amarilla.webp" width="1280" height="960" loading="lazy" alt="Casa de un piso con cerramiento blanco y jardín."></div><figcaption class="rot">Casa en Pitalito</figcaption></figure>
+      <figure data-grupo><div class="foto r169" data-tapa><img src="img/render-edificio-2.webp" width="1600" height="900" loading="lazy" alt="Acceso del edificio de cuatro pisos, en render."></div><figcaption class="rot">Edificio · render</figcaption></figure>
+    </div>
+    <div class="col" data-vel="-0.05">
+      <figure data-grupo><div class="foto r11" data-tapa><img src="img/aerea-noche.webp" width="754" height="820" loading="lazy" alt="La urbanización de noche, con el alumbrado de las vías encendido."></div><figcaption class="rot">Urbanismo · de noche</figcaption></figure>
+      <figure data-grupo><div class="foto r45" data-tapa><img src="img/render-edificio.webp" width="1600" height="900" loading="lazy" alt="Render de un edificio de cuatro pisos con locales en el primer nivel."></div><figcaption class="rot">Edificio · render</figcaption></figure>
+      <figure data-grupo><div class="foto r43" data-tapa><img src="img/aerea-vias.webp" width="694" height="443" loading="lazy" alt="Vías recién trazadas vistas desde el aire."></div><figcaption class="rot">Urbanismo · vías</figcaption></figure>
+    </div>
+    <div class="col" data-vel="0.035">
+      <figure data-grupo><div class="foto r43" data-tapa><img src="img/render-plaza.webp" width="1600" height="900" loading="lazy" alt="Render de la plazoleta y el parque del proyecto."></div><figcaption class="rot">Plazoleta · render</figcaption></figure>
+      <figure data-grupo><div class="foto r34" data-tapa><img src="img/casa-esquinera.webp" width="1280" height="720" loading="lazy" alt="Casa esquinera de dos pisos."></div><figcaption class="rot">Casa esquinera</figcaption></figure>
+      <figure data-grupo><div class="foto r43" data-tapa><img src="img/render-torre-2.webp" width="1599" height="899" loading="lazy" alt="Las torres vistas desde el parque, en render."></div><figcaption class="rot">Torre · render</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="obra seccion" id="obra">
   <div class="wrap">
-    <div class="cuerpo" data-grupo>
-      <h2 data-sube>Santo Thomás Urbanismo</h2>
-      <div class="txt">
-        <p class="decl" data-sube style="--i:1">Un lote con la calle hecha y los servicios en la puerta.</p>
-        <p data-sube style="--i:2">Lotes residenciales y comerciales en Pitalito, con vías, conexión a servicios públicos y zonas verdes.</p>
-        <dl class="ficha" data-sube style="--i:3"><dt>Tipo</dt><dd>Lotes residenciales y comerciales</dd><dt>Lugar</dt><dd>Pitalito, Huila</dd></dl>
-        <a class="accion" data-sube style="--i:4" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20conocer%20los%20lotes%20disponibles%20en%20Santo%20Thom%C3%A1s%20Urbanismo.">Pedir áreas y precios</a>
-      </div>
+    <div class="cab" data-grupo>
+      <h2><span class="linea"><span>Primero</span></span><span class="linea" style="--i:1"><span><em>la tierra</em></span></span></h2>
+      <p data-sube style="--i:2">Una urbanización empieza bajo el suelo. Estas fotos son de nuestra obra en Pitalito.</p>
     </div>
-    <div class="par" data-grupo>
-      <figure class="a" data-sube data-par>
-        <img src="img/aerea-noche.webp" width="754" height="820" loading="lazy" alt="La urbanización de noche, con el alumbrado de las vías encendido y Pitalito al fondo.">
-      </figure>
-      <figure class="b" data-sube style="--i:1" data-par>
-        <img src="img/render-plaza.webp" srcset="img/render-plaza-800.webp 800w, img/render-plaza.webp 1600w" sizes="(min-width:700px) 50vw, 84vw" width="1600" height="900" loading="lazy" alt="Render de la plazoleta y el parque del proyecto.">
-      </figure>
-    </div>
-  </div>
-</article>
-
-<section class="torre-sec seccion" id="torre" aria-labelledby="torre-t">
-  <div class="wrap torre" data-grupo>
-    <figure class="vertical" data-sube data-par>
-      <img src="img/render-torre-vertical.webp" srcset="img/render-torre-vertical-800.webp 800w, img/render-torre-vertical.webp 946w" sizes="(min-width:900px) 42vw, 100vw" width="946" height="1600" loading="lazy" alt="Render de la Torre Santo Thomás vista desde la calle: apartamentos con balcón sobre una plataforma comercial.">
-    </figure>
-    <div class="txt">
-      <h2 id="torre-t" data-sube style="--i:1">Torre Santo Thomás</h2>
-      <p class="decl" data-sube style="--i:2">Vivir arriba, con el comercio abajo.</p>
-      <p data-sube style="--i:3">Apartamentos sobre una plataforma de locales comerciales, en Pitalito. Las imágenes son renders: muestran el diseño, no la obra terminada.</p>
-      <dl class="ficha" data-sube style="--i:4"><dt>Tipo</dt><dd>Apartamentos y locales</dd><dt>Lugar</dt><dd>Pitalito, Huila</dd></dl>
-      <a class="accion" data-sube style="--i:5" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20Torre%20Santo%20Thom%C3%A1s.">Pedir planos de la torre</a>
-      <figure class="ancha" data-sube style="--i:3">
-        <img src="img/render-torre.webp" srcset="img/render-torre-800.webp 800w, img/render-torre.webp 1600w" sizes="(min-width:900px) 50vw, 100vw" width="1599" height="899" loading="lazy" alt="Render de la torre completa con su plataforma comercial y la zona verde del frente.">
-      </figure>
-    </div>
+    <ol class="pasos">
+      <li data-grupo><div class="foto r34" data-tapa data-par><img src="img/obra-via.webp" width="867" height="1156" loading="lazy" alt="Vía en afirmado recién conformada, con un compactador al fondo."></div><span class="n">I</span><h3>La vía</h3><p class="nota">Conformación y compactación.</p></li>
+      <li data-grupo><div class="foto r34" data-tapa data-par><img src="img/obra-tuberia.webp" width="867" height="1156" loading="lazy" alt="Zanja abierta con operarios instalando la tubería de alcantarillado."></div><span class="n">II</span><h3>Las redes</h3><p class="nota">Tubería de alcantarillado.</p></li>
+      <li data-grupo><div class="foto r34" data-tapa data-par><img src="img/obra-pozo.webp" width="867" height="1156" loading="lazy" alt="Operarios construyendo un pozo de inspección en concreto."></div><span class="n">III</span><h3>Los pozos</h3><p class="nota">Pozos de inspección en concreto.</p></li>
+    </ol>
   </div>
 </section>
 
-<section class="seccion" id="casas">
-  <div class="wrap casas-cab" data-grupo>
-    <h2 data-sube>Casas y edificios</h2>
-    <div class="txt">
-      <p data-sube style="--i:1">Casas de uno y dos pisos en Pitalito, y edificios de apartamentos con locales en el primer piso.</p>
-      <a class="accion" data-sube style="--i:2" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20casas%20de%20Constructora%20Santo%20Thom%C3%A1s.">Preguntar por casas</a>
-    </div>
-  </div>
-  <p class="nota wrap" style="padding-bottom:14px">Arrastra para recorrer la galería.</p>
-  <div class="galeria" id="galeria" tabindex="0" aria-label="Galería de casas y edificios. Desliza hacia los lados." data-grupo>
-    <figure data-sube><img src="img/casa-blanca.webp" width="1600" height="1200" loading="lazy" alt="Casa de un piso de fachada blanca, con antejardín y acceso vehicular."></figure>
-    <figure data-sube style="--i:1"><img src="img/render-edificio.webp" width="1600" height="900" loading="lazy" alt="Render de un edificio de cuatro pisos con locales en el primer nivel."></figure>
-    <figure data-sube style="--i:2"><img src="img/casa-amarilla.webp" width="1280" height="960" loading="lazy" alt="Casa de un piso con cerramiento blanco y jardín al frente."></figure>
-    <figure><img src="img/casa-esquinera.webp" width="1280" height="720" loading="lazy" alt="Casa esquinera de dos pisos construida por Santo Thomás."></figure>
-    <figure><img src="img/render-edificio-2.webp" width="1600" height="900" loading="lazy" alt="Render del acceso del edificio visto desde la calle."></figure>
-  </div>
-</section>
-
-<section class="seccion" id="obra" style="padding-top:0">
-  <div class="wrap">
-    <div class="obra-cab" data-grupo>
-      <h2 data-sube>Primero las vías y las redes</h2>
-      <p data-sube style="--i:1">Una urbanización empieza bajo tierra: la vía, el alcantarillado y los pozos de inspección. Estas fotos son de nuestra obra en Pitalito.</p>
-    </div>
-    <div class="tira" data-grupo>
-      <figure data-sube>
-        <div class="marco"><img src="img/obra-via.webp" width="867" height="1156" loading="lazy" alt="Vía en afirmado recién conformada, con un compactador trabajando al fondo."></div>
-        <figcaption class="nota">Conformación y compactación de la vía.</figcaption>
-      </figure>
-      <figure data-sube style="--i:1">
-        <div class="marco"><img src="img/obra-tuberia.webp" width="867" height="1156" loading="lazy" alt="Zanja abierta con operarios instalando la tubería de alcantarillado."></div>
-        <figcaption class="nota">Instalación de la tubería de alcantarillado.</figcaption>
-      </figure>
-      <figure data-sube style="--i:2">
-        <div class="marco"><img src="img/obra-pozo.webp" width="867" height="1156" loading="lazy" alt="Operarios construyendo un pozo de inspección en concreto."></div>
-        <figcaption class="nota">Construcción de un pozo de inspección.</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section class="busca-sec seccion" id="buscar">
-  <div class="wrap busca" data-grupo>
+<section class="seccion wrap" id="buscar">
+  <div class="busca" data-grupo>
     <form id="busca-form" action="https://wa.me/573176461480" method="get" target="_blank">
-      <h2 data-sube>¿Qué estás buscando?</h2>
-      <div class="opciones" role="radiogroup" aria-label="Tipo de inmueble" data-sube style="--i:1">
-        <label><input type="radio" name="tipo" value="residencial" checked> Lote residencial</label>
-        <label><input type="radio" name="tipo" value="comercial"> Lote comercial</label>
-        <label><input type="radio" name="tipo" value="casa"> Casa</label>
-        <label><input type="radio" name="tipo" value="torre"> Apartamento</label>
+      <p class="rot" data-sube>Disponibilidad</p>
+      <h2><span class="linea"><span>¿Qué</span></span><span class="linea" style="--i:1"><span><em>buscas?</em></span></span></h2>
+      <div class="opciones" role="radiogroup" aria-label="Tipo de inmueble" data-sube style="--i:2">
+        <label><span><input type="radio" name="tipo" value="residencial" checked>Lote residencial</span></label>
+        <label><span><input type="radio" name="tipo" value="comercial">Lote comercial</span></label>
+        <label><span><input type="radio" name="tipo" value="casa">Casa</span></label>
+        <label><span><input type="radio" name="tipo" value="torre">Apartamento</span></label>
       </div>
       <input type="hidden" name="text" id="busca-texto" value="Hola, estoy buscando un lote residencial en Pitalito. ¿Qué tienen disponible?">
-      <button class="accion" type="submit" data-sube style="--i:2" id="busca-btn">Preguntar por lotes residenciales</button>
+      <button class="accion" type="submit" data-sube style="--i:3" id="busca-btn">Preguntar por lotes residenciales</button>
     </form>
     <div data-sube style="--i:2">
-      <div class="plano">
-        <canvas id="plano" role="img" aria-label="Plano ilustrativo de una urbanización que resalta el tipo de inmueble elegido."></canvas>
-      </div>
-      <p class="nota plano-nota">Plano ilustrativo, distinto en cada visita. No es un plano de ventas. <a class="enlace" href="arte/loteo.html">Ver cómo se dibuja</a></p>
+      <div class="plano"><canvas id="plano" role="img" aria-label="Plano ilustrativo de una urbanización que resalta el tipo de inmueble elegido."></canvas></div>
+      <p class="nota" style="margin-top:14px">Plano ilustrativo, distinto en cada visita. No es un plano de ventas. <a class="enlace" href="arte/loteo.html">Ver cómo se dibuja</a></p>
     </div>
   </div>
 </section>
@@ -416,30 +396,27 @@ try { if (!sessionStorage.getItem('st-intro') && !matchMedia('(prefers-reduced-m
 <section class="claro seccion wrap" id="empresa">
   <div class="empresa" data-grupo>
     <div class="txt">
-      <h2 data-sube>Una constructora de Pitalito</h2>
-      <p class="decl" data-sube style="--i:1">Trabajamos en el Huila desde 2014 y somos sociedad por acciones simplificada desde 2019.</p>
-      <p data-sube style="--i:2;max-width:50ch">Atendemos en nuestra oficina del Centro Comercial Gran Plaza San Antonio, local 148. Allí te mostramos cada proyecto y coordinamos la visita al lote.</p>
-      <a class="accion" data-sube style="--i:3" href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Gran+Plaza+San+Antonio+Pitalito+Huila">Cómo llegar a la oficina</a>
+      <p class="rot" data-sube>La empresa</p>
+      <h2><span class="linea"><span>De Pitalito,</span></span><span class="linea" style="--i:1"><span><em>para Pitalito</em></span></span></h2>
+      <p class="decl" data-sube style="--i:2;max-width:24ch">Trabajamos en el Huila desde 2014 y somos sociedad por acciones simplificada desde 2019.</p>
+      <p data-sube style="--i:3;max-width:46ch">Atendemos en nuestra oficina del Centro Comercial Gran Plaza San Antonio. Allí te mostramos cada proyecto y coordinamos la visita al lote.</p>
+      <a class="accion" data-sube style="--i:4" href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Gran+Plaza+San+Antonio+Pitalito+Huila">Cómo llegar a la oficina</a>
     </div>
-    <figure data-sube style="--i:2">
-      <img src="img/oficina-800.webp" srcset="img/oficina-800.webp 800w, img/oficina.webp 1280w" sizes="(min-width:900px) 40vw, 100vw" width="1280" height="960" loading="lazy" alt="Recepción de la oficina de Santo Thomás en el Centro Comercial Gran Plaza San Antonio.">
+    <figure class="foto" data-tapa data-par style="--i:2">
+      <img src="img/oficina.webp" srcset="img/oficina-800.webp 800w, img/oficina.webp 1280w" sizes="(min-width:900px) 32vw, 100vw" width="1280" height="960" loading="lazy" alt="Recepción de la oficina de Santo Thomás.">
     </figure>
   </div>
+  <div class="cifras" data-grupo>
+    <div data-sube><b>2014</b><span class="rot">Año en que empezamos</span></div>
+    <div data-sube style="--i:1"><b>2019</b><span class="rot">Constituidos como S.A.S.</span></div>
+    <div data-sube style="--i:2"><b>148</b><span class="rot">Local en Gran Plaza San Antonio</span></div>
+  </div>
   <div class="preg" data-grupo>
-    <h2 data-sube>Preguntas frecuentes</h2>
-    <div data-sube style="--i:1">
-      <details open>
-        <summary>¿Qué tipos de proyectos realizan?</summary>
-        <p>Urbanizaciones con lotes residenciales y comerciales, casas, locales y edificios de apartamentos.</p>
-      </details>
-      <details>
-        <summary>¿Dónde están ubicados?</summary>
-        <p>En Pitalito, Huila. La oficina queda en la carrera 15 No. 19A-01 Sur, local 148, Centro Comercial Gran Plaza San Antonio.</p>
-      </details>
-      <details>
-        <summary>¿Cómo empiezo?</summary>
-        <p>Escríbenos por WhatsApp al 317 646 1480 o visita la oficina. Te contamos qué hay disponible y coordinamos la visita.</p>
-      </details>
+    <h2><span class="linea"><span>Preguntas</span></span></h2>
+    <div class="lista" data-sube style="--i:1">
+      <details open><summary>¿Qué tipos de proyectos realizan?</summary><p>Urbanizaciones con lotes residenciales y comerciales, casas, locales y edificios de apartamentos.</p></details>
+      <details><summary>¿Dónde están ubicados?</summary><p>En Pitalito, Huila. La oficina queda en la carrera 15 No. 19A-01 Sur, local 148, Centro Comercial Gran Plaza San Antonio.</p></details>
+      <details><summary>¿Cómo empiezo?</summary><p>Escríbenos por WhatsApp al 317 646 1480 o visita la oficina. Te contamos qué hay disponible y coordinamos la visita.</p></details>
     </div>
   </div>
 </section>
@@ -449,7 +426,7 @@ try { if (!sessionStorage.getItem('st-intro') && !matchMedia('(prefers-reduced-m
 <footer class="cierre" id="contacto">
   <div class="wrap datos" data-grupo>
     <div>
-      <h2 data-sube>Hablemos de tu lote</h2>
+      <p class="rot" data-sube>Contacto</p>
       <a class="tel" data-sube style="--i:1" href="tel:+573176461480">317 646 1480</a><br>
       <a class="accion" data-sube style="--i:2" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s.">Escribir por WhatsApp</a>
     </div>
@@ -459,89 +436,121 @@ try { if (!sessionStorage.getItem('st-intro') && !matchMedia('(prefers-reduced-m
       <a class="enlace" href="https://www.instagram.com/constructorasantothomas" rel="noopener">Instagram: @constructorasantothomas</a>
     </address>
   </div>
-  <div class="logo"><img src="img/logo-claro.png" width="720" height="451" loading="lazy" alt="Santo Thomás Constructora"></div>
+  <p class="firma" aria-hidden="true">Santo Thomás</p>
   <div class="pie nota">
     <span>© 2026 Constructora Santo Thomás. Pitalito, Huila, Colombia.</span>
     <span>Los renders ilustran el diseño de cada proyecto y pueden cambiar.</span>
   </div>
 </footer>
 
-<a class="flota" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s."><span>Escribir por WhatsApp</span></a>
+<a class="flota" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s.">Escribir por WhatsApp</a>
 
+<script src="vendor/lenis.min.js"></script>
 <script src="arte/loteo-core.js"></script>
 <script src="intro/glass-reveal.js"></script>
 <script>
 (function () {
   var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hayIO = 'IntersectionObserver' in window;
+  var raiz = document.documentElement;
 
-  // Entradas: cada grupo revela sus partes una vez, escalonadas.
-  var grupos = document.querySelectorAll('[data-grupo]');
-  if (hayIO) {
+  // Desplazamiento con inercia (Lenis). Los enlaces internos pasan por él.
+  var lenis = null;
+  if (!quieto && window.Lenis) {
+    lenis = new Lenis({ lerp: 0.09, anchors: true });
+    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0);
+  }
+
+  // Entradas: cada grupo se revela una vez.
+  var grupos = [].slice.call(document.querySelectorAll('[data-grupo]'));
+  var revelar = function () {
+    if (!hayIO) { grupos.forEach(function (g) { g.classList.add('visto'); }); return; }
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
     grupos.forEach(function (g) { io.observe(g); });
-  } else { grupos.forEach(function (g) { g.classList.add('visto'); }); }
+  };
 
-  // Entrada: el isotipo se revela dentro del vidrio; al terminar, la cortina sube y arranca la portada.
-  var raiz = document.documentElement, intro = document.getElementById('intro'), alTerminar = [];
-  var conIntro = raiz.classList.contains('con-intro');
+  // Entrada: el isotipo dentro del vidrio; al terminar sube la cortina y arranca la portada.
+  var intro = document.getElementById('intro'), conIntro = raiz.classList.contains('con-intro'), alTerminar = [revelar];
   function cerrarIntro() {
     if (!conIntro) return; conIntro = false;
     try { sessionStorage.setItem('st-intro', '1'); } catch (e) {}
     intro.classList.add('fuera'); raiz.classList.remove('con-intro');
-    alTerminar.forEach(function (f) { f(); });
-    setTimeout(function () { intro.remove(); }, 1100);
+    setTimeout(function () { alTerminar.forEach(function (f) { f(); }); }, 250);
+    setTimeout(function () { intro.remove(); }, 1200);
   }
   if (conIntro) {
     var gota = window.GlassReveal && GlassReveal.play(document.getElementById('vidrio'), {
-      logo: 'img/isotipo-solido.png', look: 'dark', hold: 0.7,
-      settings: { background: '#0d0d0c', plateColor: '#151513', logoColor: '#ece8df', tileSize: 360, present: 1.9, startZoom: 2.1 },
+      logo: 'img/isotipo-solido.png', look: 'dark', hold: 0.6,
+      settings: { background: '#0b0a08', plateColor: '#14120e', logoColor: '#efe9dc', tileSize: 360, present: 1.9, startZoom: 2.1 },
       onStart: function () { setTimeout(function () { intro.classList.add('nombrada'); }, 1500); },
       onEnd: cerrarIntro
     });
     if (!gota) cerrarIntro();
     else ['wheel', 'touchmove', 'keydown', 'click'].forEach(function (n) { window.addEventListener(n, cerrarIntro, { once: true, passive: true }); });
-    setTimeout(cerrarIntro, 7000);   // por si algo se queda colgado
+    setTimeout(cerrarIntro, 7000);
+  } else revelar();
+
+  // Manifiesto: cada palabra en su propio tramo, para encenderlas con el avance.
+  var man = document.getElementById('manifiesto'), palabras = [];
+  if (man && !quieto) {
+    man.innerHTML = man.textContent.trim().split(/\s+/).map(function (w) { return '<span>' + w + '</span>'; }).join(' ');
+    palabras = [].slice.call(man.children);
   }
 
-  // Un plano que se traza solo: mide el lienzo, genera con semilla y anima el avance.
-  function plano(cv, opciones, duracion, alVer, espera) {
-    var o = { plan: null, avance: 0, tipo: null }, t0 = null, corre = false;
-    var estilo = function () { return Object.assign({}, Loteo.LINEA, { grosor: Math.min(2, window.devicePixelRatio || 1) }); };
-    o.pintar = function () { if (o.plan) Loteo.draw(cv.getContext('2d'), o.plan, o.avance, estilo(), o.avance >= 1 ? o.tipo : null); };
-    function medir() {
-      var r = cv.getBoundingClientRect(), d = Math.min(2, window.devicePixelRatio || 1);
-      if (!r.width) return;
-      cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d);
-      o.plan = Loteo.generate(o.semilla, cv.width, cv.height, opciones);
-      o.pintar();
-    }
-    function cuadro(ts) {
-      if (t0 === null) t0 = ts;
-      o.avance = Math.min(1, (ts - t0) / duracion); o.pintar();
-      if (o.avance < 1) requestAnimationFrame(cuadro);
-    }
-    o.semilla = Math.floor(Math.random() * 99999) + 1;
-    medir();
-    var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(medir, 160); });
-    if (quieto || !hayIO) { o.avance = 1; o.pintar(); }
-    else {
-      var mirar = function () { new IntersectionObserver(function (es, ob) {
-        if (es[0].isIntersecting && !corre) { corre = true; requestAnimationFrame(cuadro); ob.disconnect(); }
-      }, { threshold: alVer }).observe(cv); };
-      if (espera && conIntro) alTerminar.push(mirar); else mirar();
-    }
-    return o;
+  // Láminas de proyectos: el scroll vertical las pasa de lado (solo en pantallas anchas).
+  var lam = document.getElementById('proyectos'), pista = document.getElementById('pista');
+  var ancho = window.matchMedia('(min-width: 900px)');
+  var laminas = lam ? [].slice.call(lam.querySelectorAll('.lamina')) : [];
+  var lamN = document.getElementById('lam-n'), lamVia = document.getElementById('lam-via');
+  function modoLaminas() {
+    var vivo = ancho.matches && !quieto;
+    lam.classList.toggle('vivo', vivo);
+    if (!vivo) { pista.style.transform = ''; laminas.forEach(function (l) { l.querySelector('.foto').style.removeProperty('--px'); }); }
   }
+  if (lam) { modoLaminas(); ancho.addEventListener('change', modoLaminas); }
 
-  if (window.Loteo) {
-    var portada = document.getElementById('trazo');
-    if (portada) plano(portada, { frente: 30, manzana: 19000, irregular: 0.16 }, 4200, 0.05, true);
+  var pars = [].slice.call(document.querySelectorAll('[data-par]'));
+  var cols = [].slice.call(document.querySelectorAll('#mosaico .col'));
+  var pend = false;
+  function cuadroScroll() {
+    pend = false;
+    var vh = window.innerHeight, vw = window.innerWidth;
+    if (palabras.length) {
+      var r = man.getBoundingClientRect();
+      var a = (vh * 0.86 - r.top) / (r.height + vh * 0.42), n = Math.round(a * palabras.length);
+      palabras.forEach(function (p, i) { p.classList.toggle('on', i < n); });
+    }
+    if (lam && lam.classList.contains('vivo')) {
+      var lr = lam.getBoundingClientRect(), largo = lr.height - vh;
+      var p = Math.max(0, Math.min(1, -lr.top / largo));
+      var q = Math.max(0, Math.min(1, (p - 0.06) / 0.86));        // respiro al entrar y al salir
+      pista.style.transform = 'translate3d(' + (-q * (laminas.length - 1) * vw) + 'px,0,0)';
+      laminas.forEach(function (l, i) {
+        var d = q * (laminas.length - 1) - i;                      // -1..1: posición de esta lámina
+        l.querySelector('.foto').style.setProperty('--px', (-8 - d * 6) + '%');
+      });
+      lamVia.style.setProperty('--p', q.toFixed(4));
+      lamN.textContent = '0' + (Math.min(laminas.length - 1, Math.round(q * (laminas.length - 1))) + 1);
+    }
+    pars.forEach(function (f) {
+      var r = f.getBoundingClientRect();
+      if (r.bottom < -120 || r.top > vh + 120) return;
+      f.style.setProperty('--py', (-(r.top + r.height / 2 - vh / 2) / vh * r.height * 0.08).toFixed(1) + 'px');
+    });
+    if (cols.length && ancho.matches) {
+      var mr = cols[0].parentNode.getBoundingClientRect();
+      if (mr.bottom > -200 && mr.top < vh + 200) {
+        var c = mr.top + mr.height / 2 - vh / 2;
+        cols.forEach(function (col) { col.style.transform = 'translate3d(0,' + (c * parseFloat(col.dataset.vel)).toFixed(1) + 'px,0)'; });
+      }
+    }
   }
+  function pedir() { if (!pend) { pend = true; requestAnimationFrame(cuadroScroll); } }
+  if (!quieto) { window.addEventListener('scroll', pedir, { passive: true }); window.addEventListener('resize', pedir); cuadroScroll(); }
 
-  // Buscador: la opción elegida escribe el mensaje y resalta el plano.
+  // Buscador: la opción elegida escribe el mensaje y resalta el plano generado.
   var form = document.getElementById('busca-form'), texto = document.getElementById('busca-texto'),
       btn = document.getElementById('busca-btn'), cv = document.getElementById('plano');
   var copia = {
@@ -550,8 +559,30 @@ try { if (!sessionStorage.getItem('st-intro') && !matchMedia('(prefers-reduced-m
     casa: ['Preguntar por casas', 'Hola, estoy buscando una casa en Pitalito. ¿Qué tienen disponible?'],
     torre: ['Preguntar por apartamentos', 'Hola, quiero información sobre los apartamentos de la Torre Santo Thomás.']
   };
-  var busca = cv && window.Loteo ? plano(cv, { frente: 30, manzana: 17000 }, 3200, 0.3) : null;
-  if (busca) busca.tipo = 'residencial';
+  var busca = null;
+  if (cv && window.Loteo) {
+    busca = { tipo: 'residencial', avance: 0, plan: null, semilla: Math.floor(Math.random() * 99999) + 1 };
+    var estilo = function () { return Object.assign({}, Loteo.LINEA, { suelo: '#0b0a08', predio: '#0b0a08', lote: ['#14120e'], via: '#1a1712', verde: '#1c1f16', torre: '#efe9dc', casa: '#c8a45a', acento: '#c8a45a', trazo: '#8c7446', grosor: Math.min(2, window.devicePixelRatio || 1) }); };
+    busca.pintar = function () { if (busca.plan) Loteo.draw(cv.getContext('2d'), busca.plan, busca.avance, estilo(), busca.avance >= 1 ? busca.tipo : null); };
+    var medir = function () {
+      var r = cv.getBoundingClientRect(), d = Math.min(2, window.devicePixelRatio || 1);
+      if (!r.width) return;
+      cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d);
+      busca.plan = Loteo.generate(busca.semilla, cv.width, cv.height, { frente: 30, manzana: 17000 });
+      busca.pintar();
+    };
+    medir();
+    var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(medir, 160); });
+    if (quieto || !hayIO) { busca.avance = 1; busca.pintar(); }
+    else new IntersectionObserver(function (es, ob) {
+      if (!es[0].isIntersecting) return; ob.disconnect();
+      var t0 = null; requestAnimationFrame(function paso(ts) {
+        if (t0 === null) t0 = ts;
+        busca.avance = Math.min(1, (ts - t0) / 3200); busca.pintar();
+        if (busca.avance < 1) requestAnimationFrame(paso);
+      });
+    }, { threshold: 0.3 }).observe(cv);
+  }
   form.addEventListener('change', function (e) {
     if (e.target.name !== 'tipo') return;
     btn.textContent = copia[e.target.value][0]; texto.value = copia[e.target.value][1];
@@ -561,81 +592,6 @@ try { if (!sessionStorage.getItem('st-intro') && !matchMedia('(prefers-reduced-m
     e.preventDefault();
     window.open('https://wa.me/573176461480?text=' + encodeURIComponent(texto.value), '_blank', 'noopener');
   });
-
-  // Abanico de proyectos: de pila a arco con el avance del scroll, y una leve inclinación con el puntero.
-  var ab = document.getElementById('proyectos'), cartas = ab ? [].slice.call(ab.querySelectorAll('.carta')) : [];
-  if (ab && cartas.length && !quieto) {
-    ab.classList.add('vivo');
-    var escena = document.getElementById('cartas'), txt = document.getElementById('abanico-txt'), nav = document.getElementById('abanico-nav');
-    var centro = (cartas.length - 1) / 2, p = 0, meta = 0, tx = 0, ty = 0, mx = 0, my = 0, activo = false;
-    cartas.forEach(function (c, i) { c.style.zIndex = Math.round(10 - Math.abs(i - centro)); });
-    var mezcla = function (a, b, t) { return a + (b - a) * t; };
-    var pintarAbanico = function () {
-      var movil = window.innerWidth < 768;
-      var e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
-      cartas.forEach(function (c, i) {
-        var o = i - centro, a = Math.abs(o);
-        var x = movil ? mezcla(o * 1.5, o * 16, e) : mezcla(o * 2, o * 18, e);
-        var y = movil ? mezcla(o * -1.5, a * 5, e) : mezcla(o * -2, a * 3, e);
-        var rz = movil ? mezcla(o * 3, o * 2, e) : mezcla(o * 2.5, o * 1.5, e);
-        var ry = mezcla(0, o * (movil ? -15 : -12), e);
-        var sc = mezcla(0.75, 1 - a * (movil ? 0.04 : 0.05), e);
-        c.style.transform = 'translate3d(' + x + 'vw,' + y + 'vh,0) rotateZ(' + rz + 'deg) rotateY(' + ry + 'deg) scale(' + sc + ')';
-      });
-      var t = Math.max(0, Math.min(1, (p - 0.2) / 0.8)), op = Math.max(0, Math.min(1, (p - 0.4) / 0.5));
-      txt.style.transform = 'translate3d(0,' + mezcla(14, 0, t) + 'vh,0) scale(' + mezcla(0.88, 1, t) + ')';
-      txt.style.opacity = op; nav.style.opacity = op; nav.style.pointerEvents = op > 0.6 ? 'auto' : 'none';
-      escena.style.transform = 'rotateX(' + tx + 'deg) rotateY(' + ty + 'deg)';
-    };
-    var paso = function () {
-      var r = ab.getBoundingClientRect(), largo = r.height - window.innerHeight;
-      var bruto = largo > 0 ? Math.max(0, Math.min(1, -r.top / largo)) : 1;
-      meta = Math.max(0, Math.min(1, (bruto - 0.12) / 0.68));
-      p += (meta - p) * 0.09;
-      var abierto = p > 0.95;
-      tx += ((abierto ? my : 0) - tx) * 0.06; ty += ((abierto ? mx : 0) - ty) * 0.06;
-      pintarAbanico();
-      if (activo) requestAnimationFrame(paso);
-    };
-    window.addEventListener('pointermove', function (ev) {
-      my = (ev.clientY / window.innerHeight - 0.5) * -8; mx = (ev.clientX / window.innerWidth - 0.5) * 8;
-    }, { passive: true });
-    pintarAbanico();
-    if (hayIO) new IntersectionObserver(function (es) {
-      var ver = es[0].isIntersecting;
-      if (ver && !activo) { activo = true; requestAnimationFrame(paso); } else if (!ver) activo = false;
-    }, { rootMargin: '20% 0px' }).observe(ab);
-    else { activo = true; requestAnimationFrame(paso); }
-  }
-
-  // Profundidad en las fotos grandes: se mueven un poco menos que la página.
-  var pars = [].slice.call(document.querySelectorAll('[data-par]'));
-  if (pars.length && !quieto) {
-    var pend = false;
-    var mover = function () {
-      pend = false; var vh = window.innerHeight;
-      pars.forEach(function (f) {
-        var r = f.getBoundingClientRect();
-        if (r.bottom < -100 || r.top > vh + 100) return;
-        var d = (r.top + r.height / 2 - vh / 2) / vh;      // -1..1 alrededor del centro de la pantalla
-        f.style.setProperty('--py', (-d * r.height * 0.07).toFixed(1) + 'px');
-      });
-    };
-    window.addEventListener('scroll', function () { if (!pend) { pend = true; requestAnimationFrame(mover); } }, { passive: true });
-    mover();
-  }
-
-  // Galería: arrastrar con el ratón, además del gesto táctil y las flechas.
-  var g = document.getElementById('galeria');
-  if (g) {
-    var x0 = null, s0 = 0;
-    g.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') return; x0 = e.clientX; s0 = g.scrollLeft; g.classList.add('arrastra'); g.setPointerCapture(e.pointerId); });
-    g.addEventListener('pointermove', function (e) { if (x0 !== null) g.scrollLeft = s0 - (e.clientX - x0); });
-    ['pointerup', 'pointercancel'].forEach(function (n) { g.addEventListener(n, function () { x0 = null; g.classList.remove('arrastra'); }); });
-    g.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { g.scrollBy({ left: (e.key === 'ArrowRight' ? 1 : -1) * g.clientWidth * 0.6, behavior: 'smooth' }); e.preventDefault(); }
-    });
-  }
 })();
 </script>
 </body>

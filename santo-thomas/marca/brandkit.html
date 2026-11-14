@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Sistema de marca · Constructora Santo Thomás</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Archivo:wght@300..600&display=swap" rel="stylesheet">
 <style>
 /* Tablero de marca 3×3, 2400×1800. Extiende la identidad existente: el logo no se rediseña. */
-:root{--cal:#ece8df;--cal2:#dfdbd0;--tinta:#0d0d0c;--sup:#151513;--sup2:#1f1f1c;--oro:#c9a45c;--gris:#a8a397}
+:root{--cal:#efe9dc;--cal2:#e2dac8;--tinta:#0b0a08;--sup:#14120e;--sup2:#1c1914;--oro:#c8a45a;--gris:#9a9383}
 *{box-sizing:border-box;margin:0}
 body{background:#1b1b19;font-family:Archivo,sans-serif;color:var(--cal)}
 #t{width:2400px;height:1800px;padding:36px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:24px;background:#1b1b19}
@@ -14,7 +14,7 @@ body{background:#1b1b19;font-family:Archivo,sans-serif;color:var(--cal)}
 .et{position:absolute;left:28px;bottom:22px;font-size:17px;color:var(--gris);letter-spacing:.02em}
 .nu{position:absolute;right:28px;bottom:22px;font-size:17px;color:var(--gris);font-variant-numeric:tabular-nums}
 .claro{background:var(--cal);color:var(--tinta)}.claro .et,.claro .nu{color:#6a655b}
-.serif{font-family:'Cormorant Garamond',serif}
+.serif{font-family:'Bodoni Moda',serif;letter-spacing:-.03em}.serif em{font-style:italic}
 .p1 img{width:52%}
 .p2{grid-template-columns:1.4fr 1fr;gap:0;padding:0;place-items:stretch}
 .p2 > div{height:100%;display:grid;place-items:center}
@@ -23,8 +23,8 @@ body{background:#1b1b19;font-family:Archivo,sans-serif;color:var(--cal)}
 .nav i{width:12px;height:12px;border-radius:50%;background:#3a3a36}
 .nav b{margin-left:18px;flex:1;height:28px;background:var(--tinta);border-radius:14px;font-weight:400;font-size:15px;color:var(--gris);display:flex;align-items:center;padding:0 16px}
 .p3 canvas{position:absolute;right:0;top:52px;width:56%;height:50%}
-.p3 h3{position:absolute;left:36px;bottom:76px;font-weight:400;font-size:88px;line-height:.94;letter-spacing:-.018em}
-.p4{background:var(--sup)}.p4 p{font-size:118px;line-height:1;letter-spacing:-.02em}
+.p3 h3{position:absolute;left:36px;bottom:76px;font-weight:400;font-size:150px;line-height:.82}
+.p4{background:var(--sup)}.p4 p{font-size:170px;line-height:.84}
 .p5{grid-template-columns:repeat(5,1fr);padding:0;place-items:stretch}
 .p5 div{display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 64px 22px;font-size:16px;gap:4px}
 .p6{place-items:start;padding:44px 48px}
@@ -35,10 +35,10 @@ body{background:#1b1b19;font-family:Archivo,sans-serif;color:var(--cal)}
 .tj.f{background:var(--tinta);left:70px;top:64px;place-items:center;transform:rotate(-4deg)}
 .tj.f img{width:34%}
 .tj.d{background:var(--cal);color:var(--tinta);right:60px;bottom:96px;padding:30px 32px;align-content:space-between;transform:rotate(3deg)}
-.tj.d b{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:28px;letter-spacing:.14em;text-transform:uppercase}
+.tj.d b{font-family:'Bodoni Moda',serif;font-weight:400;font-size:24px;letter-spacing:.24em;text-transform:uppercase}
 .tj.d span{font-size:16px;line-height:1.5}
 .p8 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.p8::after{content:"";position:absolute;inset:0;background:rgba(13,13,12,.35)}
+.p8::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:rgba(11,10,8,.7)}
 .p8 .et,.p8 .nu{z-index:1;color:var(--cal)}
 .p9 canvas{position:absolute;inset:0;width:100%;height:100%}
 .p9 .et,.p9 .nu{background:var(--tinta);padding:4px 8px}
@@ -47,20 +47,20 @@ body{background:#1b1b19;font-family:Archivo,sans-serif;color:var(--cal)}
 <body>
 <div id="t">
   <div class="p p1"><img src="../img/logo-claro.png" alt="Santo Thomás Constructora"><span class="et">Logotipo</span><span class="nu">01</span></div>
-  <div class="p p2 claro"><div class="a"><img src="../img/logo-oscuro.png" alt=""></div><div class="b"><img src="../img/isotipo-claro.png" alt=""></div><span class="et">Versiones: sobre claro e isotipo</span><span class="nu" style="color:var(--gris)">02</span></div>
-  <div class="p p3"><div class="nav"><i></i><i></i><i></i><b>constructurasantothomas.com</b></div><canvas id="c3"></canvas><h3 class="serif">Lotes y casas<br>en Pitalito</h3><span class="et">Sitio web</span><span class="nu">03</span></div>
-  <div class="p p4"><p class="serif">Primero<br>el trazo.</p><span class="et">Idea de marca (propuesta)</span><span class="nu">04</span></div>
+  <div class="p p2 claro"><div class="a"><img src="../img/logo-oscuro.png" alt=""></div><div class="b"><img src="../img/isotipo-solido.png" alt=""></div><span class="et">Versiones: sobre claro e isotipo</span><span class="nu" style="color:var(--gris)">02</span></div>
+  <div class="p p3"><div class="nav"><i></i><i></i><i></i><b>constructurasantothomas.com</b></div><canvas id="c3"></canvas><h3 class="serif">Tierra<br><em>firme</em></h3><span class="et">Sitio web</span><span class="nu">03</span></div>
+  <div class="p p4"><p class="serif">Tierra<br><em>firme.</em></p><span class="et">Idea de marca (propuesta)</span><span class="nu">04</span></div>
   <div class="p p5">
-    <div style="background:#0d0d0c">Negro<span>#0D0D0C</span></div>
-    <div style="background:#1f1f1c">Grafito<span>#1F1F1C</span></div>
-    <div style="background:#a8a397;color:#0d0d0c">Piedra<span>#A8A397</span></div>
-    <div style="background:#ece8df;color:#0d0d0c">Marfil<span>#ECE8DF</span></div>
-    <div style="background:#c9a45c;color:#0d0d0c">Oro<span>#C9A45C</span></div>
+    <div style="background:#0b0a08">Negro<span>#0B0A08</span></div>
+    <div style="background:#1c1914">Carbón<span>#1C1914</span></div>
+    <div style="background:#8c7446;color:#0b0a08">Bronce<span>#8C7446</span></div>
+    <div style="background:#efe9dc;color:#0b0a08">Marfil<span>#EFE9DC</span></div>
+    <div style="background:#c8a45a;color:#0b0a08">Oro<span>#C8A45A</span></div>
     <span class="et" style="color:var(--gris)">Color</span><span class="nu" style="color:#0d0d0c">05</span>
   </div>
-  <div class="p p6 claro"><div><div class="aa serif">Aa</div><div class="f">Cormorant Garamond · titulares</div><div class="abc serif">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</div><div class="txt">Archivo, para el texto corrido: lotes residenciales y comerciales en Pitalito, Huila.</div></div><span class="et">Tipografía</span><span class="nu">06</span></div>
-  <div class="p p7"><div class="tj f"><img src="../img/isotipo-claro.png" alt=""></div><div class="tj d"><b>Santo Thomás</b><span>317 646 1480<br>Cra. 15 No. 19A-01 Sur, local 148<br>C.C. Gran Plaza San Antonio · Pitalito</span></div><span class="et">Tarjeta</span><span class="nu">07</span></div>
-  <div class="p p8"><img src="../img/aerea-noche.webp" alt=""><span class="et">Fotografía: aérea, luz baja</span><span class="nu">08</span></div>
+  <div class="p p6 claro"><div><div class="aa serif">Aa</div><div class="f">Bodoni Moda · titulares</div><div class="abc serif">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</div><div class="txt">Archivo, para el texto corrido: lotes residenciales y comerciales en Pitalito, Huila.</div></div><span class="et">Tipografía</span><span class="nu">06</span></div>
+  <div class="p p7"><div class="tj f"><img src="../img/isotipo-solido.png" alt=""></div><div class="tj d"><b>Santo Thomás</b><span>317 646 1480<br>Cra. 15 No. 19A-01 Sur, local 148<br>C.C. Gran Plaza San Antonio · Pitalito</span></div><span class="et">Tarjeta</span><span class="nu">07</span></div>
+  <div class="p p8"><img src="../img/render-torre.webp" alt=""><span class="et">Fotografía: un solo etalonaje cálido</span><span class="nu">08</span></div>
   <div class="p p9"><canvas id="c9"></canvas><span class="et">Patrón generativo «Loteo»</span><span class="nu">09</span></div>
 </div>
 <script src="../arte/loteo-core.js"></script>
@@ -68,7 +68,7 @@ body{background:#1b1b19;font-family:Archivo,sans-serif;color:var(--cal)}
 function pinta(id, semilla, sangre, op) {
   var c = document.getElementById(id), r = c.getBoundingClientRect();
   c.width = r.width * 2; c.height = r.height * 2;
-  Loteo.draw(c.getContext('2d'), Loteo.generate(semilla, c.width, c.height, op), 1, Object.assign({}, Loteo.LINEA, { grosor: 2 }), null, sangre);
+  Loteo.draw(c.getContext('2d'), Loteo.generate(semilla, c.width, c.height, op), 1, Object.assign({}, Loteo.LINEA, { suelo: '#0b0a08', predio: '#0b0a08', lote: ['#14120e'], via: '#1a1712', trazo: '#8c7446', casa: '#c8a45a', torre: '#efe9dc', grosor: 2 }), null, sangre);
 }
 pinta('c3', 7, false, { frente: 30, manzana: 19000 });
 pinta('c9', 2014, true, { construido: 0.35 });
