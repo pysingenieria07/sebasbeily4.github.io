@@ -80,6 +80,10 @@ em{font-style:normal;color:var(--oro)}
 .accion:hover::before,.accion:focus-visible::before{width:84px}
 .accion:hover{color:var(--oro)}
 .accion:active::before{width:96px}
+.accion.oro{background:var(--oro);color:var(--negro);padding:0 28px;min-height:54px;gap:0;transition:background .3s,transform .15s}
+.accion.oro::before{display:none}
+.accion.oro:hover{background:#d8b871;color:var(--negro)}
+.accion.oro:active{transform:translateY(2px)}
 .enlace{text-decoration:underline;text-decoration-color:var(--bronce);text-decoration-thickness:1px;text-underline-offset:5px;transition:color .25s}
 .enlace:hover{color:var(--oro)}
 
@@ -106,12 +110,13 @@ em{font-style:normal;color:var(--oro)}
 .barra ul{display:flex;gap:clamp(18px,3vw,48px)}
 .barra nav a{text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:12px 0;display:block;transition:color .25s}
 .barra nav a:hover{color:var(--oro)}
-@media(max-width:899px){.barra{flex-wrap:wrap;gap:6px var(--m);padding-block:20px}.barra nav{width:100%}.barra ul{justify-content:space-between}.barra nav a{font-size:11px;letter-spacing:.16em}.barra .wa{display:none}}
+.barra .wa a{color:var(--oro)}
+@media(max-width:899px){.barra{flex-wrap:wrap;gap:6px var(--m);padding-block:20px}.barra nav{width:100%}.barra ul{justify-content:space-between}.barra nav a{font-size:11px;letter-spacing:.16em}.barra .wa,.barra .ocu{display:none}}
 
 /* Portada: dos palabras enormes que pisan las fotos */
 .portada{position:relative;min-height:max(100svh,700px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:1fr auto;column-gap:var(--m);padding:120px var(--m) clamp(28px,5vh,56px)}
-.portada h1{grid-column:1/-1;grid-row:1;align-self:center;position:relative;z-index:2;font-size:clamp(72px,15.4vw,270px);line-height:.9;letter-spacing:-.02em;pointer-events:none;mix-blend-mode:difference}
-.portada h1 .l2{padding-left:16vw}
+.portada h1{grid-column:1/-1;grid-row:1;align-self:center;position:relative;z-index:2;font-size:clamp(72px,15.4vw,270px);line-height:.9;letter-spacing:-.02em;pointer-events:none}
+.portada h1 .l2{padding-left:16vw;color:var(--oro)}
 /* El isotipo vive en la sangría de la segunda línea; el vidrio lo revela al abrir */
 .portada .sello{grid-column:1/4;grid-row:1;align-self:center;position:relative;z-index:1;width:21vw;margin-left:-3.4vw;aspect-ratio:1;transform:translateY(7.6vw);cursor:pointer}
 .portada .sello img{position:absolute;inset:0;margin:auto;width:42%;height:auto}
@@ -196,7 +201,7 @@ em{font-style:normal;color:var(--oro)}
 .laminas .cab{display:flex;justify-content:space-between;align-items:end;gap:24px;padding-bottom:28px}
 .lamina{display:grid;gap:28px;padding-block:44px}
 .lamina .foto{aspect-ratio:4/3}
-.lamina .num{font-family:var(--serif);font-size:clamp(90px,15vw,250px);line-height:.8;letter-spacing:-.02em;color:var(--bronce)}
+.lamina .num{font-family:var(--serif);font-size:clamp(90px,15vw,250px);line-height:.8;letter-spacing:-.02em;color:var(--oro)}
 .lamina .txt{display:grid;gap:24px;justify-items:start;align-content:end}
 .lamina h3{font-size:clamp(40px,5.2vw,88px)}
 .lamina .txt p:not(.decl){max-width:40ch}
@@ -245,7 +250,7 @@ em{font-style:normal;color:var(--oro)}
 .opciones label::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--oro);opacity:0;transform:scale(.3);transition:opacity .3s,transform .5s var(--salir);flex:none;align-self:center}
 .opciones label:hover{color:var(--marfil)}
 .opciones input{position:absolute;opacity:0;pointer-events:none}
-.opciones label:has(input:checked){color:var(--marfil);padding-left:18px}
+.opciones label:has(input:checked){color:var(--oro);padding-left:18px}
 .opciones label:has(input:checked)::after{opacity:1;transform:none}
 .opciones label:has(input:focus-visible){outline:1px solid var(--oro);outline-offset:4px}
 .plano{position:relative;aspect-ratio:4/3}
@@ -259,8 +264,9 @@ em{font-style:normal;color:var(--oro)}
 .empresa .txt{display:grid;gap:28px;justify-items:start;align-content:start}
 .empresa .foto{aspect-ratio:4/5;background:var(--marfil-2)}
 @media(min-width:900px){.empresa{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m)}.empresa .txt{grid-column:1/8}.empresa .foto{grid-column:9/13;margin-top:10vw}}
-.cifras{display:grid;gap:28px;padding-top:clamp(56px,8vw,120px)}
-.cifras div{display:grid;gap:10px;padding-top:22px;border-top:1px solid rgba(11,10,8,.2)}
+.cifras{display:grid;gap:28px;background:var(--oro);color:var(--negro);margin:clamp(56px,8vw,120px) calc(var(--m)*-1) calc(var(--seccion)*-1);padding:clamp(48px,6vw,96px) var(--m)}
+.cifras .rot{color:rgba(11,10,8,.72)}
+.cifras div{display:grid;gap:10px;padding-top:22px;border-top:1px solid rgba(11,10,8,.35)}
 .cifras b{font-family:var(--serif);font-weight:400;font-size:clamp(64px,9vw,150px);line-height:.86;letter-spacing:-.01em;font-variant-numeric:lining-nums}
 @media(min-width:700px){.cifras{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--m)}}
 .preg{display:grid;gap:clamp(28px,4vw,64px)}
@@ -275,16 +281,22 @@ em{font-style:normal;color:var(--oro)}
 .preg details p{padding:0 0 24px;max-width:52ch}
 
 /* Cierre */
-.cierre{padding-top:var(--seccion);overflow:hidden}
+.cierre{overflow:hidden}
+.cierre .campo{background:var(--oro);color:var(--negro);padding-top:clamp(72px,10vw,150px)}
+.cierre .campo .rot{color:rgba(11,10,8,.72)}
+.cierre .campo .enlace{text-decoration-color:rgba(11,10,8,.5)}
+.cierre .campo .enlace:hover{color:var(--negro);text-decoration-color:var(--negro)}
+.cierre .campo .accion.oro{background:var(--negro);color:var(--marfil)}
+.cierre .campo .accion.oro:hover{background:#1c1914;color:var(--marfil)}
 .cierre .datos{display:grid;gap:clamp(32px,5vw,80px);padding-bottom:clamp(64px,9vw,140px)}
 @media(min-width:900px){.cierre .datos{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m);align-items:end}.cierre .datos > div{grid-column:1/8}.cierre address{grid-column:9/13}}
-.cierre .tel{font-family:var(--serif);font-size:clamp(48px,8vw,132px);letter-spacing:0;line-height:.9;text-decoration:none;display:inline-block;margin-block:22px 30px;transition:color .25s}
-.cierre .tel:hover{color:var(--oro)}
+.cierre .tel{font-family:var(--serif);font-size:clamp(48px,8vw,132px);letter-spacing:0;color:var(--negro);line-height:.9;text-decoration:none;display:inline-block;margin-block:22px 30px;transition:color .25s}
+.cierre .tel:hover{color:#3a2f17}
 .cierre address{font-style:normal;display:grid;gap:16px;justify-items:start}
-.cierre .firma{font-family:var(--serif);font-size:15vw;line-height:.86;letter-spacing:-.015em;white-space:nowrap;text-align:center;color:var(--carbon-2);padding-bottom:.06em;user-select:none}
+.cierre .firma{padding-top:clamp(48px,7vw,100px);font-family:var(--serif);font-size:15vw;line-height:.86;letter-spacing:-.015em;white-space:nowrap;text-align:center;color:var(--carbon-2);padding-bottom:.06em;user-select:none}
 .cierre .pie{padding:22px var(--m);border-top:1px solid var(--linea);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 
-.flota{position:fixed;left:0;right:0;bottom:0;z-index:14;display:none;justify-content:center;padding:14px var(--m) calc(14px + env(safe-area-inset-bottom));background:var(--negro);border-top:1px solid var(--linea);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+.flota{position:fixed;left:0;right:0;bottom:0;z-index:14;display:none;justify-content:center;padding:14px var(--m) calc(14px + env(safe-area-inset-bottom));background:var(--oro);color:var(--negro);text-decoration:none;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
 @media(max-width:899px){.flota{display:flex}body{padding-bottom:52px}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
@@ -301,7 +313,7 @@ em{font-style:normal;color:var(--oro)}
       <li><a href="#empresa">Historia</a></li>
       <li><a href="#ubicacion">Ubicación</a></li>
       <li><a href="#proyectos">Proyectos</a></li>
-      <li class="wa"><a href="#obra">Obra</a></li>
+      <li class="ocu"><a href="#obra">Obra</a></li>
       <li><a href="#contacto">Contacto</a></li>
       <li class="wa"><a href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s.">WhatsApp</a></li>
     </ul>
@@ -319,7 +331,7 @@ em{font-style:normal;color:var(--oro)}
   <div class="pie">
     <div class="apoyo">
       <p data-sube style="--i:4">Lotes, casas y apartamentos en Pitalito. Constructora Santo Thomás urbaniza y construye en el sur del Huila desde 2014.</p>
-      <a class="accion" data-sube style="--i:5" href="#proyectos">Ver los proyectos</a>
+      <a class="accion oro" data-sube style="--i:5" href="#proyectos">Ver los proyectos</a>
     </div>
     <p class="rot coord" data-sube style="--i:5">Pitalito, Huila<br><b>Valle de Laboyos</b></p>
   </div>
@@ -391,7 +403,7 @@ em{font-style:normal;color:var(--oro)}
             <h3>Santo Thomás <em>Urbanismo</em></h3>
             <p>Lotes residenciales y comerciales en Pitalito, con vías, conexión a servicios públicos y zonas verdes.</p>
             <dl class="ficha"><dt>Tipo</dt><dd>Lotes residenciales y comerciales</dd><dt>Lugar</dt><dd>Pitalito, Huila</dd></dl>
-            <a class="accion" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20conocer%20los%20lotes%20disponibles%20en%20Santo%20Thom%C3%A1s%20Urbanismo.">Pedir áreas y precios</a>
+            <a class="accion oro" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20conocer%20los%20lotes%20disponibles%20en%20Santo%20Thom%C3%A1s%20Urbanismo.">Pedir áreas y precios</a>
           </div>
         </div>
       </article>
@@ -404,7 +416,7 @@ em{font-style:normal;color:var(--oro)}
             <h3>Torre <em>Santo Thomás</em></h3>
             <p>Apartamentos sobre una plataforma de locales comerciales. Las imágenes son renders: muestran el diseño, no la obra terminada.</p>
             <dl class="ficha"><dt>Tipo</dt><dd>Apartamentos y locales</dd><dt>Lugar</dt><dd>Pitalito, Huila</dd></dl>
-            <a class="accion" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20Torre%20Santo%20Thom%C3%A1s.">Pedir planos de la torre</a>
+            <a class="accion oro" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20Torre%20Santo%20Thom%C3%A1s.">Pedir planos de la torre</a>
           </div>
         </div>
       </article>
@@ -417,7 +429,7 @@ em{font-style:normal;color:var(--oro)}
             <h3>Casas <em>y edificios</em></h3>
             <p>Casas de uno y dos pisos en Pitalito, y edificios de apartamentos con locales en el primer piso.</p>
             <dl class="ficha"><dt>Tipo</dt><dd>Vivienda de uno a cuatro pisos</dd><dt>Lugar</dt><dd>Pitalito, Huila</dd></dl>
-            <a class="accion" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20casas%20de%20Constructora%20Santo%20Thom%C3%A1s.">Preguntar por casas</a>
+            <a class="accion oro" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20casas%20de%20Constructora%20Santo%20Thom%C3%A1s.">Preguntar por casas</a>
           </div>
         </div>
       </article>
@@ -473,7 +485,7 @@ em{font-style:normal;color:var(--oro)}
         <label><span><input type="radio" name="tipo" value="torre">Apartamento</span></label>
       </div>
       <input type="hidden" name="text" id="busca-texto" value="Hola, estoy buscando un lote residencial en Pitalito. ¿Qué tienen disponible?">
-      <button class="accion" type="submit" data-sube style="--i:3" id="busca-btn">Preguntar por lotes residenciales</button>
+      <button class="accion oro" type="submit" data-sube style="--i:3" id="busca-btn">Preguntar por lotes residenciales</button>
     </form>
     <div data-sube style="--i:2">
       <div class="plano"><canvas id="plano" role="img" aria-label="Plano ilustrativo de una urbanización que resalta el tipo de inmueble elegido."></canvas></div>
@@ -496,18 +508,18 @@ em{font-style:normal;color:var(--oro)}
 </main>
 
 <footer class="cierre" id="contacto">
-  <div class="wrap datos" data-grupo>
+  <div class="campo"><div class="wrap datos" data-grupo>
     <div>
       <p class="rot" data-sube>Contacto</p>
       <a class="tel" data-sube style="--i:1" href="tel:+573176461480">317 646 1480</a><br>
-      <a class="accion" data-sube style="--i:2" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s.">Escribir por WhatsApp</a>
+      <a class="accion oro" data-sube style="--i:2" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s.">Escribir por WhatsApp</a>
     </div>
     <address data-sube style="--i:2">
       <span>Carrera 15 No. 19A-01 Sur, local 148<br>Centro Comercial Gran Plaza San Antonio<br>Pitalito, Huila</span>
       <a class="enlace" href="mailto:2019urbanizacionsantothomas@gmail.com?subject=Informaci%C3%B3n%20de%20proyectos">2019urbanizacionsantothomas@gmail.com</a>
       <a class="enlace" href="https://www.instagram.com/constructorasantothomas" rel="noopener">Instagram: @constructorasantothomas</a>
     </address>
-  </div>
+  </div></div>
   <p class="firma" aria-hidden="true">Santo Thomás</p>
   <div class="pie nota">
     <span>© 2026 Constructora Santo Thomás. Pitalito, Huila, Colombia.</span>
