@@ -17,7 +17,7 @@
 <link rel="apple-touch-icon" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Archivo:wght@300..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Archivo:wght@300..600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -46,7 +46,7 @@
   --oro:#c8a45a; --bronce:#8c7446; --gris:#9a9383; --linea:rgba(239,233,220,.16);
   --m:clamp(20px,3.2vw,56px);
   --seccion:clamp(110px,16vw,250px);
-  --serif:'Bodoni Moda','Didot','Bodoni 72',Georgia,serif;
+  --serif:'Italiana','Optima','Candara',Georgia,serif;
   --salir:cubic-bezier(.16,.84,.24,1);
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -58,15 +58,16 @@ img{display:block;max-width:100%;height:auto}
 a{color:inherit}
 h1,h2,h3,p,figure,ul,ol,dl,dd{margin:0}
 ul,ol{padding:0;list-style:none}
-h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.028em;line-height:.9}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.012em;line-height:.94}
 h2{font-size:clamp(44px,7.4vw,124px)}
-em{font-style:italic}
+em{font-style:normal;color:var(--oro)}
+.claro em{color:#8a6a24}
 .wrap{padding-inline:var(--m)}
 .seccion{padding-block:var(--seccion)}
 /* Rótulo: la letra pequeña del sistema */
 .rot{font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gris);line-height:1.5}
 .rot b{font-weight:500;color:var(--oro)}
-.decl{font-family:var(--serif);font-size:clamp(26px,2.9vw,44px);line-height:1.14;letter-spacing:-.015em}
+.decl{font-family:var(--serif);font-size:clamp(27px,3vw,46px);line-height:1.14;letter-spacing:0}
 .nota{font-size:15px;line-height:1.5;color:var(--gris)}
 .filete{height:1px;background:var(--linea);border:0;margin:0}
 :focus-visible{outline:1px solid var(--oro);outline-offset:5px}
@@ -100,7 +101,7 @@ em{font-style:italic}
 
 /* Barra */
 .barra{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;gap:var(--m);padding:28px var(--m)}
-.barra .marca{margin-right:auto;display:flex;align-items:center;gap:14px;text-decoration:none;font-family:var(--serif);font-size:17px;letter-spacing:.3em;text-transform:uppercase}
+.barra .marca{margin-right:auto;display:flex;align-items:center;gap:14px;text-decoration:none;font-family:var(--serif);font-size:19px;letter-spacing:.3em;text-transform:uppercase}
 .barra .marca img{width:30px;height:auto}
 .barra ul{display:flex;gap:clamp(18px,3vw,48px)}
 .barra nav a{text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:12px 0;display:block;transition:color .25s}
@@ -109,8 +110,8 @@ em{font-style:italic}
 
 /* Portada: dos palabras enormes que pisan las fotos */
 .portada{position:relative;min-height:max(100svh,700px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:1fr auto;column-gap:var(--m);padding:120px var(--m) clamp(28px,5vh,56px)}
-.portada h1{grid-column:1/-1;grid-row:1;align-self:center;position:relative;z-index:2;font-size:clamp(76px,16.6vw,290px);line-height:.82;letter-spacing:-.045em;pointer-events:none;mix-blend-mode:difference}
-.portada h1 .l2{padding-left:16vw;font-style:italic}
+.portada h1{grid-column:1/-1;grid-row:1;align-self:center;position:relative;z-index:2;font-size:clamp(72px,15.4vw,270px);line-height:.9;letter-spacing:-.02em;pointer-events:none;mix-blend-mode:difference}
+.portada h1 .l2{padding-left:16vw}
 /* El isotipo vive en la sangría de la segunda línea; el vidrio lo revela al abrir */
 .portada .sello{grid-column:1/4;grid-row:1;align-self:center;position:relative;z-index:1;width:21vw;margin-left:-3.4vw;aspect-ratio:1;transform:translateY(7.6vw);cursor:pointer}
 .portada .sello img{position:absolute;inset:0;margin:auto;width:42%;height:auto}
@@ -129,8 +130,8 @@ em{font-style:italic}
 }
 
 /* Manifiesto: se enciende palabra por palabra al pasar */
-.manifiesto{padding-block:clamp(110px,18vw,280px);display:grid;gap:36px}
-.manifiesto p.texto{font-family:var(--serif);font-size:clamp(30px,4.5vw,76px);line-height:1.08;letter-spacing:-.022em;max-width:20ch;text-wrap:balance}
+.manifiesto{padding-block:clamp(110px,18vw,280px) clamp(90px,13vw,200px);display:grid;gap:36px}
+.manifiesto p.texto{font-family:var(--serif);font-size:clamp(30px,4.5vw,76px);line-height:1.1;letter-spacing:-.008em;max-width:20ch;text-wrap:balance}
 .manifiesto .texto span{opacity:.16;transition:opacity .5s linear}
 .manifiesto .texto span.on{opacity:1}
 @media(min-width:900px){.manifiesto{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m)}.manifiesto .rot{grid-column:1/4;padding-top:.9em}.manifiesto p.texto{grid-column:4/13;max-width:19ch}}
@@ -140,7 +141,7 @@ em{font-style:italic}
 .laminas .cab{display:flex;justify-content:space-between;align-items:end;gap:24px;padding-bottom:28px}
 .lamina{display:grid;gap:28px;padding-block:44px}
 .lamina .foto{aspect-ratio:4/3}
-.lamina .num{font-family:var(--serif);font-size:clamp(90px,15vw,250px);line-height:.74;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px var(--bronce)}
+.lamina .num{font-family:var(--serif);font-size:clamp(90px,15vw,250px);line-height:.8;letter-spacing:-.02em;color:var(--bronce)}
 .lamina .txt{display:grid;gap:24px;justify-items:start;align-content:end}
 .lamina h3{font-size:clamp(40px,5.2vw,88px)}
 .lamina .txt p:not(.decl){max-width:40ch}
@@ -176,8 +177,8 @@ em{font-style:italic}
 @media(min-width:900px){.obra .cab{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m);align-items:end}.obra .cab h2{grid-column:1/8}.obra .cab p{grid-column:9/13}}
 .pasos{display:grid;gap:clamp(14px,2vw,32px)}
 .pasos li{display:grid;gap:16px}
-.pasos .n{font-family:var(--serif);font-size:15px;letter-spacing:.1em;color:var(--oro)}
-.pasos h3{font-size:clamp(26px,2.4vw,38px);letter-spacing:-.015em;line-height:1}
+.pasos .n{font-family:var(--serif);font-size:22px;letter-spacing:.1em;color:var(--oro)}
+.pasos h3{font-size:clamp(28px,2.6vw,40px);letter-spacing:0;line-height:1}
 @media(min-width:900px){.pasos{grid-template-columns:repeat(3,minmax(0,1fr))}.pasos li:nth-child(2){margin-top:9vw}.pasos li:nth-child(3){margin-top:3vw}}
 
 /* Buscador */
@@ -185,11 +186,11 @@ em{font-style:italic}
 @media(min-width:900px){.busca{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
 .busca form{display:grid;gap:34px;justify-items:start}
 .opciones{display:grid;width:100%;border-top:1px solid var(--linea)}
-.opciones label{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:18px 0;border-bottom:1px solid var(--linea);cursor:pointer;font-family:var(--serif);font-size:clamp(28px,3.1vw,48px);line-height:1;letter-spacing:-.02em;color:#6f695d;transition:color .3s,padding .5s var(--salir)}
+.opciones label{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:18px 0;border-bottom:1px solid var(--linea);cursor:pointer;font-family:var(--serif);font-size:clamp(28px,3.1vw,48px);line-height:1;letter-spacing:0;color:#6f695d;transition:color .3s,padding .5s var(--salir)}
 .opciones label::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--oro);opacity:0;transform:scale(.3);transition:opacity .3s,transform .5s var(--salir);flex:none;align-self:center}
 .opciones label:hover{color:var(--marfil)}
 .opciones input{position:absolute;opacity:0;pointer-events:none}
-.opciones label:has(input:checked){color:var(--marfil);padding-left:18px;font-style:italic}
+.opciones label:has(input:checked){color:var(--marfil);padding-left:18px}
 .opciones label:has(input:checked)::after{opacity:1;transform:none}
 .opciones label:has(input:focus-visible){outline:1px solid var(--oro);outline-offset:4px}
 .plano{position:relative;aspect-ratio:4/3}
@@ -205,13 +206,13 @@ em{font-style:italic}
 @media(min-width:900px){.empresa{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m)}.empresa .txt{grid-column:1/8}.empresa .foto{grid-column:9/13;margin-top:10vw}}
 .cifras{display:grid;gap:28px;padding-top:clamp(56px,8vw,120px)}
 .cifras div{display:grid;gap:10px;padding-top:22px;border-top:1px solid rgba(11,10,8,.2)}
-.cifras b{font-family:var(--serif);font-weight:400;font-variation-settings:'opsz' 30;font-size:clamp(64px,9vw,150px);line-height:.8;letter-spacing:-.05em;font-variant-numeric:lining-nums}
+.cifras b{font-family:var(--serif);font-weight:400;font-size:clamp(64px,9vw,150px);line-height:.86;letter-spacing:-.01em;font-variant-numeric:lining-nums}
 @media(min-width:700px){.cifras{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--m)}}
-.preg{display:grid;gap:clamp(28px,4vw,64px);padding-top:var(--seccion)}
+.preg{display:grid;gap:clamp(28px,4vw,64px)}
 @media(min-width:900px){.preg{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m)}.preg h2{grid-column:1/6}.preg .lista{grid-column:7/13}}
 .preg details{border-bottom:1px solid rgba(11,10,8,.2)}
 .preg details:first-child{border-top:1px solid rgba(11,10,8,.2)}
-.preg summary{cursor:pointer;list-style:none;padding:22px 0;font-family:var(--serif);font-size:clamp(24px,2.1vw,32px);line-height:1.1;letter-spacing:-.015em;display:flex;justify-content:space-between;gap:20px;transition:color .25s}
+.preg summary{cursor:pointer;list-style:none;padding:22px 0;font-family:var(--serif);font-size:clamp(26px,2.3vw,34px);line-height:1.1;letter-spacing:0;display:flex;justify-content:space-between;gap:20px;transition:color .25s}
 .preg summary::-webkit-details-marker{display:none}
 .preg summary::after{content:"+";font-family:Archivo,sans-serif;font-weight:300;font-size:26px;transition:transform .4s var(--salir)}
 .preg details[open] summary::after{transform:rotate(45deg)}
@@ -222,10 +223,10 @@ em{font-style:italic}
 .cierre{padding-top:var(--seccion);overflow:hidden}
 .cierre .datos{display:grid;gap:clamp(32px,5vw,80px);padding-bottom:clamp(64px,9vw,140px)}
 @media(min-width:900px){.cierre .datos{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m);align-items:end}.cierre .datos > div{grid-column:1/8}.cierre address{grid-column:9/13}}
-.cierre .tel{font-family:var(--serif);font-variation-settings:'opsz' 36;font-size:clamp(48px,8vw,132px);font-variant-numeric:lining-nums;letter-spacing:-.04em;line-height:.9;text-decoration:none;display:inline-block;margin-block:22px 30px;transition:color .25s}
+.cierre .tel{font-family:var(--serif);font-size:clamp(48px,8vw,132px);letter-spacing:0;line-height:.9;text-decoration:none;display:inline-block;margin-block:22px 30px;transition:color .25s}
 .cierre .tel:hover{color:var(--oro)}
 .cierre address{font-style:normal;display:grid;gap:16px;justify-items:start}
-.cierre .firma{font-family:var(--serif);font-size:15.6vw;line-height:.78;letter-spacing:-.045em;white-space:nowrap;text-align:center;color:transparent;-webkit-text-stroke:1px var(--bronce);padding-bottom:.06em;user-select:none}
+.cierre .firma{font-family:var(--serif);font-size:15vw;line-height:.86;letter-spacing:-.015em;white-space:nowrap;text-align:center;color:var(--carbon-2);padding-bottom:.06em;user-select:none}
 .cierre .pie{padding:22px var(--m);border-top:1px solid var(--linea);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 
 .flota{position:fixed;left:0;right:0;bottom:0;z-index:14;display:none;justify-content:center;padding:14px var(--m) calc(14px + env(safe-area-inset-bottom));background:var(--negro);border-top:1px solid var(--linea);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
@@ -242,9 +243,9 @@ em{font-style:italic}
   </a>
   <nav aria-label="Principal">
     <ul>
+      <li><a href="#empresa">Historia</a></li>
       <li><a href="#proyectos">Proyectos</a></li>
       <li><a href="#obra">Obra</a></li>
-      <li><a href="#empresa">Empresa</a></li>
       <li><a href="#contacto">Contacto</a></li>
       <li class="wa"><a href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s.">WhatsApp</a></li>
     </ul>
@@ -271,6 +272,26 @@ em{font-style:italic}
 <section class="manifiesto wrap">
   <p class="rot">La constructora</p>
   <p class="texto" id="manifiesto">Antes de la casa está la tierra. Abrimos la vía, tendemos las redes y entregamos el lote listo para construir.</p>
+</section>
+
+<section class="claro seccion wrap" id="empresa">
+  <div class="empresa" data-grupo>
+    <div class="txt">
+      <p class="rot" data-sube>Nuestra historia</p>
+      <h2><span class="linea"><span>De Pitalito,</span></span><span class="linea" style="--i:1"><span><em>para Pitalito</em></span></span></h2>
+      <p class="decl" data-sube style="--i:2;max-width:24ch">Trabajamos en el Huila desde 2014 y somos sociedad por acciones simplificada desde 2019.</p>
+      <p data-sube style="--i:3;max-width:46ch">Atendemos en nuestra oficina del Centro Comercial Gran Plaza San Antonio. Allí te mostramos cada proyecto y coordinamos la visita al lote.</p>
+      <a class="accion" data-sube style="--i:4" href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Gran+Plaza+San+Antonio+Pitalito+Huila">Cómo llegar a la oficina</a>
+    </div>
+    <figure class="foto" data-tapa data-par style="--i:2">
+      <img src="img/oficina.webp" srcset="img/oficina-800.webp 800w, img/oficina.webp 1280w" sizes="(min-width:900px) 32vw, 100vw" width="1280" height="960" loading="lazy" alt="Recepción de la oficina de Santo Thomás.">
+    </figure>
+  </div>
+  <div class="cifras" data-grupo>
+    <div data-sube><b>2014</b><span class="rot">Año en que empezamos</span></div>
+    <div data-sube style="--i:1"><b>2019</b><span class="rot">Constituidos como S.A.S.</span></div>
+    <div data-sube style="--i:2"><b>148</b><span class="rot">Local en Gran Plaza San Antonio</span></div>
+  </div>
 </section>
 
 <section class="laminas" id="proyectos" aria-labelledby="proy-t">
@@ -380,24 +401,7 @@ em{font-style:italic}
   </div>
 </section>
 
-<section class="claro seccion wrap" id="empresa">
-  <div class="empresa" data-grupo>
-    <div class="txt">
-      <p class="rot" data-sube>La empresa</p>
-      <h2><span class="linea"><span>De Pitalito,</span></span><span class="linea" style="--i:1"><span><em>para Pitalito</em></span></span></h2>
-      <p class="decl" data-sube style="--i:2;max-width:24ch">Trabajamos en el Huila desde 2014 y somos sociedad por acciones simplificada desde 2019.</p>
-      <p data-sube style="--i:3;max-width:46ch">Atendemos en nuestra oficina del Centro Comercial Gran Plaza San Antonio. Allí te mostramos cada proyecto y coordinamos la visita al lote.</p>
-      <a class="accion" data-sube style="--i:4" href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Gran+Plaza+San+Antonio+Pitalito+Huila">Cómo llegar a la oficina</a>
-    </div>
-    <figure class="foto" data-tapa data-par style="--i:2">
-      <img src="img/oficina.webp" srcset="img/oficina-800.webp 800w, img/oficina.webp 1280w" sizes="(min-width:900px) 32vw, 100vw" width="1280" height="960" loading="lazy" alt="Recepción de la oficina de Santo Thomás.">
-    </figure>
-  </div>
-  <div class="cifras" data-grupo>
-    <div data-sube><b>2014</b><span class="rot">Año en que empezamos</span></div>
-    <div data-sube style="--i:1"><b>2019</b><span class="rot">Constituidos como S.A.S.</span></div>
-    <div data-sube style="--i:2"><b>148</b><span class="rot">Local en Gran Plaza San Antonio</span></div>
-  </div>
+<section class="claro seccion wrap">
   <div class="preg" data-grupo>
     <h2><span class="linea"><span>Preguntas</span></span></h2>
     <div class="lista" data-sube style="--i:1">
