@@ -761,7 +761,7 @@ function play(host, opts) {
     const cw = canvas.clientWidth, ch = canvas.clientHeight;
     const w = Math.max(1, Math.round(cw * dpr)), h = Math.max(1, Math.round(ch * dpr));
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
-    const tile = Math.min(P.tileSize, Math.min(cw, ch) / 1.75);
+    const tile = Math.min(P.tileSize, Math.min(cw, ch) / (opts.fit || 1.75));
     renderer.render(frameAt(time, P), w, h, tile * dpr);
     if (time >= end) { setTimeout(finish, (opts.hold || 0) * 1000); return; }
     raf = requestAnimationFrame(tick);
