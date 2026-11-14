@@ -105,6 +105,12 @@
     return { W: W, H: H, angle: angle, roads: roads, lots: lots, parcel: parcel, side: side };
   }
 
+  // Plano a línea: el estilo de la portada y de los banners.
+  var LINEA = {
+    suelo: '#0d0d0c', predio: '#0d0d0c', lote: ['#151513'], verde: '#1b2118', via: '#191916',
+    casa: '#c9a45c', torre: '#ece8df', acento: '#c9a45c', atenuar: 0.1, relleno: 0, trazo: '#8a7748', grosor: 1
+  };
+
   var STYLE = {
     suelo: '#0d0d0c', predio: '#171715', lote: ['#1f1f1c', '#252522', '#1b1b19'],
     verde: '#2c3527', via: '#cfc6ae', casa: '#ece8df', torre: '#ece8df', acento: '#c9a45c', atenuar: 0.28
@@ -125,24 +131,35 @@
     ctx.translate(W / 2, H / 2); ctx.rotate(plan.angle);
 
     // Lotes: aparecen en el orden en que avanza el frente de obra.
+    // s.relleno (0..1) apaga el relleno; s.trazo dibuja el contorno, como un plano a línea.
+    var rell = s.relleno === undefined ? 1 : s.relleno;
+    ctx.lineWidth = s.grosor || 1;
     plan.lots.forEach(function (l) {
       var a = ease((t - 0.3 - l.order * 0.55) / 0.15);
       if (a <= 0) return;
       var hi = destacado && (l.kind === destacado || (destacado === 'casa' && l.casa));
-      ctx.globalAlpha = a * (destacado && !hi ? s.atenuar + 0.25 : 1);
+      var A = a * (destacado && !hi ? s.atenuar + 0.25 : 1);
       var inset = (1 - a) * Math.min(l.w, l.h) * 0.35;
-      if (l.kind === 'verde') ctx.fillStyle = s.verde;
-      else if (hi && destacado !== 'casa') ctx.fillStyle = s.acento;
-      else ctx.fillStyle = s.lote[Math.floor(l.tint * s.lote.length)];
-      ctx.fillRect(l.x + inset, l.y + inset, l.w - 2 * inset, l.h - 2 * inset);
+      var x = l.x + inset, y = l.y + inset, w = l.w - 2 * inset, h = l.h - 2 * inset;
+      var lleno = hi && destacado !== 'casa';
+      if (l.kind === 'verde') { ctx.fillStyle = s.verde; ctx.globalAlpha = A * Math.max(rell, 0.6); }
+      else if (lleno) { ctx.fillStyle = s.acento; ctx.globalAlpha = A * (s.trazo ? 0.28 : 1); }
+      else { ctx.fillStyle = s.lote[Math.floor(l.tint * s.lote.length)]; ctx.globalAlpha = A * rell; }
+      if (ctx.globalAlpha > 0.01) ctx.fillRect(x, y, w, h);
+      if (s.trazo) {
+        ctx.globalAlpha = A * (lleno ? 1 : 0.6);
+        ctx.strokeStyle = lleno ? s.acento : s.trazo;
+        ctx.strokeRect(x, y, w, h);
+      }
+      ctx.globalAlpha = A;
       if (l.kind === 'torre') {
         var m = Math.min(l.w, l.h) * 0.22;
-        ctx.fillStyle = hi ? s.suelo : s.torre;
+        ctx.fillStyle = hi ? s.acento : s.torre;
         ctx.fillRect(l.x + m, l.y + m, l.w - 2 * m, l.h - 2 * m);
-        ctx.fillStyle = hi ? s.acento : s.predio;
+        ctx.fillStyle = s.predio;
         ctx.fillRect(l.x + m * 1.6, l.y + m * 1.6, l.w - 3.2 * m, l.h - 3.2 * m);
       } else if (l.casa) {
-        var cw = Math.min(l.w, l.h) * 0.56;
+        var cw = Math.min(l.w, l.h) * 0.5;
         ctx.fillStyle = hi ? s.acento : s.casa;
         ctx.fillRect(l.x + (l.w - cw) / 2, l.y + (l.h - cw) / 2, cw, cw);
       }
@@ -159,5 +176,5 @@
     ctx.restore();
   }
 
-  root.Loteo = { generate: generate, draw: draw, STYLE: STYLE, DEFAULTS: DEFAULTS, rng: mulberry32 };
+  root.Loteo = { generate: generate, draw: draw, STYLE: STYLE, LINEA: LINEA, DEFAULTS: DEFAULTS, rng: mulberry32 };
 })(typeof window !== 'undefined' ? window : globalThis);

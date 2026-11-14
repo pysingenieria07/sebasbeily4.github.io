@@ -18,7 +18,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="img/aerea-loteo.webp" imagesrcset="img/aerea-loteo-800.webp 800w, img/aerea-loteo.webp 1600w" imagesizes="100vw">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -43,174 +42,184 @@
 </script>
 <style>
 :root{
-  --cal:#ece8df; --cal-2:#dfdbd0; --tinta:#0d0d0c; --campo:#1f1f1c; --campo-osc:#151513;
-  --arena:#cfc6ae; --oro:#c9a45c; --oro-osc:#b08d48;
-  --m:clamp(20px,2.2vw,32px);
-  --seccion:clamp(96px,14vw,210px);
-  --t-display:clamp(46px,8.4vw,136px);
-  --t-h2:clamp(36px,5vw,76px);
-  --t-decl:clamp(22px,2.3vw,34px);
+  --cal:#ece8df; --cal-2:#dfdbd0; --tinta:#0d0d0c; --sup:#151513; --sup-2:#1f1f1c;
+  --oro:#c9a45c; --gris:#a8a397;
+  --m:clamp(20px,3vw,48px);
+  --seccion:clamp(100px,15vw,230px);
+  --t-display:clamp(52px,10.4vw,172px);
+  --t-h2:clamp(40px,6.4vw,104px);
+  --t-decl:clamp(25px,2.7vw,40px);
   --t-texto:18px; --t-nota:15px;
   --salir:cubic-bezier(.2,.7,.2,1);
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--tinta);color:var(--cal);font-family:Archivo,system-ui,sans-serif;font-size:var(--t-texto);line-height:1.6;font-weight:400}
+body{margin:0;position:relative;background:var(--tinta);color:var(--cal);font-family:Archivo,system-ui,sans-serif;font-size:var(--t-texto);line-height:1.6}
 img{display:block;max-width:100%;height:auto}
-body{position:relative}
 a{color:inherit}
-h1,h2,p,figure,ul{margin:0}
+h1,h2,p,figure,ul,dl,dd{margin:0}
 ul{padding:0;list-style:none}
-h1,h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:-.012em;line-height:1;text-wrap:balance}
+h1,h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;letter-spacing:-.018em;line-height:.94;text-wrap:balance}
 h1{font-size:var(--t-display)}
 h2{font-size:var(--t-h2)}
-.decl{font-family:'Cormorant Garamond',Georgia,serif;font-size:calc(var(--t-decl)*1.12);line-height:1.2;font-weight:400;max-width:34ch}
-.nota{font-size:var(--t-nota);line-height:1.4}
+.decl{font-family:'Cormorant Garamond',Georgia,serif;font-size:var(--t-decl);line-height:1.18;font-weight:400;max-width:26ch}
+.nota{font-size:var(--t-nota);line-height:1.45;color:var(--gris)}
 .wrap{padding-inline:var(--m)}
 .seccion{padding-block:var(--seccion)}
-:focus-visible{outline:3px solid var(--oro);outline-offset:3px}
+:focus-visible{outline:2px solid var(--oro);outline-offset:4px}
 ::selection{background:var(--oro);color:var(--tinta)}
 .salto{position:absolute;left:-999px}
 .salto:focus{left:var(--m);top:8px;background:var(--cal);color:var(--tinta);padding:10px 14px;z-index:9}
 
-/* Botón: plano, cuadrado, un solo color */
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 30px;background:var(--oro);color:var(--tinta);font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:0;cursor:pointer;font-family:inherit;transition:background .18s,transform .12s}
-.btn:hover{background:var(--oro-osc)}
-.btn:active{transform:translateY(2px)}
-.enlace{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;transition:text-decoration-color .18s}
-.enlace:hover{text-decoration-color:var(--oro)}
+/* Acción: una línea de texto con subrayado dorado y flecha. Sin cajas. */
+.accion{display:inline-flex;align-items:baseline;gap:.6em;padding:10px 0 9px;min-height:44px;font-size:16px;font-weight:500;letter-spacing:.02em;text-decoration:none;background:linear-gradient(var(--oro),var(--oro)) left bottom/100% 1px no-repeat;border:0;color:inherit;cursor:pointer;font-family:inherit;transition:background-size .45s var(--salir),color .2s}
+.accion::after{content:"\2192";display:inline-block;transition:transform .35s var(--salir)}
+.accion:hover{color:var(--oro);background-size:38% 1px}
+.accion:hover::after{transform:translateX(6px)}
+.accion:active::after{transform:translateX(10px)}
+.accion.abajo::after{content:"\2193"}
+.accion.abajo:hover::after{transform:translateY(5px)}
+.enlace{text-decoration:underline;text-decoration-color:var(--oro);text-decoration-thickness:1px;text-underline-offset:5px;transition:color .2s}
+.enlace:hover{color:var(--oro)}
 
-/* Barra: sobre la foto de portada, sin caja */
-.barra{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;gap:var(--m);padding:22px var(--m);flex-wrap:wrap}
-.barra .marca{margin-right:auto;display:flex;align-items:center;gap:14px;text-decoration:none;font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:21px;letter-spacing:.2em;text-transform:uppercase}
-.barra .marca img{width:38px;height:auto}
-.barra nav ul{display:flex;gap:clamp(18px,2.6vw,40px)}
-.barra nav a{text-decoration:none;font-size:13px;letter-spacing:.16em;text-transform:uppercase;padding:8px 0;display:block;transition:color .18s}
+/* Barra */
+.barra{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;gap:var(--m);padding:26px var(--m);flex-wrap:wrap}
+.barra .marca{margin-right:auto;display:flex;align-items:center;gap:14px;text-decoration:none;font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:20px;letter-spacing:.22em;text-transform:uppercase}
+.barra .marca img{width:36px;height:auto}
+.barra nav ul{display:flex;gap:clamp(18px,2.8vw,44px)}
+.barra nav a{text-decoration:none;font-size:15px;letter-spacing:.02em;padding:10px 0;display:block;transition:color .2s}
 .barra nav a:hover{color:var(--oro)}
-.barra .btn{min-height:44px;padding:0 20px;font-size:12px;background:transparent;color:var(--cal);box-shadow:inset 0 0 0 1px var(--oro)}
-.barra .btn:hover{background:var(--oro);color:var(--tinta)}
 
-/* Portada: la foto ocupa toda la pantalla; el texto abajo a la izquierda */
-.portada{position:relative;min-height:100svh;display:grid;align-items:end}
-.portada .foto{position:absolute;inset:0;overflow:hidden;background:var(--campo-osc)}
-.portada .foto img{width:100%;height:100%;object-fit:cover;object-position:50% 58%}
-.portada .foto::after{content:"";position:absolute;inset:0;background:rgba(13,13,12,.62)}
-.portada .cabeza{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:28px;align-items:end;padding-top:140px;padding-bottom:clamp(40px,7vh,88px)}
-.portada .apoyo{display:grid;gap:26px;justify-items:start;max-width:36ch}
-@media(min-width:900px){.portada .cabeza{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)}}
+/* Portada: el nombre del lugar en grande y el plano que se traza al abrir */
+.portada{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden}
+.portada .trazo{position:absolute;top:84px;right:0;width:min(64vw,1300px);height:64%}
+.portada .trazo canvas{width:100%;height:100%;display:block}
+.portada .cabeza{position:relative;z-index:1;display:grid;gap:clamp(28px,4vw,56px);padding-top:150px;padding-bottom:clamp(36px,7vh,84px)}
+.portada h1{max-width:11ch}
+.portada .apoyo{display:grid;gap:22px;max-width:40ch}
+.portada .acciones{display:flex;flex-wrap:wrap;gap:8px 36px}
+@media(min-width:900px){.portada .cabeza{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:end}}
+@media(max-width:899px){.portada .trazo{width:130vw;right:-30vw;height:47%}.portada .acciones .accion:not(.abajo){display:none}}
 
-/* Proyectos: cada uno con su propia composición */
-.titulo-sec{padding-bottom:clamp(32px,5vw,72px)}
-.proy{display:grid;gap:var(--m);grid-template-columns:repeat(12,minmax(0,1fr));align-items:start}
-.proy + .proy{margin-top:clamp(72px,9vw,140px)}
-.proy figure{overflow:hidden;background:var(--campo)}
-.proy figure img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--salir)}
-.proy figure:hover img{transform:scale(1.03)}
-.proy .txt{display:grid;gap:18px;align-content:start}
-.proy .txt p{max-width:44ch}
-.proy > *{grid-column:1/-1}
-.r43{aspect-ratio:4/3}.r169{aspect-ratio:16/9}.r34{aspect-ratio:3/4}
+/* Índice de proyectos: tres nombres en grande, cada uno abre su capítulo */
+.indice{padding-block:clamp(72px,10vw,150px) clamp(40px,6vw,90px)}
+.indice ol{margin:0;padding:0;list-style:none}
+.indice a{display:grid;grid-template-columns:1fr;gap:4px 24px;padding-block:clamp(14px,2vw,26px);text-decoration:none;align-items:baseline;transition:color .25s,transform .5s var(--salir)}
+.indice .nombre{font-family:'Cormorant Garamond',Georgia,serif;font-size:var(--t-h2);line-height:1;letter-spacing:-.018em}
+.indice .que{color:var(--gris);transition:color .25s}
+.indice a:hover{color:var(--oro);transform:translateX(clamp(8px,1.4vw,22px))}
+.indice a:hover .que{color:var(--cal)}
+@media(min-width:900px){.indice a{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+
+/* Capítulo: foto a sangre, luego el nombre y el texto en dos columnas */
+.cap{padding-bottom:var(--seccion)}
+.cap .sangre{overflow:hidden;height:clamp(300px,74vh,860px);background:var(--sup)}
+.cap .sangre img,.par img,.torre figure img,.empresa figure img{width:100%;height:100%;object-fit:cover}
+.cap .cuerpo{display:grid;align-items:start;gap:clamp(24px,3vw,40px);padding-top:clamp(36px,5vw,72px)}
+.cap .txt{display:grid;gap:22px;align-content:start;justify-items:start}
+.cap .txt p{max-width:46ch}
+@media(min-width:900px){.cap .cuerpo{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+.ficha{display:grid;grid-template-columns:auto 1fr;gap:6px 28px;font-size:var(--t-nota)}
+.ficha dt{color:var(--gris)}
+.par{display:grid;gap:var(--m);grid-template-columns:repeat(12,minmax(0,1fr));padding-top:clamp(48px,7vw,110px);align-items:start}
+.par figure{overflow:hidden;background:var(--sup)}
+.par .a{grid-column:1/6;aspect-ratio:4/5}
+.par .b{grid-column:7/13;aspect-ratio:16/10;margin-top:clamp(40px,9vw,150px)}
+.par figcaption{display:none}
+@media(max-width:699px){.par .a{grid-column:1/9}.par .b{grid-column:3/13;margin-top:0}}
+
+/* Torre: la imagen vertical se queda fija mientras pasa el texto */
+.torre-sec{background:var(--sup)}
+.torre{display:grid;gap:clamp(28px,4vw,64px)}
+.torre figure{overflow:hidden;background:var(--sup-2)}
+.torre .vertical{aspect-ratio:3/4}
+.torre .txt{display:grid;gap:26px;align-content:start;justify-items:start}
+.torre .txt p:not(.decl){max-width:44ch}
+.torre .ancha{aspect-ratio:16/9;width:100%;margin-top:clamp(20px,4vw,64px)}
 @media(min-width:900px){
-  .urb .grande{grid-column:1/9;grid-row:1/3}
-  .urb .txt{grid-column:9/13}
-  .urb .chica-a{grid-column:9/13;align-self:end}
-  .urb .pie-plaza{grid-column:1/5;align-self:end}
-  .urb .chica-b{grid-column:5/13}
-  .casas .txt{grid-column:1/5}
-  .casas .a{grid-column:5/13}
-  .casas .b{grid-column:1/5}.casas .c{grid-column:5/9}.casas .d{grid-column:9/13}
-}
-@media(max-width:899px){
-  .casas .b{grid-column:1/7}
-  .casas .c{grid-column:7/13}
-  .urb .pie-plaza{order:9}
+  .torre{grid-template-columns:minmax(0,5fr) minmax(0,6fr);align-items:start}
+  .torre .vertical{position:sticky;top:5vh;max-height:90vh}
+  .torre .txt{padding-top:clamp(20px,8vh,110px)}
 }
 
-/* Torre: campo negro, la imagen vertical manda */
-.torre-sec{background:var(--campo-osc);color:var(--cal)}
-.torre{display:grid;gap:var(--m);grid-template-columns:repeat(12,minmax(0,1fr));align-items:end}
-.torre > *{grid-column:1/-1}
-.torre figure{overflow:hidden}
-.torre figure img{width:100%;height:100%;object-fit:cover}
-.torre .txt{display:grid;gap:18px}
-.torre .txt p{max-width:40ch}
-@media(min-width:900px){
-  .torre .vertical{grid-column:1/6;grid-row:1/3}
-  .torre .txt{grid-column:7/13;align-self:start}
-  .torre .ancha{grid-column:7/13}
-}
+/* Casas: una galería que se recorre de lado y se sale por el borde */
+.casas-cab{display:grid;gap:24px;padding-bottom:clamp(32px,5vw,64px)}
+.casas-cab .txt{display:grid;gap:20px;justify-items:start;max-width:46ch}
+@media(min-width:900px){.casas-cab{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:end}}
+.galeria{display:flex;gap:clamp(12px,1.6vw,24px);overflow-x:auto;scroll-snap-type:x proximity;padding-inline:var(--m);scrollbar-width:none;cursor:grab}
+.galeria::-webkit-scrollbar{display:none}
+.galeria figure{flex:none;height:clamp(300px,62vh,680px);scroll-snap-align:center;overflow:hidden;background:var(--sup)}
+.galeria img{height:100%;width:auto;max-width:none}
+.galeria.arrastra{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
 
-/* Obra: campo verde, tres fotos verticales del mismo corte */
-.obra-sec{background:var(--tinta);color:var(--cal)}
+/* Obra */
 .obra-cab{display:grid;gap:24px;padding-bottom:clamp(32px,5vw,64px)}
-@media(min-width:900px){.obra-cab{grid-template-columns:1.4fr 1fr;align-items:end}}
-.tira{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:var(--m)}
-.tira figure{display:grid;gap:12px}
-.tira .marco{overflow:hidden;aspect-ratio:3/4;background:var(--campo-osc)}
+@media(min-width:900px){.obra-cab{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:end}}
+.tira{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:clamp(12px,1.6vw,24px)}
+.tira figure{display:grid;gap:14px}
+.tira .marco{overflow:hidden;aspect-ratio:3/4;background:var(--sup)}
 .tira img{width:100%;height:100%;object-fit:cover}
+.tira figure:nth-child(2){margin-top:clamp(0px,5vw,80px)}
 @media(max-width:899px){
   .tira{grid-auto-columns:72vw;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(var(--m)*-1);padding-inline:var(--m);scrollbar-width:none}
-  .tira figure{scroll-snap-align:center}
+  .tira figure{scroll-snap-align:center}.tira figure:nth-child(2){margin-top:0}
 }
 
-/* Buscador: lo vivo de la página */
-.busca-sec{background:var(--campo-osc);color:var(--cal)}
-.busca{display:grid;gap:clamp(28px,4vw,56px);align-items:center}
+/* Buscador */
+.busca-sec{background:var(--sup)}
+.busca{display:grid;gap:clamp(32px,5vw,72px);align-items:center}
 @media(min-width:900px){.busca{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
-.busca form{display:grid;gap:26px;justify-items:start}
-.opciones{display:grid;gap:6px;width:100%}
-.opciones label{display:flex;align-items:center;gap:16px;padding:16px 18px;background:var(--campo);cursor:pointer;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(23px,2.1vw,30px);font-weight:500;transition:background .18s,color .18s,transform .12s}
-.opciones label:hover{background:#2a2a26}
-.opciones label:active{transform:translateY(1px)}
-.opciones input{appearance:none;width:18px;height:18px;margin:0;background:var(--campo-osc);flex:none}
-.opciones input:checked{background:var(--tinta)}
-.opciones label:has(input:checked){background:var(--oro);color:var(--tinta)}
-.opciones label:has(input:focus-visible){outline:3px solid var(--cal);outline-offset:2px}
-.plano{position:relative;aspect-ratio:4/3;background:var(--campo-osc)}
+.busca form{display:grid;gap:30px;justify-items:start}
+.opciones{display:grid;width:100%}
+.opciones label{display:flex;align-items:baseline;gap:18px;padding:12px 0;cursor:pointer;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(30px,3.4vw,52px);line-height:1.05;color:#77736a;transition:color .25s,transform .45s var(--salir)}
+.opciones label:hover{color:var(--cal)}
+.opciones input{appearance:none;width:.26em;height:.26em;margin:0;background:transparent;flex:none;transform:translateY(-.22em);transition:background .25s}
+.opciones label:has(input:checked){color:var(--cal);transform:translateX(10px)}
+.opciones input:checked{background:var(--oro)}
+.opciones label:has(input:focus-visible){outline:2px solid var(--oro);outline-offset:4px}
+.plano{position:relative;aspect-ratio:4/3}
 .plano canvas{position:absolute;inset:0;width:100%;height:100%}
-.plano-nota{margin-top:12px;opacity:.82}
+.plano-nota{margin-top:14px}
 
-/* Empresa */
-.empresa{display:grid;gap:clamp(28px,4vw,56px);grid-template-columns:repeat(12,minmax(0,1fr));align-items:start}
-.empresa > *{grid-column:1/-1}
-.empresa .txt{display:grid;gap:22px}
-.empresa-sec{background:var(--cal);color:var(--tinta)}
+/* Empresa y preguntas: el único tramo claro */
+.claro{background:var(--cal);color:var(--tinta)}
+.claro .nota{color:#5c584f}
+.empresa{display:grid;gap:clamp(28px,4vw,64px);align-items:start}
+.empresa .txt{display:grid;gap:24px;justify-items:start}
+.empresa .decl{max-width:34ch}
 .empresa figure{overflow:hidden;aspect-ratio:4/3;background:var(--cal-2)}
-.empresa figure img{width:100%;height:100%;object-fit:cover}
-@media(min-width:900px){.empresa .txt{grid-column:1/7}.empresa figure{grid-column:8/13}}
-
-/* Preguntas: bloques de tono, sin líneas */
-.preg-sec{background:var(--cal-2);color:var(--tinta)}
-.preg{display:grid;gap:clamp(28px,4vw,56px)}
+@media(min-width:900px){.empresa{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+.preg{display:grid;gap:clamp(28px,4vw,64px);padding-top:var(--seccion)}
 @media(min-width:900px){.preg{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:start}}
-.preg details{background:var(--cal);margin-bottom:6px}
-.preg summary{cursor:pointer;list-style:none;padding:22px 24px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:25px;display:flex;justify-content:space-between;gap:16px;transition:background .18s}
+.preg details{padding-block:6px}
+.preg summary{cursor:pointer;list-style:none;padding:14px 0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(24px,2.2vw,32px);line-height:1.15;display:flex;justify-content:space-between;gap:20px;transition:color .2s}
 .preg summary::-webkit-details-marker{display:none}
-.preg summary::after{content:"+";font-weight:500;font-size:26px;line-height:1;transition:transform .25s var(--salir)}
+.preg summary::after{content:"+";font-family:Archivo,sans-serif;font-weight:400;font-size:24px;transition:transform .3s var(--salir)}
 .preg details[open] summary::after{transform:rotate(45deg)}
-.preg summary:hover{background:#f5f2ea}
-.preg details p{padding:0 24px 24px;max-width:58ch}
+.preg summary:hover{color:#7d6230}
+.preg details p{padding:0 0 18px;max-width:54ch}
 
 /* Cierre */
-.cierre{background:var(--tinta);color:var(--cal);padding-top:var(--seccion)}
-.cierre .datos{display:grid;gap:clamp(28px,4vw,56px);padding-bottom:clamp(56px,8vw,110px)}
+.cierre{padding-top:var(--seccion)}
+.cierre .datos{display:grid;gap:clamp(28px,4vw,64px);padding-bottom:clamp(64px,9vw,130px)}
 @media(min-width:900px){.cierre .datos{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:end}}
-.cierre .tel{font-family:'Cormorant Garamond',Georgia,serif;font-size:var(--t-h2);font-weight:500;font-variant-numeric:lining-nums;line-height:1;text-decoration:none;display:inline-block;margin-block:18px 26px;font-variant-numeric:tabular-nums;transition:color .18s}
+.cierre .tel{font-family:'Cormorant Garamond',Georgia,serif;font-size:var(--t-h2);font-variant-numeric:lining-nums;line-height:1;text-decoration:none;display:inline-block;margin-block:14px 22px;transition:color .2s}
 .cierre .tel:hover{color:var(--oro)}
-.cierre address{font-style:normal;display:grid;gap:14px}
-.cierre .logo{width:100%;max-width:760px;margin-inline:auto;padding:0 var(--m) clamp(40px,6vw,80px)}
-.cierre .pie{padding:18px var(--m);background:var(--campo-osc);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.cierre address{font-style:normal;display:grid;gap:14px;justify-items:start}
+.cierre .logo{width:min(100%,640px);margin-inline:auto;padding:0 var(--m) clamp(40px,6vw,80px)}
+.cierre .pie{padding:20px var(--m);background:var(--sup);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 
-/* WhatsApp fijo en teléfono */
-.flota{position:fixed;right:14px;bottom:14px;z-index:5;display:none}
-@media(max-width:899px){.flota{display:inline-flex}.barra .btn{display:none}.barra nav{width:100%}.barra nav ul{justify-content:space-between}.barra nav a{font-size:12px;letter-spacing:.12em}.portada .cabeza{padding-top:170px}}
+/* WhatsApp en teléfono: una barra baja, no un bloque flotante */
+.flota{position:fixed;left:0;right:0;bottom:0;z-index:5;display:none;justify-content:center;padding:14px var(--m) calc(14px + env(safe-area-inset-bottom));background:var(--tinta);font-size:15px;text-decoration:none;letter-spacing:.02em}
+.flota span{background:linear-gradient(var(--oro),var(--oro)) left bottom/100% 1px no-repeat;padding-bottom:4px}
+@media(max-width:899px){.flota{display:flex}body{padding-bottom:58px}.barra .wa{display:none}.barra nav{width:100%}.barra nav ul{justify-content:space-between}}
 
-/* Movimiento: solo si hay script; el contenido nunca queda oculto sin él */
+/* Movimiento */
 @media(prefers-reduced-motion:no-preference){
-  .js [data-sube]{opacity:0;transform:translateY(26px);transition:opacity .7s var(--salir),transform .7s var(--salir);transition-delay:calc(var(--i,0)*80ms)}
+  .js [data-sube]{opacity:0;transform:translateY(28px);transition:opacity .9s var(--salir),transform .9s var(--salir);transition-delay:calc(var(--i,0)*90ms)}
   .js .visto [data-sube],.js [data-sube].visto{opacity:1;transform:none}
-  .js .portada .foto img{transform:scale(1.09);transition:transform 2.2s var(--salir)}
-  .js .portada .foto.visto img{transform:scale(1)}
+  .js [data-abre] img{transform:scale(1.08);transition:transform 2.4s var(--salir)}
+  .js [data-abre].visto img{transform:scale(1)}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
@@ -230,88 +239,97 @@ h2{font-size:var(--t-h2)}
       <li><a href="#obra">Obra</a></li>
       <li><a href="#empresa">Empresa</a></li>
       <li><a href="#contacto">Contacto</a></li>
+      <li class="wa"><a href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s.">WhatsApp</a></li>
     </ul>
   </nav>
-  <a class="btn" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s.">Escribir por WhatsApp</a>
 </header>
 
 <main id="contenido">
 
 <section class="portada" id="inicio">
-  <div class="wrap cabeza">
+  <div class="trazo" aria-hidden="true"><canvas id="trazo"></canvas></div>
+  <div class="wrap cabeza" data-grupo>
     <h1 data-sube>Lotes y casas en Pitalito</h1>
     <div class="apoyo">
       <p data-sube style="--i:1">Constructora Santo Thomás urbaniza y construye en el sur del Huila desde 2014: lotes residenciales y comerciales, casas, locales y apartamentos.</p>
-      <a data-sube style="--i:2" class="btn" href="#buscar">Ver qué hay disponible</a>
+      <p class="acciones" data-sube style="--i:2">
+        <a class="accion abajo" href="#proyectos">Ver los proyectos</a>
+        <a class="accion" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s.">Escribir por WhatsApp</a>
+      </p>
     </div>
   </div>
-  <figure class="foto" data-foto>
-    <img src="img/aerea-loteo.webp" srcset="img/aerea-loteo-800.webp 800w, img/aerea-loteo.webp 1600w" sizes="100vw" width="1600" height="1200" alt="Vista aérea de una urbanización de Santo Thomás en Pitalito: vías trazadas, manzanas loteadas y las primeras casas en construcción." fetchpriority="high">
+</section>
+
+<nav class="indice wrap" id="proyectos" aria-label="Proyectos" data-grupo>
+  <ol>
+    <li><a href="#urbanismo" data-sube><span class="nombre">Santo Thomás Urbanismo</span><span class="que">Lotes residenciales y comerciales</span></a></li>
+    <li><a href="#torre" data-sube style="--i:1"><span class="nombre">Torre Santo Thomás</span><span class="que">Apartamentos y locales</span></a></li>
+    <li><a href="#casas" data-sube style="--i:2"><span class="nombre">Casas y edificios</span><span class="que">Vivienda de uno a cuatro pisos</span></a></li>
+  </ol>
+</nav>
+
+<article class="cap" id="urbanismo">
+  <figure class="sangre" data-abre>
+    <img src="img/aerea-loteo-2.webp" srcset="img/aerea-loteo-2-800.webp 800w, img/aerea-loteo-2.webp 1600w" sizes="100vw" width="1600" height="1200" loading="lazy" alt="Fotografía cenital del loteo: vías en concreto que dividen el predio en manzanas rectangulares.">
   </figure>
-</section>
-
-<section class="seccion wrap" id="proyectos">
-  <div class="titulo-sec" data-grupo>
-    <h2 data-sube>Lo que construimos</h2>
+  <div class="wrap">
+    <div class="cuerpo" data-grupo>
+      <h2 data-sube>Santo Thomás Urbanismo</h2>
+      <div class="txt">
+        <p class="decl" data-sube style="--i:1">Un lote con la calle hecha y los servicios en la puerta.</p>
+        <p data-sube style="--i:2">Lotes residenciales y comerciales en Pitalito, con vías, conexión a servicios públicos y zonas verdes.</p>
+        <dl class="ficha" data-sube style="--i:3"><dt>Tipo</dt><dd>Lotes residenciales y comerciales</dd><dt>Lugar</dt><dd>Pitalito, Huila</dd></dl>
+        <a class="accion" data-sube style="--i:4" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20conocer%20los%20lotes%20disponibles%20en%20Santo%20Thom%C3%A1s%20Urbanismo.">Pedir áreas y precios</a>
+      </div>
+    </div>
+    <div class="par" data-grupo>
+      <figure class="a" data-sube>
+        <img src="img/aerea-noche.webp" width="754" height="820" loading="lazy" alt="La urbanización de noche, con el alumbrado de las vías encendido y Pitalito al fondo.">
+      </figure>
+      <figure class="b" data-sube style="--i:1">
+        <img src="img/render-plaza.webp" srcset="img/render-plaza-800.webp 800w, img/render-plaza.webp 1600w" sizes="(min-width:700px) 50vw, 84vw" width="1600" height="900" loading="lazy" alt="Render de la plazoleta y el parque del proyecto.">
+      </figure>
+    </div>
   </div>
+</article>
 
-  <article class="proy urb" data-grupo>
-    <figure class="grande r43" data-sube>
-      <img src="img/aerea-loteo-2.webp" srcset="img/aerea-loteo-2-800.webp 800w, img/aerea-loteo-2.webp 1600w" sizes="(min-width:900px) 66vw, 100vw" width="1600" height="1200" loading="lazy" alt="Fotografía cenital del loteo: vías en concreto que dividen el predio en manzanas rectangulares.">
-    </figure>
-    <div class="txt">
-      <h2 data-sube style="--i:1">Santo Thomás Urbanismo</h2>
-      <p data-sube style="--i:2">Lotes residenciales y comerciales en Pitalito, con vías, conexión a servicios públicos y zonas verdes.</p>
-      <p data-sube style="--i:3"><a class="enlace" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20conocer%20los%20lotes%20disponibles%20en%20Santo%20Thom%C3%A1s%20Urbanismo.">Pedir áreas y precios de los lotes</a></p>
-    </div>
-    <figure class="chica-a r169" data-sube style="--i:2">
-      <img src="img/aerea-noche.webp" width="754" height="820" loading="lazy" alt="La urbanización de noche, con el alumbrado de las vías encendido y Pitalito al fondo.">
-    </figure>
-    <p class="pie-plaza" data-sube>La plazoleta y el parque del proyecto, en render: el espacio público alrededor del cual se ordenan los lotes.</p>
-    <figure class="chica-b r169" data-sube style="--i:1">
-      <img src="img/render-plaza-800.webp" srcset="img/render-plaza-800.webp 800w, img/render-plaza.webp 1600w" sizes="(min-width:900px) 66vw, 100vw" width="1600" height="900" loading="lazy" alt="Render de la plazoleta y el parque del proyecto.">
-    </figure>
-  </article>
-
-  <article class="proy casas" data-grupo>
-    <div class="txt">
-      <h2 data-sube>Casas y edificios</h2>
-      <p data-sube style="--i:1">Casas de uno y dos pisos en Pitalito, y edificios de apartamentos con locales en el primer piso.</p>
-      <p data-sube style="--i:2"><a class="enlace" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20casas%20de%20Constructora%20Santo%20Thom%C3%A1s.">Preguntar por casas disponibles</a></p>
-    </div>
-    <figure class="a r169" data-sube style="--i:1">
-      <img src="img/casa-blanca.webp" srcset="img/casa-blanca-800.webp 800w, img/casa-blanca.webp 1600w" sizes="(min-width:900px) 66vw, 100vw" width="1600" height="1200" loading="lazy" alt="Casa de un piso de fachada blanca, con antejardín y acceso vehicular.">
-    </figure>
-    <figure class="b r43" data-sube>
-      <img src="img/casa-esquinera-800.webp" width="800" height="450" loading="lazy" alt="Casa esquinera de dos pisos construida por Santo Thomás.">
-    </figure>
-    <figure class="c r43" data-sube style="--i:1">
-      <img src="img/casa-amarilla-800.webp" width="800" height="600" loading="lazy" alt="Casa de un piso con cerramiento blanco y jardín al frente.">
-    </figure>
-    <figure class="d r43" data-sube style="--i:2">
-      <img src="img/render-edificio-800.webp" srcset="img/render-edificio-800.webp 800w, img/render-edificio.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" width="1600" height="900" loading="lazy" alt="Render de un edificio de cuatro pisos con locales en el primer nivel.">
-    </figure>
-  </article>
-</section>
-
-<section class="torre-sec seccion" aria-labelledby="torre-t">
+<section class="torre-sec seccion" id="torre" aria-labelledby="torre-t">
   <div class="wrap torre" data-grupo>
-    <figure class="vertical r34" data-sube>
-      <img src="img/render-torre-vertical.webp" srcset="img/render-torre-vertical-800.webp 800w, img/render-torre-vertical.webp 946w" sizes="(min-width:900px) 40vw, 100vw" width="946" height="1600" loading="lazy" alt="Render de la Torre Santo Thomás vista desde la calle: apartamentos con balcón sobre una plataforma comercial.">
+    <figure class="vertical" data-sube>
+      <img src="img/render-torre-vertical.webp" srcset="img/render-torre-vertical-800.webp 800w, img/render-torre-vertical.webp 946w" sizes="(min-width:900px) 42vw, 100vw" width="946" height="1600" loading="lazy" alt="Render de la Torre Santo Thomás vista desde la calle: apartamentos con balcón sobre una plataforma comercial.">
     </figure>
     <div class="txt">
       <h2 id="torre-t" data-sube style="--i:1">Torre Santo Thomás</h2>
-      <p class="decl" data-sube style="--i:2">Apartamentos sobre una plataforma de locales comerciales, en Pitalito.</p>
-      <p data-sube style="--i:3">Las imágenes son renders del proyecto: muestran el diseño, no la obra terminada. Pide los planos de los apartamentos y el estado actual del proyecto.</p>
-      <p data-sube style="--i:4"><a class="btn" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20Torre%20Santo%20Thom%C3%A1s.">Pedir planos de la torre</a></p>
+      <p class="decl" data-sube style="--i:2">Vivir arriba, con el comercio abajo.</p>
+      <p data-sube style="--i:3">Apartamentos sobre una plataforma de locales comerciales, en Pitalito. Las imágenes son renders: muestran el diseño, no la obra terminada.</p>
+      <dl class="ficha" data-sube style="--i:4"><dt>Tipo</dt><dd>Apartamentos y locales</dd><dt>Lugar</dt><dd>Pitalito, Huila</dd></dl>
+      <a class="accion" data-sube style="--i:5" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20Torre%20Santo%20Thom%C3%A1s.">Pedir planos de la torre</a>
+      <figure class="ancha" data-sube style="--i:3">
+        <img src="img/render-torre.webp" srcset="img/render-torre-800.webp 800w, img/render-torre.webp 1600w" sizes="(min-width:900px) 50vw, 100vw" width="1599" height="899" loading="lazy" alt="Render de la torre completa con su plataforma comercial y la zona verde del frente.">
+      </figure>
     </div>
-    <figure class="ancha r169" data-sube style="--i:3">
-      <img src="img/render-torre.webp" srcset="img/render-torre-800.webp 800w, img/render-torre.webp 1600w" sizes="(min-width:900px) 50vw, 100vw" width="1599" height="899" loading="lazy" alt="Render de la torre completa con su plataforma comercial y la zona verde del frente.">
-    </figure>
   </div>
 </section>
 
-<section class="obra-sec seccion" id="obra">
+<section class="seccion" id="casas">
+  <div class="wrap casas-cab" data-grupo>
+    <h2 data-sube>Casas y edificios</h2>
+    <div class="txt">
+      <p data-sube style="--i:1">Casas de uno y dos pisos en Pitalito, y edificios de apartamentos con locales en el primer piso.</p>
+      <a class="accion" data-sube style="--i:2" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20casas%20de%20Constructora%20Santo%20Thom%C3%A1s.">Preguntar por casas</a>
+    </div>
+  </div>
+  <p class="nota wrap" style="padding-bottom:14px">Arrastra para recorrer la galería.</p>
+  <div class="galeria" id="galeria" tabindex="0" aria-label="Galería de casas y edificios. Desliza hacia los lados." data-grupo>
+    <figure data-sube><img src="img/casa-blanca.webp" width="1600" height="1200" loading="lazy" alt="Casa de un piso de fachada blanca, con antejardín y acceso vehicular."></figure>
+    <figure data-sube style="--i:1"><img src="img/render-edificio.webp" width="1600" height="900" loading="lazy" alt="Render de un edificio de cuatro pisos con locales en el primer nivel."></figure>
+    <figure data-sube style="--i:2"><img src="img/casa-amarilla.webp" width="1280" height="960" loading="lazy" alt="Casa de un piso con cerramiento blanco y jardín al frente."></figure>
+    <figure><img src="img/casa-esquinera.webp" width="1280" height="720" loading="lazy" alt="Casa esquinera de dos pisos construida por Santo Thomás."></figure>
+    <figure><img src="img/render-edificio-2.webp" width="1600" height="900" loading="lazy" alt="Render del acceso del edificio visto desde la calle."></figure>
+  </div>
+</section>
+
+<section class="seccion" id="obra" style="padding-top:0">
   <div class="wrap">
     <div class="obra-cab" data-grupo>
       <h2 data-sube>Primero las vías y las redes</h2>
@@ -338,41 +356,37 @@ h2{font-size:var(--t-h2)}
   <div class="wrap busca" data-grupo>
     <form id="busca-form" action="https://wa.me/573176461480" method="get" target="_blank">
       <h2 data-sube>¿Qué estás buscando?</h2>
-      <p data-sube style="--i:1">Elige una opción y te respondemos por WhatsApp con lo que hay disponible hoy: áreas, precios y formas de pago.</p>
-      <div class="opciones" role="radiogroup" aria-label="Tipo de inmueble" data-sube style="--i:2">
+      <div class="opciones" role="radiogroup" aria-label="Tipo de inmueble" data-sube style="--i:1">
         <label><input type="radio" name="tipo" value="residencial" checked> Lote residencial</label>
         <label><input type="radio" name="tipo" value="comercial"> Lote comercial</label>
         <label><input type="radio" name="tipo" value="casa"> Casa</label>
         <label><input type="radio" name="tipo" value="torre"> Apartamento</label>
       </div>
       <input type="hidden" name="text" id="busca-texto" value="Hola, estoy buscando un lote residencial en Pitalito. ¿Qué tienen disponible?">
-      <button class="btn" type="submit" data-sube style="--i:3" id="busca-btn">Preguntar por lotes residenciales</button>
+      <button class="accion" type="submit" data-sube style="--i:2" id="busca-btn">Preguntar por lotes residenciales</button>
     </form>
     <div data-sube style="--i:2">
       <div class="plano">
         <canvas id="plano" role="img" aria-label="Plano ilustrativo de una urbanización que resalta el tipo de inmueble elegido."></canvas>
       </div>
-      <p class="nota plano-nota">Plano ilustrativo dibujado por un algoritmo, distinto en cada visita. No es un plano de ventas. <a class="enlace" href="arte/loteo.html">Explorar el generador</a></p>
+      <p class="nota plano-nota">Plano ilustrativo, distinto en cada visita. No es un plano de ventas. <a class="enlace" href="arte/loteo.html">Ver cómo se dibuja</a></p>
     </div>
   </div>
 </section>
 
-<section class="seccion wrap empresa-sec" id="empresa">
+<section class="claro seccion wrap" id="empresa">
   <div class="empresa" data-grupo>
     <div class="txt">
       <h2 data-sube>Una constructora de Pitalito</h2>
       <p class="decl" data-sube style="--i:1">Trabajamos en el Huila desde 2014 y somos sociedad por acciones simplificada desde 2019.</p>
-      <p data-sube style="--i:2;max-width:52ch">Atendemos en nuestra oficina del Centro Comercial Gran Plaza San Antonio, local 148. Allí te mostramos cada proyecto y coordinamos la visita al lote.</p>
-      <p data-sube style="--i:3"><a class="enlace" href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Gran+Plaza+San+Antonio+Pitalito+Huila">Cómo llegar a la oficina</a></p>
+      <p data-sube style="--i:2;max-width:50ch">Atendemos en nuestra oficina del Centro Comercial Gran Plaza San Antonio, local 148. Allí te mostramos cada proyecto y coordinamos la visita al lote.</p>
+      <a class="accion" data-sube style="--i:3" href="https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Gran+Plaza+San+Antonio+Pitalito+Huila">Cómo llegar a la oficina</a>
     </div>
     <figure data-sube style="--i:2">
       <img src="img/oficina-800.webp" srcset="img/oficina-800.webp 800w, img/oficina.webp 1280w" sizes="(min-width:900px) 40vw, 100vw" width="1280" height="960" loading="lazy" alt="Recepción de la oficina de Santo Thomás en el Centro Comercial Gran Plaza San Antonio.">
     </figure>
   </div>
-</section>
-
-<section class="preg-sec seccion">
-  <div class="wrap preg" data-grupo>
+  <div class="preg" data-grupo>
     <h2 data-sube>Preguntas frecuentes</h2>
     <div data-sube style="--i:1">
       <details open>
@@ -398,7 +412,7 @@ h2{font-size:var(--t-h2)}
     <div>
       <h2 data-sube>Hablemos de tu lote</h2>
       <a class="tel" data-sube style="--i:1" href="tel:+573176461480">317 646 1480</a><br>
-      <a class="btn" data-sube style="--i:2" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s.">Escribir por WhatsApp</a>
+      <a class="accion" data-sube style="--i:2" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s.">Escribir por WhatsApp</a>
     </div>
     <address data-sube style="--i:2">
       <span>Carrera 15 No. 19A-01 Sur, local 148<br>Centro Comercial Gran Plaza San Antonio<br>Pitalito, Huila</span>
@@ -413,19 +427,54 @@ h2{font-size:var(--t-h2)}
   </div>
 </footer>
 
-<a class="btn flota" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s.">WhatsApp</a>
+<a class="flota" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s."><span>Escribir por WhatsApp</span></a>
 
 <script src="arte/loteo-core.js"></script>
 <script>
 (function () {
+  var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hayIO = 'IntersectionObserver' in window;
+
   // Entradas: cada grupo revela sus partes una vez, escalonadas.
-  var grupos = document.querySelectorAll('[data-grupo], .portada .cabeza, [data-foto]');
-  if ('IntersectionObserver' in window) {
+  var grupos = document.querySelectorAll('[data-grupo], [data-abre]');
+  if (hayIO) {
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
     grupos.forEach(function (g) { io.observe(g); });
   } else { grupos.forEach(function (g) { g.classList.add('visto'); }); }
+
+  // Un plano que se traza solo: mide el lienzo, genera con semilla y anima el avance.
+  function plano(cv, opciones, duracion, alVer) {
+    var o = { plan: null, avance: 0, tipo: null }, t0 = null, corre = false;
+    var estilo = function () { return Object.assign({}, Loteo.LINEA, { grosor: Math.min(2, window.devicePixelRatio || 1) }); };
+    o.pintar = function () { if (o.plan) Loteo.draw(cv.getContext('2d'), o.plan, o.avance, estilo(), o.avance >= 1 ? o.tipo : null); };
+    function medir() {
+      var r = cv.getBoundingClientRect(), d = Math.min(2, window.devicePixelRatio || 1);
+      if (!r.width) return;
+      cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d);
+      o.plan = Loteo.generate(o.semilla, cv.width, cv.height, opciones);
+      o.pintar();
+    }
+    function cuadro(ts) {
+      if (t0 === null) t0 = ts;
+      o.avance = Math.min(1, (ts - t0) / duracion); o.pintar();
+      if (o.avance < 1) requestAnimationFrame(cuadro);
+    }
+    o.semilla = Math.floor(Math.random() * 99999) + 1;
+    medir();
+    var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(medir, 160); });
+    if (quieto || !hayIO) { o.avance = 1; o.pintar(); }
+    else new IntersectionObserver(function (es, ob) {
+      if (es[0].isIntersecting && !corre) { corre = true; requestAnimationFrame(cuadro); ob.disconnect(); }
+    }, { threshold: alVer }).observe(cv);
+    return o;
+  }
+
+  if (window.Loteo) {
+    var portada = document.getElementById('trazo');
+    if (portada) plano(portada, { frente: 30, manzana: 19000, irregular: 0.16 }, 4200, 0.05);
+  }
 
   // Buscador: la opción elegida escribe el mensaje y resalta el plano.
   var form = document.getElementById('busca-form'), texto = document.getElementById('busca-texto'),
@@ -436,42 +485,29 @@ h2{font-size:var(--t-h2)}
     casa: ['Preguntar por casas', 'Hola, estoy buscando una casa en Pitalito. ¿Qué tienen disponible?'],
     torre: ['Preguntar por apartamentos', 'Hola, quiero información sobre los apartamentos de la Torre Santo Thomás.']
   };
-  var tipo = 'residencial', plan = null, avance = 0, t0 = null, visible = false;
-  var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var semilla = Math.floor(Math.random() * 99999) + 1;
-
-  function medir() {
-    if (!cv || !window.Loteo) return;
-    var r = cv.getBoundingClientRect(), d = Math.min(2, window.devicePixelRatio || 1);
-    cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d);
-    plan = Loteo.generate(semilla, cv.width, cv.height, { frente: 30, manzana: 17000 });
-    pintar();
-  }
-  function pintar() { if (plan) Loteo.draw(cv.getContext('2d'), plan, avance, null, avance >= 1 ? tipo : null); }
-  function cuadro(ts) {
-    if (t0 === null) t0 = ts;
-    avance = Math.min(1, (ts - t0) / 3200);
-    pintar();
-    if (avance < 1) requestAnimationFrame(cuadro);
-  }
-  if (cv && window.Loteo) {
-    medir();
-    var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(medir, 150); });
-    if (quieto || !('IntersectionObserver' in window)) { avance = 1; pintar(); }
-    else new IntersectionObserver(function (es, o) {
-      if (es[0].isIntersecting && !visible) { visible = true; requestAnimationFrame(cuadro); o.disconnect(); }
-    }, { threshold: 0.3 }).observe(cv);
-  }
+  var busca = cv && window.Loteo ? plano(cv, { frente: 30, manzana: 17000 }, 3200, 0.3) : null;
+  if (busca) busca.tipo = 'residencial';
   form.addEventListener('change', function (e) {
     if (e.target.name !== 'tipo') return;
-    tipo = e.target.value; btn.textContent = copia[tipo][0]; texto.value = copia[tipo][1];
-    if (avance >= 1) pintar();
+    btn.textContent = copia[e.target.value][0]; texto.value = copia[e.target.value][1];
+    if (busca) { busca.tipo = e.target.value; busca.pintar(); }
   });
-  // El campo del radio no viaja a WhatsApp: solo el mensaje.
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     window.open('https://wa.me/573176461480?text=' + encodeURIComponent(texto.value), '_blank', 'noopener');
   });
+
+  // Galería: arrastrar con el ratón, además del gesto táctil y las flechas.
+  var g = document.getElementById('galeria');
+  if (g) {
+    var x0 = null, s0 = 0;
+    g.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') return; x0 = e.clientX; s0 = g.scrollLeft; g.classList.add('arrastra'); g.setPointerCapture(e.pointerId); });
+    g.addEventListener('pointermove', function (e) { if (x0 !== null) g.scrollLeft = s0 - (e.clientX - x0); });
+    ['pointerup', 'pointercancel'].forEach(function (n) { g.addEventListener(n, function () { x0 = null; g.classList.remove('arrastra'); }); });
+    g.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { g.scrollBy({ left: (e.key === 'ArrowRight' ? 1 : -1) * g.clientWidth * 0.6, behavior: 'smooth' }); e.preventDefault(); }
+    });
+  }
 })();
 </script>
 </body>

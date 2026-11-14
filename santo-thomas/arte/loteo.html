@@ -383,6 +383,13 @@
                         <span class="value-display" id="velocidad-value">1</span>
                     </div>
                 </div>
+                <div class="control-group">
+                    <label>Relleno de lotes</label>
+                    <div class="slider-container">
+                        <input type="range" id="relleno" min="0" max="1" step="0.05" value="0" oninput="updateParam('relleno', this.value)">
+                        <span class="value-display" id="relleno-value">0</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Colors Section (OPTIONAL - CUSTOMIZE OR REMOVE) -->
@@ -391,15 +398,15 @@
                 <div class="color-group">
                     <label>Predio</label>
                     <div class="color-picker-container">
-                        <input type="color" id="color1" value="#171715" onchange="updateColor('color1', this.value)">
-                        <span class="color-value" id="color1-value">#171715</span>
+                        <input type="color" id="color1" value="#0d0d0c" onchange="updateColor('color1', this.value)">
+                        <span class="color-value" id="color1-value">#0d0d0c</span>
                     </div>
                 </div>
                 <div class="color-group">
                     <label>Vía</label>
                     <div class="color-picker-container">
-                        <input type="color" id="color2" value="#cfc6ae" onchange="updateColor('color2', this.value)">
-                        <span class="color-value" id="color2-value">#cfc6ae</span>
+                        <input type="color" id="color2" value="#191916" onchange="updateColor('color2', this.value)">
+                        <span class="color-value" id="color2-value">#191916</span>
                     </div>
                 </div>
                 <div class="color-group">
@@ -541,6 +548,12 @@
     return { W: W, H: H, angle: angle, roads: roads, lots: lots, parcel: parcel, side: side };
   }
 
+  // Plano a línea: el estilo de la portada y de los banners.
+  var LINEA = {
+    suelo: '#0d0d0c', predio: '#0d0d0c', lote: ['#151513'], verde: '#1b2118', via: '#191916',
+    casa: '#c9a45c', torre: '#ece8df', acento: '#c9a45c', atenuar: 0.1, relleno: 0, trazo: '#8a7748', grosor: 1
+  };
+
   var STYLE = {
     suelo: '#0d0d0c', predio: '#171715', lote: ['#1f1f1c', '#252522', '#1b1b19'],
     verde: '#2c3527', via: '#cfc6ae', casa: '#ece8df', torre: '#ece8df', acento: '#c9a45c', atenuar: 0.28
@@ -561,24 +574,35 @@
     ctx.translate(W / 2, H / 2); ctx.rotate(plan.angle);
 
     // Lotes: aparecen en el orden en que avanza el frente de obra.
+    // s.relleno (0..1) apaga el relleno; s.trazo dibuja el contorno, como un plano a línea.
+    var rell = s.relleno === undefined ? 1 : s.relleno;
+    ctx.lineWidth = s.grosor || 1;
     plan.lots.forEach(function (l) {
       var a = ease((t - 0.3 - l.order * 0.55) / 0.15);
       if (a <= 0) return;
       var hi = destacado && (l.kind === destacado || (destacado === 'casa' && l.casa));
-      ctx.globalAlpha = a * (destacado && !hi ? s.atenuar + 0.25 : 1);
+      var A = a * (destacado && !hi ? s.atenuar + 0.25 : 1);
       var inset = (1 - a) * Math.min(l.w, l.h) * 0.35;
-      if (l.kind === 'verde') ctx.fillStyle = s.verde;
-      else if (hi && destacado !== 'casa') ctx.fillStyle = s.acento;
-      else ctx.fillStyle = s.lote[Math.floor(l.tint * s.lote.length)];
-      ctx.fillRect(l.x + inset, l.y + inset, l.w - 2 * inset, l.h - 2 * inset);
+      var x = l.x + inset, y = l.y + inset, w = l.w - 2 * inset, h = l.h - 2 * inset;
+      var lleno = hi && destacado !== 'casa';
+      if (l.kind === 'verde') { ctx.fillStyle = s.verde; ctx.globalAlpha = A * Math.max(rell, 0.6); }
+      else if (lleno) { ctx.fillStyle = s.acento; ctx.globalAlpha = A * (s.trazo ? 0.28 : 1); }
+      else { ctx.fillStyle = s.lote[Math.floor(l.tint * s.lote.length)]; ctx.globalAlpha = A * rell; }
+      if (ctx.globalAlpha > 0.01) ctx.fillRect(x, y, w, h);
+      if (s.trazo) {
+        ctx.globalAlpha = A * (lleno ? 1 : 0.6);
+        ctx.strokeStyle = lleno ? s.acento : s.trazo;
+        ctx.strokeRect(x, y, w, h);
+      }
+      ctx.globalAlpha = A;
       if (l.kind === 'torre') {
         var m = Math.min(l.w, l.h) * 0.22;
-        ctx.fillStyle = hi ? s.suelo : s.torre;
+        ctx.fillStyle = hi ? s.acento : s.torre;
         ctx.fillRect(l.x + m, l.y + m, l.w - 2 * m, l.h - 2 * m);
-        ctx.fillStyle = hi ? s.acento : s.predio;
+        ctx.fillStyle = s.predio;
         ctx.fillRect(l.x + m * 1.6, l.y + m * 1.6, l.w - 3.2 * m, l.h - 3.2 * m);
       } else if (l.casa) {
-        var cw = Math.min(l.w, l.h) * 0.56;
+        var cw = Math.min(l.w, l.h) * 0.5;
         ctx.fillStyle = hi ? s.acento : s.casa;
         ctx.fillRect(l.x + (l.w - cw) / 2, l.y + (l.h - cw) / 2, cw, cw);
       }
@@ -595,13 +619,13 @@
     ctx.restore();
   }
 
-  root.Loteo = { generate: generate, draw: draw, STYLE: STYLE, DEFAULTS: DEFAULTS, rng: mulberry32 };
+  root.Loteo = { generate: generate, draw: draw, STYLE: STYLE, LINEA: LINEA, DEFAULTS: DEFAULTS, rng: mulberry32 };
 })(typeof window !== 'undefined' ? window : globalThis);
 
         let params = {
             seed: 2014,
-            manzana: 15000, frente: 24, via: 24, verdes: 0.1, construido: 0.3, irregular: 0.22, velocidad: 1,
-            colorPalette: ['#171715', '#cfc6ae', '#c9a45c']
+            manzana: 15000, frente: 24, via: 24, verdes: 0.1, construido: 0.3, irregular: 0.22, velocidad: 1, relleno: 0,
+            colorPalette: ['#0d0d0c', '#191916', '#c9a45c']
         };
         let defaultParams = {...params, colorPalette: [...params.colorPalette]};
         let plan = null, avance = 0;
@@ -619,10 +643,12 @@
             const base = color(params.colorPalette[0]);
             const mix = (c, k) => lerpColor(base, color(c), k).toString('#rrggbb');
             return {
-                suelo: mix('#000000', 0.45), predio: params.colorPalette[0],
+                suelo: mix('#000000', 0.25), predio: params.colorPalette[0],
                 lote: [mix('#ffffff', 0.07), mix('#ffffff', 0.13), mix('#000000', 0.08), mix('#ffffff', 0.03)],
                 verde: mix('#6f9a5c', 0.22), via: params.colorPalette[1], casa: '#ece8df', torre: '#ece8df',
-                acento: params.colorPalette[2], atenuar: 0.28
+                acento: params.colorPalette[2], atenuar: 0.28,
+                relleno: params.relleno, grosor: 1.5,
+                trazo: params.relleno < 1 ? lerpColor(color(params.colorPalette[2]), base, 0.38).toString('#rrggbb') : null
             };
         }
 
@@ -640,7 +666,7 @@
             Loteo.draw(drawingContext, plan, avance, estilo(), null, false);
             // Las casas construidas llevan el acento: es lo único que la obra añade al terreno.
             if (avance >= 1) {
-                Loteo.draw(drawingContext, plan, 1, Object.assign(estilo(), { casa: params.colorPalette[2], atenuar: 0.75 }), null, false);
+                Loteo.draw(drawingContext, plan, 1, Object.assign(estilo(), { casa: params.colorPalette[2] }), null, false);
                 noLoop();
             }
         }
@@ -697,7 +723,7 @@
 
         function resetParameters() {
             params = {...defaultParams, colorPalette: [...defaultParams.colorPalette]};
-            ['manzana', 'frente', 'via', 'verdes', 'construido', 'irregular', 'velocidad'].forEach(id => {
+            ['manzana', 'frente', 'via', 'verdes', 'construido', 'irregular', 'velocidad', 'relleno'].forEach(id => {
                 document.getElementById(id).value = params[id];
                 document.getElementById(id + '-value').textContent = params[id];
             });

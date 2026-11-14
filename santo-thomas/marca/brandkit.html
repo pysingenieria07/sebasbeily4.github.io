@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Sistema de marca · Constructora Santo Thomás</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Tablero de marca 3×3, 2400×1800. Extiende la identidad existente: el logo no se rediseña. */
+:root{--cal:#ece8df;--cal2:#dfdbd0;--tinta:#0d0d0c;--sup:#151513;--sup2:#1f1f1c;--oro:#c9a45c;--gris:#a8a397}
+*{box-sizing:border-box;margin:0}
+body{background:#1b1b19;font-family:Archivo,sans-serif;color:var(--cal)}
+#t{width:2400px;height:1800px;padding:36px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:24px;background:#1b1b19}
+.p{position:relative;overflow:hidden;background:var(--tinta);display:grid;place-items:center}
+.et{position:absolute;left:28px;bottom:22px;font-size:17px;color:var(--gris);letter-spacing:.02em}
+.nu{position:absolute;right:28px;bottom:22px;font-size:17px;color:var(--gris);font-variant-numeric:tabular-nums}
+.claro{background:var(--cal);color:var(--tinta)}.claro .et,.claro .nu{color:#6a655b}
+.serif{font-family:'Cormorant Garamond',serif}
+.p1 img{width:52%}
+.p2{grid-template-columns:1.4fr 1fr;gap:0;padding:0;place-items:stretch}
+.p2 > div{height:100%;display:grid;place-items:center}
+.p2 .a img{width:66%}.p2 .b{background:var(--sup2)}.p2 .b img{width:46%}
+.nav{position:absolute;top:0;left:0;right:0;height:52px;background:var(--sup2);display:flex;align-items:center;gap:10px;padding:0 20px}
+.nav i{width:12px;height:12px;border-radius:50%;background:#3a3a36}
+.nav b{margin-left:18px;flex:1;height:28px;background:var(--tinta);border-radius:14px;font-weight:400;font-size:15px;color:var(--gris);display:flex;align-items:center;padding:0 16px}
+.p3 canvas{position:absolute;right:0;top:52px;width:56%;height:50%}
+.p3 h3{position:absolute;left:36px;bottom:76px;font-weight:400;font-size:88px;line-height:.94;letter-spacing:-.018em}
+.p4{background:var(--sup)}.p4 p{font-size:118px;line-height:1;letter-spacing:-.02em}
+.p5{grid-template-columns:repeat(5,1fr);padding:0;place-items:stretch}
+.p5 div{display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 64px 22px;font-size:16px;gap:4px}
+.p6{place-items:start;padding:44px 48px}
+.p6 .aa{font-size:250px;line-height:.9}.p6 .f{font-size:19px;color:#6a655b;margin-top:6px}
+.p6 .abc{font-size:38px;margin-top:22px;letter-spacing:.01em}.p6 .txt{font-size:23px;line-height:1.45;max-width:30ch;margin-top:22px}
+.p7{background:var(--sup)}
+.tj{position:absolute;width:440px;height:260px;display:grid}
+.tj.f{background:var(--tinta);left:70px;top:64px;place-items:center;transform:rotate(-4deg)}
+.tj.f img{width:34%}
+.tj.d{background:var(--cal);color:var(--tinta);right:60px;bottom:96px;padding:30px 32px;align-content:space-between;transform:rotate(3deg)}
+.tj.d b{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:28px;letter-spacing:.14em;text-transform:uppercase}
+.tj.d span{font-size:16px;line-height:1.5}
+.p8 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.p8::after{content:"";position:absolute;inset:0;background:rgba(13,13,12,.35)}
+.p8 .et,.p8 .nu{z-index:1;color:var(--cal)}
+.p9 canvas{position:absolute;inset:0;width:100%;height:100%}
+.p9 .et,.p9 .nu{background:var(--tinta);padding:4px 8px}
+</style>
+</head>
+<body>
+<div id="t">
+  <div class="p p1"><img src="../img/logo-claro.png" alt="Santo Thomás Constructora"><span class="et">Logotipo</span><span class="nu">01</span></div>
+  <div class="p p2 claro"><div class="a"><img src="../img/logo-oscuro.png" alt=""></div><div class="b"><img src="../img/isotipo-claro.png" alt=""></div><span class="et">Versiones: sobre claro e isotipo</span><span class="nu" style="color:var(--gris)">02</span></div>
+  <div class="p p3"><div class="nav"><i></i><i></i><i></i><b>constructurasantothomas.com</b></div><canvas id="c3"></canvas><h3 class="serif">Lotes y casas<br>en Pitalito</h3><span class="et">Sitio web</span><span class="nu">03</span></div>
+  <div class="p p4"><p class="serif">Primero<br>el trazo.</p><span class="et">Idea de marca (propuesta)</span><span class="nu">04</span></div>
+  <div class="p p5">
+    <div style="background:#0d0d0c">Negro<span>#0D0D0C</span></div>
+    <div style="background:#1f1f1c">Grafito<span>#1F1F1C</span></div>
+    <div style="background:#a8a397;color:#0d0d0c">Piedra<span>#A8A397</span></div>
+    <div style="background:#ece8df;color:#0d0d0c">Marfil<span>#ECE8DF</span></div>
+    <div style="background:#c9a45c;color:#0d0d0c">Oro<span>#C9A45C</span></div>
+    <span class="et" style="color:var(--gris)">Color</span><span class="nu" style="color:#0d0d0c">05</span>
+  </div>
+  <div class="p p6 claro"><div><div class="aa serif">Aa</div><div class="f">Cormorant Garamond · titulares</div><div class="abc serif">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</div><div class="txt">Archivo, para el texto corrido: lotes residenciales y comerciales en Pitalito, Huila.</div></div><span class="et">Tipografía</span><span class="nu">06</span></div>
+  <div class="p p7"><div class="tj f"><img src="../img/isotipo-claro.png" alt=""></div><div class="tj d"><b>Santo Thomás</b><span>317 646 1480<br>Cra. 15 No. 19A-01 Sur, local 148<br>C.C. Gran Plaza San Antonio · Pitalito</span></div><span class="et">Tarjeta</span><span class="nu">07</span></div>
+  <div class="p p8"><img src="../img/aerea-noche.webp" alt=""><span class="et">Fotografía: aérea, luz baja</span><span class="nu">08</span></div>
+  <div class="p p9"><canvas id="c9"></canvas><span class="et">Patrón generativo «Loteo»</span><span class="nu">09</span></div>
+</div>
+<script src="../arte/loteo-core.js"></script>
+<script>
+function pinta(id, semilla, sangre, op) {
+  var c = document.getElementById(id), r = c.getBoundingClientRect();
+  c.width = r.width * 2; c.height = r.height * 2;
+  Loteo.draw(c.getContext('2d'), Loteo.generate(semilla, c.width, c.height, op), 1, Object.assign({}, Loteo.LINEA, { grosor: 2 }), null, sangre);
+}
+pinta('c3', 7, false, { frente: 30, manzana: 19000 });
+pinta('c9', 2014, true, { construido: 0.35 });
+</script>
+</body>
+</html>
