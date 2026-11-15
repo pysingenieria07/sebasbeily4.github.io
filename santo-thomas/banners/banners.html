@@ -16,7 +16,8 @@ h1{font-family:'Italiana',serif;font-weight:400;letter-spacing:-.015em;line-heig
 .fila{display:flex;align-items:flex-end;justify-content:space-between;gap:4cqw}
 .marca{display:flex;align-items:center;gap:calc(var(--u)*2);font-family:'Italiana',serif;font-weight:400;font-size:max(16px,calc(var(--u)*3.2));letter-spacing:.28em;text-transform:uppercase}
 .marca img{height:calc(var(--u)*9);width:auto}
-.cta{background:var(--oro);color:var(--tinta);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:max(16px,calc(var(--u)*2.5));min-height:44px;padding:calc(var(--u)*2.2) calc(var(--u)*3.6);display:flex;align-items:center;white-space:nowrap}
+.cta{color:var(--cal);font-family:'Italiana',serif;font-size:max(18px,calc(var(--u)*4.2));min-height:44px;display:flex;align-items:center;gap:calc(var(--u)*2.4);white-space:nowrap}
+.cta::after{content:"\2192";display:grid;place-items:center;width:calc(var(--u)*8.5);height:calc(var(--u)*8.5);min-width:40px;min-height:40px;border-radius:50%;font:300 calc(var(--u)*3.4)/1 Archivo,sans-serif;color:var(--oro);box-shadow:inset 0 0 0 max(1px,calc(var(--u)*.2)) var(--oro)}
 /* A · Foto */
 .foto{background:var(--tinta)}
 .foto .img{position:absolute;inset:0;background:url(../img/aerea-loteo.webp) 50% 55%/cover}
@@ -31,7 +32,7 @@ h1{font-family:'Italiana',serif;font-weight:400;letter-spacing:-.015em;line-heig
 .loteo .panel{position:absolute;left:0;top:0;bottom:0;width:var(--panel);background:var(--campo-osc)}
 .loteo.alto .panel{width:100%;height:56%;bottom:auto}
 .loteo.alto .marca{background:var(--campo-osc);padding:calc(var(--u)*2) calc(var(--u)*3);margin-left:calc(var(--u)*-3)}
-.loteo .cta{box-shadow:0 0 0 calc(var(--u)*1.4) var(--campo-osc)}
+.loteo .cta{background:var(--campo-osc);box-shadow:0 0 0 calc(var(--u)*2) var(--campo-osc)}
 .loteo h1,.loteo .sub{max-width:7ch}.loteo .sub{max-width:22ch}
 .ancho h1,.tipografia.ancho h1{max-width:16ch;font-size:calc(var(--u)*19)}
 .ancho .sub{margin-top:calc(var(--u)*5);max-width:44ch}
@@ -49,7 +50,7 @@ h1 em{font-style:normal;color:var(--oro)}
     </div>
     <div class="fila">
       <div class="marca"><img src="../img/isotipo-solido.png" alt="">Santo Thomás</div>
-      <div class="cta">Escríbenos: 317 646 1480</div>
+      <div class="cta">317 646 1480</div>
     </div>
   </div>
 </div>

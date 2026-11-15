@@ -80,10 +80,17 @@ em{font-style:normal;color:var(--oro)}
 .accion:hover::before,.accion:focus-visible::before{width:84px}
 .accion:hover{color:var(--oro)}
 .accion:active::before{width:96px}
-.accion.oro{background:var(--oro);color:var(--negro);padding:0 28px;min-height:54px;gap:0;transition:background .3s,transform .15s}
+/* Acción principal: texto en serif y un círculo con flecha que se llena de oro al pasar */
+.accion.oro{gap:18px;min-height:56px;padding:0;background:none;color:inherit;font-family:var(--serif);font-size:clamp(21px,1.7vw,26px);font-weight:400;letter-spacing:0;text-transform:none;line-height:1.1}
 .accion.oro::before{display:none}
-.accion.oro:hover{background:#d8b871;color:var(--negro)}
-.accion.oro:active{transform:translateY(2px)}
+.accion.oro > span{background:linear-gradient(var(--oro),var(--oro)) left bottom/0 1px no-repeat;padding-bottom:5px;transition:background-size .6s var(--salir)}
+.accion.oro::after{content:"\2192";flex:none;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;font:300 20px/1 Archivo,sans-serif;color:var(--oro);box-shadow:inset 0 0 0 1px var(--oro);background:radial-gradient(circle,var(--oro) 50%,transparent 51%) center/0 0 no-repeat;transition:background-size .55s var(--salir),color .3s,transform .55s var(--salir)}
+.accion.oro.abajo::after{content:"\2193"}
+.accion.oro:hover,.accion.oro:focus-visible{color:inherit}
+.accion.oro:hover > span,.accion.oro:focus-visible > span{background-size:100% 1px}
+.accion.oro:hover::after,.accion.oro:focus-visible::after{background-size:220% 220%;color:var(--negro);transform:translateX(8px)}
+.accion.oro.abajo:hover::after{transform:translateY(6px)}
+.accion.oro:active::after{transform:scale(.92)}
 .enlace{text-decoration:underline;text-decoration-color:var(--bronce);text-decoration-thickness:1px;text-underline-offset:5px;transition:color .25s}
 .enlace:hover{color:var(--oro)}
 
@@ -286,8 +293,9 @@ em{font-style:normal;color:var(--oro)}
 .cierre .campo .rot{color:rgba(11,10,8,.72)}
 .cierre .campo .enlace{text-decoration-color:rgba(11,10,8,.5)}
 .cierre .campo .enlace:hover{color:var(--negro);text-decoration-color:var(--negro)}
-.cierre .campo .accion.oro{background:var(--negro);color:var(--marfil)}
-.cierre .campo .accion.oro:hover{background:#1c1914;color:var(--marfil)}
+.cierre .campo .accion.oro > span{background-image:linear-gradient(var(--negro),var(--negro))}
+.cierre .campo .accion.oro::after{color:var(--negro);box-shadow:inset 0 0 0 1px var(--negro);background-image:radial-gradient(circle,var(--negro) 50%,transparent 51%)}
+.cierre .campo .accion.oro:hover::after{color:var(--oro)}
 .cierre .datos{display:grid;gap:clamp(32px,5vw,80px);padding-bottom:clamp(64px,9vw,140px)}
 @media(min-width:900px){.cierre .datos{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--m);align-items:end}.cierre .datos > div{grid-column:1/8}.cierre address{grid-column:9/13}}
 .cierre .tel{font-family:var(--serif);font-size:clamp(48px,8vw,132px);letter-spacing:0;color:var(--negro);line-height:.9;text-decoration:none;display:inline-block;margin-block:22px 30px;transition:color .25s}
@@ -296,7 +304,7 @@ em{font-style:normal;color:var(--oro)}
 .cierre .firma{padding-top:clamp(48px,7vw,100px);font-family:var(--serif);font-size:15vw;line-height:.86;letter-spacing:-.015em;white-space:nowrap;text-align:center;color:var(--carbon-2);padding-bottom:.06em;user-select:none}
 .cierre .pie{padding:22px var(--m);border-top:1px solid var(--linea);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 
-.flota{position:fixed;left:0;right:0;bottom:0;z-index:14;display:none;justify-content:center;padding:14px var(--m) calc(14px + env(safe-area-inset-bottom));background:var(--oro);color:var(--negro);text-decoration:none;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+.flota{position:fixed;left:0;right:0;bottom:0;z-index:14;display:none;justify-content:center;padding:14px var(--m) calc(14px + env(safe-area-inset-bottom));background:var(--negro);color:var(--oro);border-top:1px solid var(--linea);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
 @media(max-width:899px){.flota{display:flex}body{padding-bottom:52px}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
@@ -331,7 +339,7 @@ em{font-style:normal;color:var(--oro)}
   <div class="pie">
     <div class="apoyo">
       <p data-sube style="--i:4">Lotes, casas y apartamentos en Pitalito. Constructora Santo Thomás urbaniza y construye en el sur del Huila desde 2014.</p>
-      <a class="accion oro" data-sube style="--i:5" href="#proyectos">Ver los proyectos</a>
+      <a class="accion oro abajo" data-sube style="--i:5" href="#proyectos"><span>Ver los proyectos</span></a>
     </div>
     <p class="rot coord" data-sube style="--i:5">Pitalito, Huila<br><b>Valle de Laboyos</b></p>
   </div>
@@ -403,7 +411,7 @@ em{font-style:normal;color:var(--oro)}
             <h3>Santo Thomás <em>Urbanismo</em></h3>
             <p>Lotes residenciales y comerciales en Pitalito, con vías, conexión a servicios públicos y zonas verdes.</p>
             <dl class="ficha"><dt>Tipo</dt><dd>Lotes residenciales y comerciales</dd><dt>Lugar</dt><dd>Pitalito, Huila</dd></dl>
-            <a class="accion oro" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20conocer%20los%20lotes%20disponibles%20en%20Santo%20Thom%C3%A1s%20Urbanismo.">Pedir áreas y precios</a>
+            <a class="accion oro" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20conocer%20los%20lotes%20disponibles%20en%20Santo%20Thom%C3%A1s%20Urbanismo."><span>Pedir áreas y precios</span></a>
           </div>
         </div>
       </article>
@@ -416,7 +424,7 @@ em{font-style:normal;color:var(--oro)}
             <h3>Torre <em>Santo Thomás</em></h3>
             <p>Apartamentos sobre una plataforma de locales comerciales. Las imágenes son renders: muestran el diseño, no la obra terminada.</p>
             <dl class="ficha"><dt>Tipo</dt><dd>Apartamentos y locales</dd><dt>Lugar</dt><dd>Pitalito, Huila</dd></dl>
-            <a class="accion oro" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20Torre%20Santo%20Thom%C3%A1s.">Pedir planos de la torre</a>
+            <a class="accion oro" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20Torre%20Santo%20Thom%C3%A1s."><span>Pedir planos de la torre</span></a>
           </div>
         </div>
       </article>
@@ -429,7 +437,7 @@ em{font-style:normal;color:var(--oro)}
             <h3>Casas <em>y edificios</em></h3>
             <p>Casas de uno y dos pisos en Pitalito, y edificios de apartamentos con locales en el primer piso.</p>
             <dl class="ficha"><dt>Tipo</dt><dd>Vivienda de uno a cuatro pisos</dd><dt>Lugar</dt><dd>Pitalito, Huila</dd></dl>
-            <a class="accion oro" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20casas%20de%20Constructora%20Santo%20Thom%C3%A1s.">Preguntar por casas</a>
+            <a class="accion oro" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20casas%20de%20Constructora%20Santo%20Thom%C3%A1s."><span>Preguntar por casas</span></a>
           </div>
         </div>
       </article>
@@ -485,7 +493,7 @@ em{font-style:normal;color:var(--oro)}
         <label><span><input type="radio" name="tipo" value="torre">Apartamento</span></label>
       </div>
       <input type="hidden" name="text" id="busca-texto" value="Hola, estoy buscando un lote residencial en Pitalito. ¿Qué tienen disponible?">
-      <button class="accion oro" type="submit" data-sube style="--i:3" id="busca-btn">Preguntar por lotes residenciales</button>
+      <button class="accion oro" type="submit" data-sube style="--i:3" id="busca-btn"><span>Preguntar por lotes residenciales</span></button>
     </form>
     <div data-sube style="--i:2">
       <div class="plano"><canvas id="plano" role="img" aria-label="Plano ilustrativo de una urbanización que resalta el tipo de inmueble elegido."></canvas></div>
@@ -512,7 +520,7 @@ em{font-style:normal;color:var(--oro)}
     <div>
       <p class="rot" data-sube>Contacto</p>
       <a class="tel" data-sube style="--i:1" href="tel:+573176461480">317 646 1480</a><br>
-      <a class="accion oro" data-sube style="--i:2" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s.">Escribir por WhatsApp</a>
+      <a class="accion oro" data-sube style="--i:2" href="https://wa.me/573176461480?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20proyectos%20de%20Constructora%20Santo%20Thom%C3%A1s."><span>Escribir por WhatsApp</span></a>
     </div>
     <address data-sube style="--i:2">
       <span>Carrera 15 No. 19A-01 Sur, local 148<br>Centro Comercial Gran Plaza San Antonio<br>Pitalito, Huila</span>
@@ -662,7 +670,7 @@ em{font-style:normal;color:var(--oro)}
   }
   form.addEventListener('change', function (e) {
     if (e.target.name !== 'tipo') return;
-    btn.textContent = copia[e.target.value][0]; texto.value = copia[e.target.value][1];
+    btn.firstElementChild.textContent = copia[e.target.value][0]; texto.value = copia[e.target.value][1];
     if (busca) { busca.tipo = e.target.value; busca.pintar(); }
   });
   form.addEventListener('submit', function (e) {
